@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Bell Summer Firebase</title>
+  <title>Bell Summer 1.0</title>
   <style>
     :root{
-      --navy:#123957; --teal:#2b8277; --purple:#6b4fc7; --gold:#c28514;
-      --green:#25a267; --red:#d75b5b; --blue:#2f91c7; --gray:#627282;
-      --card:rgba(255,255,255,.92); --shadow:0 16px 42px rgba(25,62,88,.14);
+      --navy:#123957;--teal:#2b8277;--purple:#6b4fc7;--gold:#c28514;--green:#168357;--red:#c84040;--blue:#2f91c7;
+      --card:rgba(255,255,255,.92);--shadow:0 16px 42px rgba(25,62,88,.14);
     }
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
     body{margin:0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--navy);background:radial-gradient(circle at top left,rgba(146,213,189,.65),transparent 34%),radial-gradient(circle at top right,rgba(255,224,126,.58),transparent 36%),linear-gradient(180deg,#fff9ec 0%,#effaff 44%,#fff9ee 100%)}
@@ -16,19 +15,21 @@
     .screen{display:none}.screen.active{display:block;animation:fade .16s ease}@keyframes fade{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:none}}
     .hero{text-align:center;padding:36px 8px 20px}.sun-logo{width:92px;height:54px;margin:0 auto -8px;position:relative}.sun-logo:before{content:"";position:absolute;left:17px;top:18px;width:58px;height:30px;border:7px solid #f3ba2d;border-bottom:0;border-radius:80px 80px 0 0}.sun-logo span{position:absolute;width:6px;height:24px;border-radius:10px;background:#f3ba2d;left:43px;top:-8px}.sun-logo .r2{transform:rotate(39deg);left:74px;top:7px}.sun-logo .r3{transform:rotate(75deg);left:84px;top:34px}.sun-logo .r4{transform:rotate(-39deg);left:12px;top:7px}.sun-logo .r5{transform:rotate(-75deg);left:0;top:34px}
     h1{margin:0;font-size:76px;line-height:.82;letter-spacing:-4px;font-family:"Brush Script MT","Snell Roundhand",cursive}.summer{margin-top:2px;font-size:36px;font-weight:900;letter-spacing:10px;color:var(--teal)}.tagline{margin:26px auto 0;font-size:20px;line-height:1.32;font-weight:750;max-width:330px}
-    .cards{display:grid;gap:16px;margin-top:20px}.person-card,.panel,.job-card,.task-row,.badge,.leader-card,.activity-row,.reward-card{background:var(--card);border:1px solid rgba(255,255,255,.86);box-shadow:var(--shadow);border-radius:25px}.person-card{width:100%;display:grid;grid-template-columns:70px 1fr 26px;align-items:center;gap:14px;padding:16px 18px;text-align:left;color:inherit;cursor:pointer}.avatar{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;font-size:37px;background:rgba(255,255,255,.62)}.person-card h2{margin:0 0 4px;font-size:28px}.person-card p{margin:0;color:#526879;font-size:16px}.chev{font-size:38px;opacity:.75}.spencer{background:linear-gradient(180deg,#edfbf4,rgba(255,255,255,.92))}.harper{background:linear-gradient(180deg,#f3efff,rgba(255,255,255,.94))}.parent{background:linear-gradient(180deg,#fff5dc,rgba(255,255,255,.94))}
+    .cards{display:grid;gap:16px;margin-top:20px}.person-card,.panel,.card,.badge,.row,.activity-row{background:var(--card);border:1px solid rgba(255,255,255,.86);box-shadow:var(--shadow);border-radius:25px}.person-card{width:100%;display:grid;grid-template-columns:70px 1fr 26px;align-items:center;gap:14px;padding:16px 18px;text-align:left;color:inherit;cursor:pointer}.avatar{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;font-size:37px;background:rgba(255,255,255,.62)}.person-card h2{margin:0 0 4px;font-size:28px}.person-card p{margin:0;color:#526879;font-size:16px}.chev{font-size:38px;opacity:.75}.spencer{background:linear-gradient(180deg,#edfbf4,rgba(255,255,255,.92))}.harper{background:linear-gradient(180deg,#f3efff,rgba(255,255,255,.94))}.parent{background:linear-gradient(180deg,#fff5dc,rgba(255,255,255,.94))}
     .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}.brand-small{display:flex;align-items:center;gap:9px;font-weight:900;letter-spacing:-.5px;font-size:21px}.sun-dot{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#ffd15a,#ff9e3d);box-shadow:0 0 0 6px rgba(255,190,67,.2)}.back-btn,.small-btn{border:0;background:rgba(255,255,255,.78);color:var(--navy);border-radius:14px;padding:10px 13px;font-weight:850;box-shadow:0 8px 18px rgba(25,62,88,.09);cursor:pointer}
-    .panel{padding:17px;margin-bottom:15px}.hello{display:flex;align-items:center;gap:13px;margin-bottom:14px}.hello .avatar{width:58px;height:58px;font-size:32px}.hello h2{margin:0;font-size:27px}.hello p{margin:2px 0 0;color:#526879;font-weight:650}
     .tabs{display:flex;gap:8px;margin-bottom:14px;overflow-x:auto;padding-bottom:3px}.tab{border:none;background:rgba(255,255,255,.66);border-radius:999px;padding:10px 13px;color:var(--navy);font-weight:900;white-space:nowrap;cursor:pointer}.tab.active{background:var(--navy);color:white}
+    .panel{padding:17px;margin-bottom:15px}.hello{display:flex;align-items:center;gap:13px;margin-bottom:14px}.hello .avatar{width:58px;height:58px;font-size:32px}.hello h2{margin:0;font-size:27px}.hello p{margin:2px 0 0;color:#526879;font-weight:650}
     .money-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.money-card{border-radius:22px;padding:15px;background:linear-gradient(135deg,#e9fff3,#fff);border:1px solid rgba(38,162,105,.16);box-shadow:0 12px 30px rgba(38,162,105,.12);margin-bottom:10px}.money-card.full{grid-column:1/-1}.money-label{color:#526879;font-weight:850;font-size:14px}.money{font-size:42px;font-weight:950;letter-spacing:-2px;margin-top:2px;color:#168357}.money.small{font-size:23px;color:var(--navy);letter-spacing:-.5px}
-    .rank-card{background:linear-gradient(135deg,#fff5d7,#fff);border:1px solid rgba(194,133,20,.16);border-radius:23px;padding:16px;margin-bottom:14px;box-shadow:0 12px 30px rgba(194,133,20,.10)}.rank-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.rank-name{font-size:25px;font-weight:950}.xp{font-weight:950;color:var(--gold)}.progress{height:13px;border-radius:999px;background:#dfe8ee;overflow:hidden;margin:12px 0 5px}.bar{height:100%;width:0;background:linear-gradient(90deg,#2aa56d,#58c98c);border-radius:999px;transition:width .2s ease}.goldbar{background:linear-gradient(90deg,#f0ae25,#ffd15a)}
-    .section-title{font-size:22px;margin:4px 0 12px;font-weight:950}.task-row{padding:14px 14px 14px 16px;display:flex;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 10px 24px rgba(25,62,88,.09);margin-bottom:12px}.task-title{font-size:18px;font-weight:850}.task-sub{color:#6b7b87;font-size:14px;margin-top:3px}.status-pill{display:inline-block;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:950;margin-top:6px}.pending{background:#fff1c2;color:#8a5c00}.approved{background:#dff9ea;color:#137a4f}.locked{background:#e7edf2;color:#526879}
+    .rank-card,.quest-card,.goal-card{border-radius:23px;padding:16px;margin-bottom:14px;box-shadow:0 12px 30px rgba(194,133,20,.10)}.rank-card,.quest-card{background:linear-gradient(135deg,#fff5d7,#fff);border:1px solid rgba(194,133,20,.16)}.goal-card{background:linear-gradient(135deg,#eef7ff,#fff);border:1px solid rgba(47,145,199,.16)}.rank-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.rank-name{font-size:25px;font-weight:950}.xp{font-weight:950;color:var(--gold)}
+    .section-title{font-size:22px;margin:4px 0 12px;font-weight:950}.task-title,.card-title{font-size:18px;font-weight:900}.task-sub{color:#6b7b87;font-size:14px;margin-top:3px}.progress{height:13px;border-radius:999px;background:#dfe8ee;overflow:hidden;margin:12px 0 5px}.bar{height:100%;width:0;background:linear-gradient(90deg,#2aa56d,#58c98c);border-radius:999px;transition:width .2s ease}.goldbar{background:linear-gradient(90deg,#f0ae25,#ffd15a)}
+    .task-row,.card,.row{padding:14px 14px 14px 16px;display:flex;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 10px 24px rgba(25,62,88,.09);margin-bottom:12px}.card{display:grid;grid-template-columns:1fr auto}.card.disabled{opacity:.55}.job-value{color:#168357;font-weight:950}.status-pill{display:inline-block;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:950;margin-top:6px}.pending{background:#fff1c2;color:#8a5c00}.approved{background:#dff9ea;color:#137a4f}.locked{background:#e7edf2;color:#526879}
     .switch{position:relative;width:66px;height:38px;flex:0 0 auto}.switch input{display:none}.slider{position:absolute;cursor:pointer;inset:0;background:#cdd8df;border-radius:999px;transition:.2s;box-shadow:inset 0 2px 6px rgba(0,0,0,.12)}.slider:before{content:"";position:absolute;width:31px;height:31px;left:4px;top:3.5px;background:white;border-radius:50%;transition:.2s;box-shadow:0 4px 10px rgba(0,0,0,.18)}.switch input:checked+.slider{background:#f1b932}.switch input:checked+.slider:before{transform:translateX(27px)}.switch input:disabled+.slider{opacity:.55;cursor:not-allowed}
-    .lock-box{text-align:center;padding:20px;background:rgba(255,255,255,.7);border:1px dashed rgba(17,57,87,.22);border-radius:22px;color:#526879;font-weight:750;line-height:1.4}.unlock{text-align:center;background:linear-gradient(135deg,#fff5d6,#fff);border:1px solid rgba(180,122,22,.16);border-radius:22px;padding:15px;font-weight:900;color:var(--gold);margin-bottom:12px}.job-card,.reward-card{padding:16px;margin-bottom:12px;box-shadow:0 10px 24px rgba(25,62,88,.09);display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}.job-card.disabled,.reward-card.disabled{opacity:.55}.job-title{font-size:19px;font-weight:900;margin:0 0 3px}.job-value{color:#168357;font-weight:950}.claim{border:none;background:linear-gradient(135deg,#5b45b6,#8a62ed);color:white;border-radius:15px;padding:12px 14px;font-weight:900;cursor:pointer}.claim:disabled{background:#bdc6ce;cursor:not-allowed}
-    .badge-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.badge{padding:14px;text-align:center;min-height:138px;box-shadow:0 10px 24px rgba(25,62,88,.09);display:flex;flex-direction:column;justify-content:center}.badge.locked-badge{opacity:.52;filter:grayscale(.75)}.badge-icon{font-size:36px;margin-bottom:7px}.badge-title{font-size:16px;font-weight:950}.badge-desc{font-size:13px;color:#6b7b87;margin-top:5px;line-height:1.25}.badge-xp{font-size:12px;color:var(--gold);font-weight:950;margin-top:7px}
-    .leader-card{padding:14px;margin-bottom:11px;display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:10px;box-shadow:0 10px 24px rgba(25,62,88,.09)}.place{font-size:24px;font-weight:950}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}.stat{background:rgba(255,255,255,.72);border-radius:19px;padding:15px;border:1px solid rgba(17,57,87,.08)}.stat small{color:#526879;font-weight:800}.stat strong{display:block;font-size:29px;margin-top:3px}
-    input,select,textarea{width:100%;border:1px solid #d7e2ea;background:rgba(255,255,255,.86);border-radius:16px;padding:14px;font-size:17px;outline:0;margin-bottom:10px}textarea{min-height:76px;resize:vertical}.primary{border:none;width:100%;border-radius:16px;padding:15px;background:linear-gradient(135deg,#2b8b79,#34b07f);color:white;font-size:17px;font-weight:950;cursor:pointer}.danger,.pay,.approve,.reject{border:none;border-radius:13px;padding:10px 12px;color:white;font-weight:900;cursor:pointer}.danger,.reject{background:#d75d5d}.pay,.approve{background:#168357}.admin-list-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(17,57,87,.1)}.admin-list-row:last-child{border-bottom:none}.approval-actions{display:flex;gap:8px;flex-wrap:wrap}
+    .claim,.primary{border:none;border-radius:16px;padding:13px 14px;background:linear-gradient(135deg,#5b45b6,#8a62ed);color:white;font-weight:950;cursor:pointer}.claim:disabled{background:#bdc6ce;cursor:not-allowed}.primary{width:100%;background:linear-gradient(135deg,#2b8b79,#34b07f);font-size:17px;padding:15px}.danger,.pay,.approve,.reject{border:none;border-radius:13px;padding:10px 12px;color:white;font-weight:900;cursor:pointer}.danger,.reject{background:#d75d5d}.pay,.approve{background:#168357}
+    .lock-box{text-align:center;padding:20px;background:rgba(255,255,255,.7);border:1px dashed rgba(17,57,87,.22);border-radius:22px;color:#526879;font-weight:750;line-height:1.4}.unlock{text-align:center;background:linear-gradient(135deg,#fff5d6,#fff);border:1px solid rgba(180,122,22,.16);border-radius:22px;padding:15px;font-weight:900;color:var(--gold);margin-bottom:12px}
+    .badge-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.badge{padding:14px;text-align:center;min-height:138px;box-shadow:0 10px 24px rgba(25,62,88,.09);display:flex;flex-direction:column;justify-content:center}.badge.locked-badge{opacity:.52;filter:grayscale(.75)}.badge-icon{font-size:36px;margin-bottom:7px}.badge-title{font-size:16px;font-weight:950}.badge-desc{font-size:13px;color:#6b7b87;margin-top:5px;line-height:1.25}.badge-xp{font-size:12px;color:var(--gold);font-weight:950;margin-top:7px}.avatar-choice{border:none;cursor:pointer}.avatar-choice.locked-badge{cursor:not-allowed}.selected-avatar{outline:4px solid rgba(43,130,119,.35)}
     .activity-row{padding:14px;margin-bottom:10px;display:grid;grid-template-columns:38px 1fr auto;gap:10px;align-items:center;box-shadow:0 10px 24px rgba(25,62,88,.09)}.activity-icon{font-size:25px}.activity-amount{font-size:18px;font-weight:950}.positive{color:#168357}.negative{color:#c84040}.neutral{color:#2f91c7}.gold{color:#c28514}
+    .admin-grid,.goal-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}.goal-actions{grid-template-columns:1fr 1fr 1fr;margin:12px 0 0}.stat{background:rgba(255,255,255,.72);border-radius:19px;padding:15px;border:1px solid rgba(17,57,87,.08)}.stat small{color:#526879;font-weight:800}.stat strong{display:block;font-size:29px;margin-top:3px}
+    input,select,textarea{width:100%;border:1px solid #d7e2ea;background:rgba(255,255,255,.86);border-radius:16px;padding:14px;font-size:17px;outline:0;margin-bottom:10px}textarea{min-height:76px;resize:vertical}.admin-list-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(17,57,87,.1)}.admin-list-row:last-child{border-bottom:none}.approval-actions{display:flex;gap:8px;flex-wrap:wrap}
     .loading{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:linear-gradient(180deg,#fff9ec,#effaff);color:var(--navy);text-align:center;padding:24px}.loading-card{background:white;border-radius:26px;padding:26px;box-shadow:var(--shadow);max-width:330px}.loading-card h2{margin:0 0 8px}.loading-card p{margin:0;color:#526879;font-weight:700;line-height:1.35}.loading.hidden{display:none}
     .modal-wrap{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;padding:18px;background:rgba(17,57,87,.32);z-index:10}.modal-wrap.active{display:flex}.modal{background:white;border-radius:28px;width:min(100%,430px);padding:23px;box-shadow:0 26px 70px rgba(0,0,0,.22)}.modal h2{margin:0 0 8px}.modal p{margin:0 0 12px;color:#526879}.error{display:none;color:#b42318;font-weight:850;margin-bottom:10px}.error.active{display:block}.secondary{width:100%;border:0;background:transparent;padding:14px;color:#526879;font-weight:800;cursor:pointer}
     @media(max-width:390px){h1{font-size:66px}.summer{font-size:31px}.person-card{grid-template-columns:62px 1fr 20px;padding:14px}.avatar{width:58px;height:58px;font-size:32px}.person-card h2{font-size:25px}.money{font-size:38px}.admin-grid,.money-grid,.badge-grid{grid-template-columns:1fr}.activity-row{grid-template-columns:34px 1fr}.activity-amount{grid-column:2}}
@@ -36,16 +37,12 @@
 </head>
 <body>
 <div id="loading" class="loading"><div class="loading-card"><h2>☀️ Loading Bell Summer</h2><p>Connecting to Firebase and loading saved family data...</p></div></div>
-
 <main class="app">
   <section id="login" class="screen active">
-    <div class="hero">
-      <div class="sun-logo"><span></span><span class="r2"></span><span class="r3"></span><span class="r4"></span><span class="r5"></span></div>
-      <h1>Bell</h1><div class="summer">SUMMER</div><div class="tagline">Earn. Achieve. Level Up.</div>
-    </div>
+    <div class="hero"><div class="sun-logo"><span></span><span class="r2"></span><span class="r3"></span><span class="r4"></span><span class="r5"></span></div><h1>Bell</h1><div class="summer">SUMMER</div><div class="tagline">Earn. Achieve. Level Up.</div></div>
     <div class="cards">
-      <button class="person-card spencer" onclick="openChild('spencer')"><div class="avatar">👦</div><div><h2>Spencer</h2><p>Open my dashboard</p></div><div class="chev">›</div></button>
-      <button class="person-card harper" onclick="openChild('harper')"><div class="avatar">👧</div><div><h2>Harper</h2><p>Open my dashboard</p></div><div class="chev">›</div></button>
+      <button class="person-card spencer" onclick="openChild('spencer')"><div id="loginSpencerAvatar" class="avatar">👦</div><div><h2>Spencer</h2><p>Open my dashboard</p></div><div class="chev">›</div></button>
+      <button class="person-card harper" onclick="openChild('harper')"><div id="loginHarperAvatar" class="avatar">👧</div><div><h2>Harper</h2><p>Open my dashboard</p></div><div class="chev">›</div></button>
       <button class="person-card parent" onclick="showParentLogin()"><div class="avatar">🔒</div><div><h2>Parent</h2><p>Approve, edit, fine, reward</p></div><div class="chev">›</div></button>
     </div>
   </section>
@@ -58,27 +55,23 @@
       <button id="childTabStore" class="tab" onclick="showChildTab('store')">Store</button>
       <button id="childTabActivity" class="tab" onclick="showChildTab('activity')">Activity</button>
       <button id="childTabAchievements" class="tab" onclick="showChildTab('achievements')">Achievements</button>
+      <button id="childTabAvatar" class="tab" onclick="showChildTab('avatar')">Avatar</button>
       <button id="childTabLeaderboard" class="tab" onclick="showChildTab('leaderboard')">Leaderboard</button>
     </div>
-
     <div id="childToday">
       <div class="panel">
         <div class="hello"><div id="childAvatar" class="avatar">👦</div><div><h2 id="childName">Spencer</h2><p id="todayText">Today is Monday</p></div></div>
         <div id="rankCard"></div>
-        <div class="money-grid">
-          <div class="money-card full"><div class="money-label">My current money</div><div id="childMoney" class="money">$0</div></div>
-          <div class="money-card"><div class="money-label">Lifetime earned</div><div id="childLifetime" class="money small">$0</div></div>
-          <div class="money-card"><div class="money-label">Last payout</div><div id="childPayout" class="money small">None</div></div>
-        </div>
-        <div class="section-title">First Tasks</div><div id="tasks"></div>
-        <div class="progress"><div id="taskBar" class="bar"></div></div><div id="taskProgress" class="task-sub">0 of 3 approved</div>
+        <div class="money-grid"><div class="money-card full"><div class="money-label">My current money</div><div id="childMoney" class="money">$0</div></div><div class="money-card"><div class="money-label">Lifetime earned</div><div id="childLifetime" class="money small">$0</div></div><div class="money-card"><div class="money-label">Last payout</div><div id="childPayout" class="money small">None</div></div></div>
+        <div class="section-title">☀️ Morning Tasks</div><div id="tasks"></div><div class="progress"><div id="taskBar" class="bar"></div></div><div id="taskProgress" class="task-sub">0 of 3 approved</div>
       </div>
+      <div class="panel"><div class="section-title">🎯 My Big Goal</div><div id="bigGoalBox"></div></div>
     </div>
-
     <div id="childJobsTab" style="display:none;"><div class="panel"><div id="jobStatus"></div><div id="childJobs"></div></div></div>
     <div id="childStoreTab" style="display:none;"><div class="panel"><div class="section-title">Reward Store</div><div id="storeBalance" class="task-sub" style="margin-bottom:12px;"></div><div id="storeList"></div></div></div>
     <div id="childActivityTab" style="display:none;"><div class="panel"><div class="section-title">Activity</div><div id="activitySummary" class="task-sub" style="margin-bottom:12px;"></div><div id="activityList"></div></div></div>
     <div id="childAchievementsTab" style="display:none;"><div class="panel"><div class="section-title">Achievement Gallery</div><div id="achievementSummary" class="task-sub" style="margin-bottom:12px;"></div><div id="badgeGrid" class="badge-grid"></div></div></div>
+    <div id="childAvatarTab" style="display:none;"><div class="panel"><div class="section-title">Pick Your Avatar</div><div id="avatarSummary" class="task-sub" style="margin-bottom:12px;"></div><div id="avatarPicker" class="badge-grid"></div></div></div>
     <div id="childLeaderboardTab" style="display:none;"><div class="panel"><div class="section-title">☀️ Summer Leaderboard</div><div id="leaderboard"></div></div></div>
   </section>
 
@@ -88,400 +81,113 @@
       <button id="tabApprovals" class="tab active" onclick="showAdminTab('approvals')">Approvals</button>
       <button id="tabOverview" class="tab" onclick="showAdminTab('overview')">Overview</button>
       <button id="tabJobs" class="tab" onclick="showAdminTab('jobs')">Jobs</button>
-      <button id="tabTasks" class="tab" onclick="showAdminTab('tasks')">Tasks</button>
-      <button id="tabFines" class="tab" onclick="showAdminTab('fines')">Fines</button>
-      <button id="tabBonuses" class="tab" onclick="showAdminTab('bonuses')">Bonuses</button>
+      <button id="tabGoals" class="tab" onclick="showAdminTab('goals')">Goals</button>
+      <button id="tabQuests" class="tab" onclick="showAdminTab('quests')">Quests</button>
       <button id="tabRewards" class="tab" onclick="showAdminTab('rewards')">Rewards</button>
+      <button id="tabBonuses" class="tab" onclick="showAdminTab('bonuses')">Bonuses</button>
+      <button id="tabFines" class="tab" onclick="showAdminTab('fines')">Fines</button>
     </div>
     <div id="adminApprovals" class="panel"><div class="section-title">Pending Approvals</div><div id="approvalList"></div></div>
     <div id="adminOverview" class="panel" style="display:none;"><div class="section-title">Family Overview</div><div class="admin-grid"><div class="stat"><small>Spencer Money</small><strong id="spencerStat">$0</strong></div><div class="stat"><small>Harper Money</small><strong id="harperStat">$0</strong></div></div><div id="childStatusList"></div></div>
     <div id="adminJobs" class="panel" style="display:none;"><div class="section-title">Add a Job</div><input id="newJobTitle" placeholder="Job title, example: Wash the car" /><input id="newJobValue" type="number" min="0" step="0.50" placeholder="Value, example: 5" /><button class="primary" onclick="addJob()">Add Job</button><div class="section-title" style="margin-top:22px;">Current Jobs</div><div id="adminJobList"></div></div>
-    <div id="adminTasks" class="panel" style="display:none;"><div class="section-title">Daily Tasks</div><input id="newTaskTitle" placeholder="Task title, example: Pack backpack" /><button class="primary" onclick="addTask()">Add Task</button><div id="adminTaskList" style="margin-top:14px;"></div></div>
-    <div id="adminFines" class="panel" style="display:none;">
-      <div class="section-title">Apply a Fine</div>
-      <select id="fineChild"><option value="spencer">Spencer</option><option value="harper">Harper</option></select>
-      <select id="fineReason"><option>Not Listening</option><option>Fighting</option><option>Complaining</option><option>Breaking the Rules</option></select>
-      <input id="fineAmount" type="number" min="0" step="0.50" value="1" placeholder="Fine amount" />
-      <textarea id="fineNote" placeholder="Optional note"></textarea>
-      <button class="primary" onclick="applyFine()">Apply Fine</button>
-      <div class="section-title" style="margin-top:22px;">Fine Presets</div>
-      <div class="task-sub">Not Listening • Fighting • Complaining • Breaking the Rules</div>
-    </div>
-    <div id="adminBonuses" class="panel" style="display:none;">
-      <div class="section-title">Apply a Bonus</div>
-      <select id="bonusChild"><option value="spencer">Spencer</option><option value="harper">Harper</option></select>
-      <select id="bonusReason">
-        <option>Great Attitude</option>
-        <option>Helped Without Asking</option>
-        <option>Excellent Listening</option>
-        <option>Extra Effort</option>
-        <option>Kind to Sibling</option>
-      </select>
-      <input id="bonusAmount" type="number" min="0" step="0.50" value="1" placeholder="Bonus amount" />
-      <textarea id="bonusNote" placeholder="Optional note"></textarea>
-      <button class="primary" onclick="applyBonus()">Apply Bonus</button>
-      <div class="section-title" style="margin-top:22px;">Bonus Presets</div>
-      <div class="task-sub">Great Attitude • Helped Without Asking • Excellent Listening • Extra Effort • Kind to Sibling</div>
-    </div>
-    <div id="adminRewards" class="panel" style="display:none;">
-      <div class="section-title">Add Reward</div>
-      <input id="newRewardTitle" placeholder="Reward name, example: Pick dinner" />
-      <input id="newRewardCost" type="number" min="0" step="0.50" placeholder="Cost, example: 7" />
-      <button class="primary" onclick="addReward()">Add Reward</button>
-      <div class="section-title" style="margin-top:22px;">Current Rewards</div>
-      <div id="adminRewardList"></div>
-    </div>
+    <div id="adminGoals" class="panel" style="display:none;"><div class="section-title">Set Big Goal</div><select id="goalChild"><option value="spencer">Spencer</option><option value="harper">Harper</option></select><input id="goalTitle" placeholder="Goal name, example: LEGO Minecraft Set" /><input id="goalTarget" type="number" min="1" step="0.50" placeholder="Goal cost, example: 40" /><button class="primary" onclick="setGoal()">Save Goal</button><div class="section-title" style="margin-top:22px;">Current Goals</div><div id="adminGoalList"></div></div>
+    <div id="adminQuests" class="panel" style="display:none;"><div class="section-title">Daily Quest Bank</div><input id="newQuestTitle" placeholder="Quest, example: Help clean up after lunch" /><input id="newQuestReward" type="number" min="0" step="0.50" value="2" placeholder="Reward amount" /><button class="primary" onclick="addQuest()">Add Quest</button><div class="section-title" style="margin-top:22px;">Current Quest Bank</div><div id="adminQuestList"></div></div>
+    <div id="adminRewards" class="panel" style="display:none;"><div class="section-title">Add Reward</div><input id="newRewardTitle" placeholder="Reward name, example: Pick dinner" /><input id="newRewardCost" type="number" min="0" step="0.50" placeholder="Cost, example: 7" /><button class="primary" onclick="addReward()">Add Reward</button><div class="section-title" style="margin-top:22px;">Current Rewards</div><div id="adminRewardList"></div></div>
+    <div id="adminBonuses" class="panel" style="display:none;"><div class="section-title">Apply a Bonus</div><select id="bonusChild"><option value="spencer">Spencer</option><option value="harper">Harper</option></select><select id="bonusReason"><option>Great Attitude</option><option>Helped Without Asking</option><option>Excellent Listening</option><option>Extra Effort</option><option>Kind to Sibling</option></select><input id="bonusAmount" type="number" min="0" step="0.50" value="1" /><textarea id="bonusNote" placeholder="Optional note"></textarea><button class="primary" onclick="applyBonus()">Apply Bonus</button></div>
+    <div id="adminFines" class="panel" style="display:none;"><div class="section-title">Apply a Fine</div><select id="fineChild"><option value="spencer">Spencer</option><option value="harper">Harper</option></select><select id="fineReason"><option>Not Listening</option><option>Fighting</option><option>Complaining</option><option>Breaking the Rules</option></select><input id="fineAmount" type="number" min="0" step="0.50" value="1" /><textarea id="fineNote" placeholder="Optional note"></textarea><button class="primary" onclick="applyFine()">Apply Fine</button></div>
   </section>
 </main>
-
-
-<div id="bonusModal" class="modal-wrap">
-  <div class="modal">
-    <h2 id="bonusTitle">⭐ Bonus!</h2>
-    <p id="bonusMessage">You got a bonus.</p>
-    <button class="primary" onclick="closeBonusModal()">Awesome!</button>
-  </div>
-</div>
-
+<div id="bonusModal" class="modal-wrap"><div class="modal"><h2 id="bonusTitle">⭐ Bonus!</h2><p id="bonusMessage">You got a bonus.</p><button class="primary" onclick="closeBonusModal()">Awesome!</button></div></div>
 <div id="pinModal" class="modal-wrap"><div class="modal"><h2>Parent PIN</h2><p>Enter the parent PIN to manage Bell Summer.</p><input id="pinInput" type="password" inputmode="numeric" placeholder="PIN" /><div id="pinError" class="error">Wrong PIN. Try again.</div><button class="primary" onclick="checkPin()">Unlock</button><button class="secondary" onclick="hideParentLogin()">Cancel</button></div></div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyA4358IN5JoPssoWBryDcTOq6JiEz8D4fs",
-  authDomain: "chores-e298d.firebaseapp.com",
-  projectId: "chores-e298d",
-  storageBucket: "chores-e298d.firebasestorage.app",
-  messagingSenderId: "623628700076",
-  appId: "1:623628700076:web:9155391e7e8560e585d209",
-  measurementId: "G-SQ3HMN9T04"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const appRef = doc(db, "bellSummer", "appState");
-
-let isApplyingRemoteData = false;
-let hasLoadedFirebase = false;
-let isSavingLocalChange = false;
-let pendingLocalSaveTimer = null;
-
+const firebaseConfig={apiKey:"AIzaSyA4358IN5JoPssoWBryDcTOq6JiEz8D4fs",authDomain:"chores-e298d.firebaseapp.com",projectId:"chores-e298d",storageBucket:"chores-e298d.firebasestorage.app",messagingSenderId:"623628700076",appId:"1:623628700076:web:9155391e7e8560e585d209",measurementId:"G-SQ3HMN9T04"};
+const app=initializeApp(firebaseConfig),db=getFirestore(app),appRef=doc(db,"bellSummer","appState");
+let isApplyingRemoteData=false,hasLoadedFirebase=false,isSavingLocalChange=false,pendingLocalSaveTimer=null;
+const RANKS=[{name:"🥉 Rookie",xp:0},{name:"🥈 Explorer",xp:50},{name:"🥇 Worker",xp:100},{name:"🏅 Achiever",xp:250},{name:"🏆 Champion",xp:500},{name:"👑 Legend",xp:1000}];
+const AVATARS=[{emoji:"👦",need:0},{emoji:"👧",need:0},{emoji:"🐱",need:3},{emoji:"🦖",need:3},{emoji:"🐰",need:6},{emoji:"🦈",need:6},{emoji:"🦄",need:10},{emoji:"🐉",need:10},{emoji:"🤖",need:15},{emoji:"🚀",need:15},{emoji:"👑",need:20},{emoji:"🐲",need:20}];
+const DEFAULT_QUESTS=[{id:"kindness",title:"Do one act of kindness without being asked.",reward:2},{id:"read-15",title:"Read for 15 minutes.",reward:2},{id:"practice-tkd",title:"Practice taekwondo for 5 minutes.",reward:2},{id:"clean-extra",title:"Clean one extra area without being asked.",reward:2},{id:"help-sibling",title:"Help your sibling with something.",reward:2},{id:"outside-30",title:"Play outside for 30 minutes.",reward:2},{id:"thank-you",title:"Write or say a thoughtful thank you.",reward:2},{id:"help-dinner",title:"Help with dinner or setting the table.",reward:2}];
 const ACHIEVEMENTS=[
 {id:"first-day",icon:"🏆",title:"First Day",desc:"Complete all first tasks once.",xp:10,type:"dailyDays",target:1},
 {id:"first-job",icon:"💼",title:"First Job",desc:"Complete your first paid job.",xp:10,type:"jobs",target:1},
+{id:"job-master",icon:"🧹",title:"Job Master",desc:"Complete 10 paid jobs.",xp:30,type:"jobs",target:10},
+{id:"workhorse",icon:"🔨",title:"Workhorse",desc:"Complete 25 paid jobs.",xp:50,type:"jobs",target:25},
 {id:"first-dollar",icon:"💰",title:"First Dollar",desc:"Earn your first dollar.",xp:10,type:"money",target:1},
-{id:"first-bonus",icon:"⭐",title:"First Bonus",desc:"Earn your first parent bonus.",xp:10,type:"bonuses",target:1},
-{id:"bonus-5",icon:"🌟",title:"Bonus Star",desc:"Earn 5 parent bonuses.",xp:25,type:"bonuses",target:5},
-{id:"bonus-10",icon:"✨",title:"Bonus Legend",desc:"Earn 10 parent bonuses.",xp:50,type:"bonuses",target:10},
 {id:"money-5",icon:"💵",title:"Five Bucks",desc:"Earn $5 total.",xp:15,type:"money",target:5},
 {id:"money-10",icon:"💵",title:"Ten Bucks",desc:"Earn $10 total.",xp:20,type:"money",target:10},
 {id:"money-20",icon:"💵",title:"Twenty Bucks",desc:"Earn $20 total.",xp:25,type:"money",target:20},
 {id:"money-50",icon:"💰",title:"Fifty Club",desc:"Earn $50 total.",xp:40,type:"money",target:50},
 {id:"money-100",icon:"👑",title:"Hundred Club",desc:"Earn $100 total.",xp:75,type:"money",target:100},
+{id:"first-bonus",icon:"⭐",title:"First Bonus",desc:"Earn your first parent bonus.",xp:10,type:"bonuses",target:1},
+{id:"bonus-5",icon:"🌟",title:"Bonus Star",desc:"Earn 5 parent bonuses.",xp:25,type:"bonuses",target:5},
+{id:"bonus-10",icon:"✨",title:"Bonus Legend",desc:"Earn 10 parent bonuses.",xp:50,type:"bonuses",target:10},
+{id:"first-quest",icon:"🎯",title:"First Quest",desc:"Complete your first daily quest.",xp:10,type:"quests",target:1},
+{id:"quest-10",icon:"🎯",title:"Quest Apprentice",desc:"Complete 10 daily quests.",xp:25,type:"quests",target:10},
+{id:"quest-30",icon:"🏹",title:"Quest Hero",desc:"Complete 30 daily quests.",xp:60,type:"quests",target:30},
+{id:"quest-60",icon:"☀️",title:"Summer Quest Master",desc:"Complete 60 daily quests.",xp:120,type:"quests",target:60},
 {id:"streak-3",icon:"🔥",title:"3-Day Streak",desc:"Complete first tasks 3 days in a row.",xp:20,type:"streak",target:3},
 {id:"streak-7",icon:"🔥",title:"7-Day Streak",desc:"Complete first tasks 7 days in a row.",xp:50,type:"streak",target:7},
 {id:"streak-14",icon:"🔥",title:"14-Day Streak",desc:"Complete first tasks 14 days in a row.",xp:100,type:"streak",target:14},
-{id:"jobs-10",icon:"🧹",title:"Job Master",desc:"Complete 10 paid jobs.",xp:30,type:"jobs",target:10},
-{id:"perfect-week",icon:"⭐",title:"Perfect Week",desc:"Reach a 7-day streak.",xp:50,type:"streak",target:7},
-{id:"summer-legend",icon:"☀️",title:"Summer Legend",desc:"Unlock every other achievement.",xp:150,type:"legend",target:1}
+{id:"goal-setter",icon:"🎯",title:"Goal Setter",desc:"Start your big summer goal.",xp:10,type:"goalSet",target:1},
+{id:"halfway-there",icon:"💰",title:"Halfway There",desc:"Reach 50% of your goal.",xp:25,type:"goalPercent",target:50},
+{id:"almost-there",icon:"🔥",title:"Almost There",desc:"Reach 90% of your goal.",xp:40,type:"goalPercent",target:90},
+{id:"goal-crusher",icon:"🏁",title:"Goal Crusher",desc:"Complete your big goal.",xp:75,type:"goalPercent",target:100},
+{id:"avatar-collector",icon:"🎭",title:"Avatar Collector",desc:"Unlock 5 avatars.",xp:25,type:"avatars",target:5},
+{id:"avatar-master",icon:"🏆",title:"Avatar Master",desc:"Unlock every avatar.",xp:75,type:"avatars",target:12}
 ];
-const RANKS=[{name:"🥉 Rookie",xp:0},{name:"🥈 Explorer",xp:50},{name:"🥇 Worker",xp:100},{name:"🏅 Achiever",xp:250},{name:"🏆 Champion",xp:500},{name:"👑 Legend",xp:1000}];
-
-const DEFAULT_DATA={
-  pin:"1234",
-  currentDate:todayKey(),
-  children:{
-    spencer:{name:"Spencer",avatar:"👦",money:0,lifetime:0,lastPayout:null,stats:{dailyDays:0,streak:0,bestStreak:0,jobs:0,unlockedJobsDays:0,bonuses:0}},
-    harper:{name:"Harper",avatar:"👧",money:0,lifetime:0,lastPayout:null,stats:{dailyDays:0,streak:0,bestStreak:0,jobs:0,unlockedJobsDays:0,bonuses:0}}
-  },
-  tasks:[
-    {id:"make-bed",title:"Make your bed"},
-    {id:"brush-teeth",title:"Brush your teeth"},
-    {id:"get-dressed",title:"Get dressed"}
-  ],
-  jobs:[
-    {id:"wash-car",title:"Wash the car",value:5},
-    {id:"pull-weeds",title:"Pull weeds",value:4},
-    {id:"fold-laundry",title:"Fold laundry",value:3}
-  ],
-  rewards:[
-    {id:"dessert-before-dinner",title:"🍦 Dessert Before Dinner",cost:3},
-    {id:"pick-movie-night",title:"🎬 Pick Movie Night",cost:5},
-    {id:"pick-dinner",title:"🍕 Pick Dinner",cost:7},
-    {id:"extra-screen-time",title:"🎮 Extra Screen Time",cost:5},
-    {id:"sleep-in-tomorrow",title:"😴 Sleep In Tomorrow",cost:10},
-    {id:"pick-family-adventure",title:"🚗 Pick Family Adventure",cost:15},
-    {id:"five-below-trip",title:"🛍️ Five Below Trip",cost:20}
-  ],
-  activity:{spencer:[],harper:[]},
-  daily:{}
-};
-
+const DEFAULT_DATA={pin:"1234",currentDate:todayKey(),children:{spencer:{name:"Spencer",avatar:"👦",money:0,lifetime:0,lastPayout:null,stats:{dailyDays:0,streak:0,bestStreak:0,jobs:0,bonuses:0,quests:0}},harper:{name:"Harper",avatar:"👧",money:0,lifetime:0,lastPayout:null,stats:{dailyDays:0,streak:0,bestStreak:0,jobs:0,bonuses:0,quests:0}}},tasks:[{id:"make-bed",title:"Make your bed"},{id:"brush-teeth",title:"Brush your teeth"},{id:"get-dressed",title:"Get dressed"}],jobs:[{id:"wash-car",title:"Wash the car",value:5},{id:"pull-weeds",title:"Pull weeds",value:4},{id:"fold-laundry",title:"Fold laundry",value:3}],rewards:[{id:"dessert-before-dinner",title:"🍦 Dessert Before Dinner",cost:3},{id:"pick-movie-night",title:"🎬 Pick Movie Night",cost:5},{id:"pick-dinner",title:"🍕 Pick Dinner",cost:7},{id:"extra-screen-time",title:"🎮 Extra Screen Time",cost:5},{id:"sleep-in-tomorrow",title:"😴 Sleep In Tomorrow",cost:10},{id:"pick-family-adventure",title:"🚗 Pick Family Adventure",cost:15},{id:"five-below-trip",title:"🛍️ Five Below Trip",cost:20}],quests:DEFAULT_QUESTS,goals:{spencer:null,harper:null},activity:{spencer:[],harper:[]},daily:{}};
 let data=structuredClone(DEFAULT_DATA),activeChild=null,activeChildTab="today",activeAdminTab="approvals";
-
 function todayKey(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
-function timeStamp(){return new Date().toISOString()}
-function niceDate(){return new Date().toLocaleDateString(undefined,{month:"short",day:"numeric"})}
-function dayName(){return new Date().toLocaleDateString(undefined,{weekday:"long"})}
-
-function normalizeData(parsed){
-  parsed = parsed || structuredClone(DEFAULT_DATA);
-  parsed.pin ??= DEFAULT_DATA.pin;
-  parsed.children ??= structuredClone(DEFAULT_DATA.children);
-  parsed.tasks ??= structuredClone(DEFAULT_DATA.tasks);
-  parsed.jobs ??= structuredClone(DEFAULT_DATA.jobs);
-  parsed.rewards ??= structuredClone(DEFAULT_DATA.rewards);
-  parsed.activity ??= {spencer:[],harper:[]};
-  parsed.daily ??= {};
-  parsed.currentDate ??= todayKey();
-
-  if(parsed.currentDate !== todayKey()){
-    parsed.currentDate = todayKey();
-    parsed.daily = {};
-  }
-
-  Object.keys(DEFAULT_DATA.children).forEach(id=>{
-    parsed.children[id] ??= structuredClone(DEFAULT_DATA.children[id]);
-    parsed.children[id].money ??= 0;
-    parsed.children[id].lifetime ??= 0;
-    parsed.children[id].lastPayout ??= null;
-    parsed.children[id].stats ??= {dailyDays:0,streak:0,bestStreak:0,jobs:0,unlockedJobsDays:0};
-    parsed.children[id].stats.dailyDays ??= 0;
-    parsed.children[id].stats.streak ??= 0;
-    parsed.children[id].stats.bestStreak ??= 0;
-    parsed.children[id].stats.jobs ??= 0;
-    parsed.children[id].stats.unlockedJobsDays ??= 0;
-    parsed.children[id].stats.bonuses ??= 0;
-    parsed.activity[id] ??= [];
-  });
-
-  return parsed;
-}
-
-async function initFirebase(){
-  try {
-    const snap = await getDoc(appRef);
-
-    if(!snap.exists()){
-      data = normalizeData(structuredClone(DEFAULT_DATA));
-      await setDoc(appRef, JSON.parse(JSON.stringify(data)), { merge: false });
-    } else {
-      data = normalizeData(snap.data());
-    }
-
-    hasLoadedFirebase = true;
-    document.getElementById("loading").classList.add("hidden");
-
-    onSnapshot(appRef, (docSnap) => {
-      if(!docSnap.exists()) return;
-      if(isSavingLocalChange) return;
-
-      isApplyingRemoteData = true;
-      data = normalizeData(docSnap.data());
-
-      if(activeChild) renderChild();
-      if(document.getElementById("parent").classList.contains("active")) renderAdmin();
-
-      isApplyingRemoteData = false;
-    }, (error) => {
-      document.getElementById("loading").innerHTML =
-        '<div class="loading-card"><h2>Firebase Error</h2><p>' + error.message + '</p></div>';
-    });
-  } catch(error) {
-    document.getElementById("loading").innerHTML =
-      '<div class="loading-card"><h2>Could not connect</h2><p>' + error.message + '</p></div>';
-  }
-}
-
-async function saveData(){
-  if(isApplyingRemoteData) return;
-  if(!hasLoadedFirebase) return;
-
-  data = normalizeData(data);
-
-  if(pendingLocalSaveTimer) clearTimeout(pendingLocalSaveTimer);
-  isSavingLocalChange = true;
-
-  try {
-    await setDoc(appRef, JSON.parse(JSON.stringify(data)), { merge: false });
-  } catch(error) {
-    alert("Save failed: " + error.message);
-  }
-
-  pendingLocalSaveTimer = setTimeout(() => {
-    isSavingLocalChange = false;
-  }, 1200);
-}
-
+function timeStamp(){return new Date().toISOString()}function niceDate(){return new Date().toLocaleDateString(undefined,{month:"short",day:"numeric"})}function dayName(){return new Date().toLocaleDateString(undefined,{weekday:"long"})}
+function normalizeData(parsed){parsed=parsed||structuredClone(DEFAULT_DATA);parsed.pin??=DEFAULT_DATA.pin;parsed.children??=structuredClone(DEFAULT_DATA.children);parsed.tasks=structuredClone(DEFAULT_DATA.tasks);parsed.jobs??=structuredClone(DEFAULT_DATA.jobs);parsed.rewards??=structuredClone(DEFAULT_DATA.rewards);parsed.quests??=structuredClone(DEFAULT_QUESTS);parsed.goals??={spencer:null,harper:null};parsed.activity??={spencer:[],harper:[]};parsed.daily??={};parsed.currentDate??=todayKey();if(parsed.currentDate!==todayKey()){parsed.currentDate=todayKey();parsed.daily={}};Object.keys(DEFAULT_DATA.children).forEach(id=>{parsed.children[id]??=structuredClone(DEFAULT_DATA.children[id]);parsed.children[id].money??=0;parsed.children[id].lifetime??=0;parsed.children[id].lastPayout??=null;parsed.children[id].stats??={};["dailyDays","streak","bestStreak","jobs","bonuses","quests"].forEach(k=>parsed.children[id].stats[k]??=0);parsed.children[id].avatar??=DEFAULT_DATA.children[id].avatar;parsed.goals[id]??=null;parsed.activity[id]??=[]});return parsed}
+async function initFirebase(){try{const snap=await getDoc(appRef);if(!snap.exists()){data=normalizeData(structuredClone(DEFAULT_DATA));await setDoc(appRef,JSON.parse(JSON.stringify(data)),{merge:false})}else data=normalizeData(snap.data());hasLoadedFirebase=true;document.getElementById("loading").classList.add("hidden");updateLoginAvatars();onSnapshot(appRef,(docSnap)=>{if(!docSnap.exists()||isSavingLocalChange)return;isApplyingRemoteData=true;data=normalizeData(docSnap.data());updateLoginAvatars();if(activeChild)renderChild();if(document.getElementById("parent").classList.contains("active"))renderAdmin();isApplyingRemoteData=false},e=>showLoadError(e.message))}catch(e){showLoadError(e.message)}}
+function showLoadError(msg){document.getElementById("loading").innerHTML=`<div class="loading-card"><h2>Could not connect</h2><p>${escapeHtml(msg)}</p></div>`}
+async function saveData(){if(isApplyingRemoteData||!hasLoadedFirebase)return;data=normalizeData(data);if(pendingLocalSaveTimer)clearTimeout(pendingLocalSaveTimer);isSavingLocalChange=true;try{await setDoc(appRef,JSON.parse(JSON.stringify(data)),{merge:false})}catch(e){alert("Save failed: "+e.message)}pendingLocalSaveTimer=setTimeout(()=>isSavingLocalChange=false,1200)}
 function requireLoaded(){if(!hasLoadedFirebase){alert("Bell Summer is still loading. Try again in a second.");return false}return true}
-function dailyFor(childId){
-  if(!data.daily[childId]) data.daily[childId]={tasks:{},jobs:{},rewards:{},dailyCounted:false,unlockedCounted:false};
-  data.daily[childId].tasks ??= {};
-  data.daily[childId].jobs ??= {};
-  data.daily[childId].rewards ??= {};
-  data.daily[childId].dailyCounted ??= false;
-  data.daily[childId].unlockedCounted ??= false;
-  return data.daily[childId];
-}
-function addActivity(childId, entry){data.activity[childId]??=[];data.activity[childId].unshift({id:"act-"+Date.now()+"-"+Math.random().toString(16).slice(2),date:timeStamp(),...entry});data.activity[childId]=data.activity[childId].slice(0,100)}
+function dailyFor(childId){if(!data.daily[childId])data.daily[childId]={tasks:{},jobs:{},rewards:{},quest:null,dailyCounted:false,unlockedCounted:false};data.daily[childId].tasks??={};data.daily[childId].jobs??={};data.daily[childId].rewards??={};data.daily[childId].quest??=null;data.daily[childId].dailyCounted??=false;data.daily[childId].unlockedCounted??=false;return data.daily[childId]}
+function addActivity(childId,entry){data.activity[childId]??=[];data.activity[childId].unshift({id:"act-"+Date.now()+"-"+Math.random().toString(16).slice(2),date:timeStamp(),...entry});data.activity[childId]=data.activity[childId].slice(0,100)}
 function showScreen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active")}
-function goHome(){activeChild=null;showScreen("login")}
-function openChild(childId){if(!requireLoaded())return;activeChild=childId;activeChildTab="today";showChildTab("today");renderChild();showScreen("child");setTimeout(()=>showNewBonusIfNeeded(childId),250)}
-function showChildTab(tab){activeChildTab=tab;["today","jobs","store","activity","achievements","leaderboard"].forEach(t=>{document.getElementById("childTab"+cap(t)).classList.toggle("active",t===tab)});document.getElementById("childToday").style.display=tab==="today"?"block":"none";document.getElementById("childJobsTab").style.display=tab==="jobs"?"block":"none";document.getElementById("childStoreTab").style.display=tab==="store"?"block":"none";document.getElementById("childActivityTab").style.display=tab==="activity"?"block":"none";document.getElementById("childAchievementsTab").style.display=tab==="achievements"?"block":"none";document.getElementById("childLeaderboardTab").style.display=tab==="leaderboard"?"block":"none";if(activeChild)renderChild()}
-function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
-function entryState(map,id){return (map && map[id]) || "none"}
-function approvedTasks(childId){const d=dailyFor(childId);return data.tasks.filter(t=>d.tasks[t.id]==="approved").length}
-function tasksUnlocked(childId){return approvedTasks(childId)>=data.tasks.length}
-function getAchievementProgress(childId,a){const c=data.children[childId];const s=c.stats||{};if(a.type==="money")return Number(c.lifetime||0);if(a.type==="jobs")return Number(s.jobs||0);if(a.type==="bonuses")return Number(s.bonuses||0);if(a.type==="streak")return Number(s.bestStreak||s.streak||0);if(a.type==="dailyDays")return Number(s.dailyDays||0);if(a.type==="legend")return ACHIEVEMENTS.filter(x=>x.id!=="summer-legend").every(x=>isAchievementUnlocked(childId,x))?1:0;return 0}
-function isAchievementUnlocked(childId,a){return getAchievementProgress(childId,a)>=a.target}
-function childXP(childId){return ACHIEVEMENTS.filter(a=>isAchievementUnlocked(childId,a)).reduce((sum,a)=>sum+a.xp,0)}
-function rankForXP(xp){let current=RANKS[0],next=null;for(let i=0;i<RANKS.length;i++){if(xp>=RANKS[i].xp){current=RANKS[i];next=RANKS[i+1]||null}}return{current,next}}
-
-function renderChild(){
-  const child=data.children[activeChild],daily=dailyFor(activeChild);
-  document.getElementById("childAvatar").textContent=child.avatar;
-  document.getElementById("childName").textContent=child.name;
-  document.getElementById("todayText").textContent="Today is "+dayName();
-  document.getElementById("childMoney").textContent="$"+fmt(child.money);
-  document.getElementById("childLifetime").textContent="$"+fmt(child.lifetime||0);
-  document.getElementById("childPayout").textContent=child.lastPayout?("$"+fmt(child.lastPayout.amount)+" on "+child.lastPayout.date):"None";
-  renderRank(activeChild);
-
-  const taskWrap=document.getElementById("tasks");taskWrap.innerHTML="";
-  data.tasks.forEach(task=>{
-    const state=entryState(daily.tasks,task.id);
-    const checked=state==="pending"||state==="approved";
-    const disabled=state==="pending"||state==="approved";
-    const pill=state==="approved"?"approved":state==="pending"?"pending":"locked";
-    const label=state==="approved"?"Parent approved":state==="pending"?"Waiting for parent":"Slide when complete";
-    const row=document.createElement("div");row.className="task-row";
-    row.innerHTML=`<div><div class="task-title">${escapeHtml(task.title)}</div><div class="task-sub">${label}</div>${state!=="none"?`<span class="status-pill ${pill}">${state.toUpperCase()}</span>`:""}</div><label class="switch"><input type="checkbox" ${checked?"checked":""} ${disabled?"disabled":""} onchange="submitTask('${task.id}')"><span class="slider"></span></label>`;
-    taskWrap.appendChild(row);
-  });
-
-  const completeCount=approvedTasks(activeChild),total=data.tasks.length;
-  document.getElementById("taskBar").style.width=total?((completeCount/total)*100)+"%":"100%";
-  document.getElementById("taskProgress").textContent=completeCount+" of "+total+" approved";
-  renderJobs();renderStore();renderActivity();renderAchievements();renderLeaderboard();
-}
-function renderRank(childId){const xp=childXP(childId),r=rankForXP(xp),next=r.next;const pct=next?Math.min(100,((xp-r.current.xp)/(next.xp-r.current.xp))*100):100;document.getElementById("rankCard").innerHTML=`<div class="rank-card"><div class="rank-top"><div><div class="money-label">Summer Rank</div><div class="rank-name">${r.current.name}</div></div><div class="xp">${xp} XP</div></div><div class="progress"><div class="bar goldbar" style="width:${pct}%"></div></div><div class="task-sub">${next?`${xp} / ${next.xp} XP to ${next.name}`:"Max rank reached!"}</div></div>`}
-function renderJobs(){const unlocked=tasksUnlocked(activeChild),daily=dailyFor(activeChild),status=document.getElementById("jobStatus"),jobs=document.getElementById("childJobs");jobs.innerHTML="";if(!unlocked){status.innerHTML=`<div class="lock-box">🔒 Jobs are locked.<br>Submit your first tasks and wait for parent approval.</div>`;return}status.innerHTML=`<div class="unlock">🔓 Jobs Unlocked!</div><div class="section-title">Available Jobs</div>`;if(data.jobs.length===0){jobs.innerHTML=`<div class="lock-box">No jobs are available right now.</div>`;return}data.jobs.forEach(job=>{const state=entryState(daily.jobs,job.id);const done=state==="pending"||state==="approved";const card=document.createElement("div");card.className="job-card"+(done?" disabled":"");const note=state==="approved"?"Approved and paid":state==="pending"?"Waiting for parent approval":"Tap when finished";card.innerHTML=`<div><div class="job-title">${escapeHtml(job.title)}</div><div class="job-value">$${fmt(job.value)}</div><div class="task-sub">${note}</div>${state!=="none"?`<span class="status-pill ${state==="approved"?"approved":"pending"}">${state.toUpperCase()}</span>`:""}</div><button class="claim" ${done?"disabled":""} onclick="submitJob('${job.id}')">${state==="pending"?"Pending":state==="approved"?"Done":"Complete"}</button>`;jobs.appendChild(card)})}
-function renderStore(){const wrap=document.getElementById("storeList");wrap.innerHTML="";const child=data.children[activeChild],daily=dailyFor(activeChild);document.getElementById("storeBalance").textContent=`Current balance: $${fmt(child.money)} • Purchases require parent approval`;if(!data.rewards.length){wrap.innerHTML=`<div class="lock-box">No rewards are available right now.</div>`;return}data.rewards.forEach(reward=>{const state=entryState(daily.rewards,reward.id);const pending=state==="pending";const approved=state==="approved";const affordable=Number(child.money||0)>=Number(reward.cost||0);const disabled=pending||approved||!affordable;const note=pending?"Waiting for parent approval":approved?"Purchased today":affordable?"Buy with your money":"Not enough money yet";const card=document.createElement("div");card.className="reward-card"+(disabled?" disabled":"");card.innerHTML=`<div><div class="job-title">${escapeHtml(reward.title)}</div><div class="job-value">Cost: $${fmt(reward.cost)}</div><div class="task-sub">${note}</div>${state!=="none"?`<span class="status-pill ${approved?"approved":"pending"}">${state.toUpperCase()}</span>`:""}</div><button class="claim" ${disabled?"disabled":""} onclick="buyReward('${reward.id}')">${pending?"Pending":approved?"Bought":"Buy"}</button>`;wrap.appendChild(card)})}
-function renderActivity(){const list=document.getElementById("activityList");const acts=(data.activity[activeChild]||[]).slice(0,40);list.innerHTML="";const child=data.children[activeChild];document.getElementById("activitySummary").textContent=`Balance: $${fmt(child.money)} • Lifetime earned: $${fmt(child.lifetime)}`;if(!acts.length){list.innerHTML=`<div class="lock-box">No activity yet.</div>`;return}acts.forEach(a=>{const cls=a.amount>0?"positive":a.amount<0?"negative":a.kind==="reward"?"gold":"neutral";const amount=a.amount?`${a.amount>0?"+":"-"}$${fmt(Math.abs(a.amount))}`:"";const row=document.createElement("div");row.className="activity-row";row.innerHTML=`<div class="activity-icon">${a.icon||"•"}</div><div><strong>${escapeHtml(a.title)}</strong><div class="task-sub">${new Date(a.date).toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}${a.note?` • ${escapeHtml(a.note)}`:""}</div></div><div class="activity-amount ${cls}">${amount}</div>`;list.appendChild(row)})}
-function renderAchievements(){const grid=document.getElementById("badgeGrid");grid.innerHTML="";const unlocked=ACHIEVEMENTS.filter(a=>isAchievementUnlocked(activeChild,a)).length;document.getElementById("achievementSummary").textContent=`${unlocked} / ${ACHIEVEMENTS.length} unlocked • ${childXP(activeChild)} XP`;ACHIEVEMENTS.forEach(a=>{const got=isAchievementUnlocked(activeChild,a),progress=Math.min(getAchievementProgress(activeChild,a),a.target);const card=document.createElement("div");card.className="badge"+(got?"":" locked-badge");card.innerHTML=`<div class="badge-icon">${got?a.icon:"❓"}</div><div class="badge-title">${got?escapeHtml(a.title):"???"}</div><div class="badge-desc">${escapeHtml(a.desc)}</div><div class="badge-xp">${got?"Unlocked":progress+" / "+a.target} • ${a.xp} XP</div>`;grid.appendChild(card)})}
-function renderLeaderboard(){const wrap=document.getElementById("leaderboard");wrap.innerHTML="";Object.keys(data.children).map(id=>({id,...data.children[id],xp:childXP(id)})).sort((a,b)=>b.xp-a.xp).forEach((c,i)=>{const r=rankForXP(c.xp).current.name;const row=document.createElement("div");row.className="leader-card";row.innerHTML=`<div class="place">${i+1}</div><div><strong>${c.avatar} ${c.name}</strong><div class="task-sub">${r}</div></div><strong>${c.xp} XP</strong>`;wrap.appendChild(row)})}
-
-function submitTask(taskId){if(!requireLoaded())return;dailyFor(activeChild).tasks[taskId]="pending";saveData();renderChild()}
-function submitJob(jobId){if(!requireLoaded())return;dailyFor(activeChild).jobs[jobId]="pending";saveData();renderChild()}
-function buyReward(rewardId){if(!requireLoaded())return;const child=data.children[activeChild],reward=data.rewards.find(r=>r.id===rewardId);if(!reward)return;if(Number(child.money||0)<Number(reward.cost||0)){alert("Not enough money yet.");return}dailyFor(activeChild).rewards[rewardId]="pending";saveData();renderChild()}
-
-function showParentLogin(){document.getElementById("pinModal").classList.add("active");document.getElementById("pinInput").value="";document.getElementById("pinError").classList.remove("active");setTimeout(()=>document.getElementById("pinInput").focus(),100)}
-function hideParentLogin(){document.getElementById("pinModal").classList.remove("active")}
-function checkPin(){if(!requireLoaded())return;if(document.getElementById("pinInput").value.trim()===data.pin){hideParentLogin();showAdminTab(activeAdminTab);showScreen("parent")}else document.getElementById("pinError").classList.add("active")}
-function showAdminTab(tab){activeAdminTab=tab;["approvals","overview","jobs","tasks","fines","bonuses","rewards"].forEach(t=>{document.getElementById("admin"+cap(t)).style.display=t===tab?"block":"none";document.getElementById("tab"+cap(t)).classList.toggle("active",t===tab)});renderAdmin()}
-
-function renderAdmin(){
-  document.getElementById("spencerStat").textContent="$"+fmt(data.children.spencer.money);
-  document.getElementById("harperStat").textContent="$"+fmt(data.children.harper.money);
-  const approvals=document.getElementById("approvalList");approvals.innerHTML="";let count=0;
-  Object.keys(data.children).forEach(childId=>{
-    const child=data.children[childId],d=dailyFor(childId);
-    data.tasks.forEach(t=>{if(d.tasks[t.id]==="pending"){count++;approvals.appendChild(approvalRow(childId,"task",t.id,child.name,t.title,0))}});
-    data.jobs.forEach(j=>{if(d.jobs[j.id]==="pending"){count++;approvals.appendChild(approvalRow(childId,"job",j.id,child.name,j.title,j.value))}});
-    data.rewards.forEach(r=>{if(d.rewards?.[r.id]==="pending"){count++;approvals.appendChild(approvalRow(childId,"reward",r.id,child.name,r.title,r.cost))}});
-  });
-  if(!count)approvals.innerHTML=`<div class="lock-box">No pending approvals right now.</div>`;
-  document.getElementById("tabApprovals").textContent=`Approvals${count?` (${count})`:""}`;
-
-  const statusList=document.getElementById("childStatusList");statusList.innerHTML="";
-  Object.keys(data.children).forEach(childId=>{
-    const child=data.children[childId],d=dailyFor(childId),xp=childXP(childId),rank=rankForXP(xp).current.name;
-    const row=document.createElement("div");row.className="admin-list-row";
-    row.innerHTML=`<div><strong>${child.avatar} ${child.name}</strong><div class="task-sub">${rank} • ${xp} XP • ${ACHIEVEMENTS.filter(a=>isAchievementUnlocked(childId,a)).length}/${ACHIEVEMENTS.length} achievements</div><div class="task-sub">Balance: $${fmt(child.money)} • Lifetime: $${fmt(child.lifetime||0)}</div><div class="task-sub">Last payout: ${child.lastPayout?("$"+fmt(child.lastPayout.amount)+" on "+child.lastPayout.date):"None"}</div></div><button class="pay" onclick="paidOut('${childId}')">PAID OUT</button>`;
-    statusList.appendChild(row)
-  });
-
-  const jobList=document.getElementById("adminJobList");jobList.innerHTML="";
-  data.jobs.forEach(job=>{const row=document.createElement("div");row.className="admin-list-row";row.innerHTML=`<div><strong>${escapeHtml(job.title)}</strong><div class="task-sub">$${fmt(job.value)}</div></div><button class="danger" onclick="deleteJob('${job.id}')">Delete</button>`;jobList.appendChild(row)});
-
-  const taskList=document.getElementById("adminTaskList");taskList.innerHTML="";
-  data.tasks.forEach(task=>{const row=document.createElement("div");row.className="admin-list-row";row.innerHTML=`<div><strong>${escapeHtml(task.title)}</strong></div><button class="danger" onclick="deleteTask('${task.id}')">Delete</button>`;taskList.appendChild(row)});
-
-  const rewardList=document.getElementById("adminRewardList");rewardList.innerHTML="";
-  data.rewards.forEach(reward=>{const row=document.createElement("div");row.className="admin-list-row";row.innerHTML=`<div><strong>${escapeHtml(reward.title)}</strong><div class="task-sub">Cost: $${fmt(reward.cost)}</div></div><button class="danger" onclick="deleteReward('${reward.id}')">Delete</button>`;rewardList.appendChild(row)});
-}
-
-function approvalRow(childId,type,itemId,childName,title,value){
-  const label=type==="job"?"Job value: $"+fmt(value):type==="reward"?"Reward cost: $"+fmt(value):"Daily task";
-  const row=document.createElement("div");row.className="admin-list-row";
-  row.innerHTML=`<div><strong>${escapeHtml(childName)}: ${escapeHtml(title)}</strong><div class="task-sub">${label} waiting for approval</div></div><div class="approval-actions"><button class="approve" onclick="approveItem('${childId}','${type}','${itemId}')">Approve</button><button class="reject" onclick="rejectItem('${childId}','${type}','${itemId}')">Reject</button></div>`;
-  return row
-}
-function checkDailyMilestones(childId){const d=dailyFor(childId),c=data.children[childId],s=c.stats;if(tasksUnlocked(childId)&&!d.dailyCounted){d.dailyCounted=true;s.dailyDays+=1;s.streak+=1;s.bestStreak=Math.max(s.bestStreak||0,s.streak||0)}if(tasksUnlocked(childId)&&!d.unlockedCounted){d.unlockedCounted=true;s.unlockedJobsDays+=1}}
-function approveItem(childId,type,itemId){
-  if(!requireLoaded())return;
-  const d=dailyFor(childId);
-  if(type==="task"){d.tasks[itemId]="approved";checkDailyMilestones(childId)}
-  if(type==="job"&&d.jobs[itemId]==="pending"){
-    d.jobs[itemId]="approved";
-    const job=data.jobs.find(j=>j.id===itemId);
-    const value=Number(job?.value||0);
-    data.children[childId].money=Number(data.children[childId].money||0)+value;
-    data.children[childId].lifetime=Number(data.children[childId].lifetime||0)+value;
-    data.children[childId].stats.jobs=Number(data.children[childId].stats.jobs||0)+1;
-    addActivity(childId,{kind:"earning",icon:"🟢",title:job?.title||"Job completed",amount:value});
-  }
-  if(type==="reward"&&d.rewards?.[itemId]==="pending"){
-    const reward=data.rewards.find(r=>r.id===itemId);
-    const cost=Number(reward?.cost||0);
-    data.children[childId].money=Math.max(0,Number(data.children[childId].money||0)-cost);
-    d.rewards[itemId]="approved";
-    addActivity(childId,{kind:"reward",icon:"🟡",title:"Reward Purchased: "+(reward?.title||"Reward"),amount:-cost});
-  }
-  saveData();renderAdmin()
-}
-function rejectItem(childId,type,itemId){if(!requireLoaded())return;const d=dailyFor(childId);if(type==="task")delete d.tasks[itemId];if(type==="job")delete d.jobs[itemId];if(type==="reward"&&d.rewards)delete d.rewards[itemId];saveData();renderAdmin()}
-
-function addJob(){if(!requireLoaded())return;const title=document.getElementById("newJobTitle").value.trim(),value=Number(document.getElementById("newJobValue").value);if(!title||isNaN(value))return;data.jobs.push({id:slug(title)+"-"+Date.now(),title,value});document.getElementById("newJobTitle").value="";document.getElementById("newJobValue").value="";saveData();renderAdmin()}
-function deleteJob(jobId){if(!requireLoaded())return;data.jobs=data.jobs.filter(j=>j.id!==jobId);Object.values(data.daily).forEach(d=>{if(d.jobs)delete d.jobs[jobId]});saveData();renderAdmin()}
-function addTask(){if(!requireLoaded())return;const title=document.getElementById("newTaskTitle").value.trim();if(!title)return;data.tasks.push({id:slug(title)+"-"+Date.now(),title});document.getElementById("newTaskTitle").value="";saveData();renderAdmin()}
-function deleteTask(taskId){if(!requireLoaded())return;data.tasks=data.tasks.filter(t=>t.id!==taskId);Object.values(data.daily).forEach(d=>{if(d.tasks)delete d.tasks[taskId]});saveData();renderAdmin()}
-function addReward(){if(!requireLoaded())return;const title=document.getElementById("newRewardTitle").value.trim(),cost=Number(document.getElementById("newRewardCost").value);if(!title||isNaN(cost))return;data.rewards.push({id:slug(title)+"-"+Date.now(),title,cost});document.getElementById("newRewardTitle").value="";document.getElementById("newRewardCost").value="";saveData();renderAdmin()}
-function deleteReward(rewardId){if(!requireLoaded())return;data.rewards=data.rewards.filter(r=>r.id!==rewardId);Object.values(data.daily).forEach(d=>{if(d.rewards)delete d.rewards[rewardId]});saveData();renderAdmin()}
-function applyFine(){if(!requireLoaded())return;const childId=document.getElementById("fineChild").value,reason=document.getElementById("fineReason").value,amount=Number(document.getElementById("fineAmount").value||0),note=document.getElementById("fineNote").value.trim();if(!amount)return;data.children[childId].money=Math.max(0,Number(data.children[childId].money||0)-amount);addActivity(childId,{kind:"fine",icon:"🔴",title:reason,amount:-amount,note});document.getElementById("fineNote").value="";saveData();renderAdmin();alert("Fine applied.")}
-function applyBonus(){if(!requireLoaded())return;const childId=document.getElementById("bonusChild").value,reason=document.getElementById("bonusReason").value,amount=Number(document.getElementById("bonusAmount").value||0),note=document.getElementById("bonusNote").value.trim();if(!amount)return;data.children[childId].money=Number(data.children[childId].money||0)+amount;data.children[childId].lifetime=Number(data.children[childId].lifetime||0)+amount;data.children[childId].stats.bonuses=Number(data.children[childId].stats.bonuses||0)+1;addActivity(childId,{kind:"bonus",icon:"🟡",title:reason,amount:amount,note,seen:false});document.getElementById("bonusNote").value="";saveData();renderAdmin();alert("Bonus applied.")}
-function paidOut(childId){if(!requireLoaded())return;const amount=Number(data.children[childId].money||0);data.children[childId].lastPayout={amount,date:niceDate()};data.children[childId].money=0;addActivity(childId,{kind:"payout",icon:"🔵",title:"Paid Out",amount:-amount});saveData();renderAdmin()}
-
-function showNewBonusIfNeeded(childId){
-  const bonus = (data.activity[childId]||[]).find(a => a.kind==="bonus" && a.seen===false);
-  if(!bonus) return;
-
-  document.getElementById("bonusTitle").textContent = "⭐ Bonus!";
-  document.getElementById("bonusMessage").innerHTML =
-    `<strong>${escapeHtml(bonus.title)}</strong><br><br>You earned +$${fmt(bonus.amount)}!${bonus.note?`<br><br>${escapeHtml(bonus.note)}`:""}`;
-
-  document.getElementById("bonusModal").classList.add("active");
-}
-
-function closeBonusModal(){
-  if(activeChild){
-    const bonus = (data.activity[activeChild]||[]).find(a => a.kind==="bonus" && a.seen===false);
-    if(bonus){
-      bonus.seen = true;
-      saveData();
-      renderChild();
-    }
-  }
-  document.getElementById("bonusModal").classList.remove("active");
-}
-
-function fmt(n){return Number(n||0).toFixed(2).replace(".00","")}
-function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}
-function escapeHtml(str){return String(str).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-
-Object.assign(window,{openChild,showChildTab,goHome,submitTask,submitJob,buyReward,showParentLogin,hideParentLogin,checkPin,showAdminTab,approveItem,rejectItem,addJob,deleteJob,addTask,deleteTask,addReward,deleteReward,applyFine,applyBonus,paidOut,closeBonusModal});
+function goHome(){activeChild=null;showScreen("login");updateLoginAvatars()}
+function openChild(childId){if(!requireLoaded())return;try{activeChild=childId;activeChildTab="today";showChildTab("today");renderChild();showScreen("child");setTimeout(()=>showNewBonusIfNeeded(childId),250)}catch(e){alert("Profile load error: "+e.message);console.error(e)}}
+function showChildTab(tab){activeChildTab=tab;["today","jobs","store","activity","achievements","avatar","leaderboard"].forEach(t=>document.getElementById("childTab"+cap(t)).classList.toggle("active",t===tab));document.getElementById("childToday").style.display=tab==="today"?"block":"none";document.getElementById("childJobsTab").style.display=tab==="jobs"?"block":"none";document.getElementById("childStoreTab").style.display=tab==="store"?"block":"none";document.getElementById("childActivityTab").style.display=tab==="activity"?"block":"none";document.getElementById("childAchievementsTab").style.display=tab==="achievements"?"block":"none";document.getElementById("childAvatarTab").style.display=tab==="avatar"?"block":"none";document.getElementById("childLeaderboardTab").style.display=tab==="leaderboard"?"block":"none";if(activeChild)renderChild()}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}function fmt(n){return Number(n||0).toFixed(2).replace(".00","")}function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}function escapeHtml(str){return String(str).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function state(map,id){return(map&&map[id])||"none"}function approvedTasks(childId){const d=dailyFor(childId);return data.tasks.filter(t=>d.tasks[t.id]==="approved").length}function tasksUnlocked(childId){return approvedTasks(childId)>=data.tasks.length}
+function getAchievementProgress(childId,a){const c=data.children[childId],s=c.stats||{},g=data.goals?.[childId];if(a.type==="money")return Number(c.lifetime||0);if(a.type==="jobs")return Number(s.jobs||0);if(a.type==="bonuses")return Number(s.bonuses||0);if(a.type==="quests")return Number(s.quests||0);if(a.type==="streak")return Number(s.bestStreak||s.streak||0);if(a.type==="dailyDays")return Number(s.dailyDays||0);if(a.type==="goalSet")return g?1:0;if(a.type==="goalPercent")return g&&g.target?Math.min(100,(Number(g.saved||0)/Number(g.target))*100):0;if(a.type==="avatars")return unlockedAvatarCount(childId);return 0}
+function isAchievementUnlocked(childId,a){return getAchievementProgress(childId,a)>=a.target}function childXP(childId){return ACHIEVEMENTS.filter(a=>isAchievementUnlocked(childId,a)).reduce((sum,a)=>sum+a.xp,0)}function baseAchievementCount(childId){return ACHIEVEMENTS.filter(a=>a.type!=="avatars"&&isAchievementUnlocked(childId,a)).length}function unlockedAvatarCount(childId){const count=baseAchievementCount(childId);return AVATARS.filter(v=>count>=v.need).length}function achievementCount(childId){return ACHIEVEMENTS.filter(a=>isAchievementUnlocked(childId,a)).length}
+function rankForXP(xp){let current=RANKS[0],next=null;for(let i=0;i<RANKS.length;i++)if(xp>=RANKS[i].xp){current=RANKS[i];next=RANKS[i+1]||null}return{current,next}}
+function updateLoginAvatars(){document.getElementById("loginSpencerAvatar").textContent=data.children.spencer.avatar||"👦";document.getElementById("loginHarperAvatar").textContent=data.children.harper.avatar||"👧"}
+function renderChild(){const child=data.children[activeChild],daily=dailyFor(activeChild);document.getElementById("childAvatar").textContent=child.avatar;document.getElementById("childName").textContent=child.name;document.getElementById("todayText").textContent="Today is "+dayName();document.getElementById("childMoney").textContent="$"+fmt(child.money);document.getElementById("childLifetime").textContent="$"+fmt(child.lifetime);document.getElementById("childPayout").textContent=child.lastPayout?("$"+fmt(child.lastPayout.amount)+" on "+child.lastPayout.date):"None";renderRank();renderTasks();renderGoal();renderJobs();renderStore();renderActivity();renderAchievements();renderAvatarPicker();renderLeaderboard()}
+function renderRank(){const xp=childXP(activeChild),r=rankForXP(xp),next=r.next,pct=next?Math.min(100,((xp-r.current.xp)/(next.xp-r.current.xp))*100):100;document.getElementById("rankCard").innerHTML=`<div class="rank-card"><div class="rank-top"><div><div class="money-label">Summer Rank</div><div class="rank-name">${r.current.name}</div></div><div class="xp">${xp} XP</div></div><div class="progress"><div class="bar goldbar" style="width:${pct}%"></div></div><div class="task-sub">${next?`${xp} / ${next.xp} XP to ${next.name}`:"Max rank reached!"}</div></div>`}
+function renderTasks(){const d=dailyFor(activeChild),wrap=document.getElementById("tasks");wrap.innerHTML="";data.tasks.forEach(t=>{const st=state(d.tasks,t.id),checked=st==="pending"||st==="approved",disabled=checked,label=st==="approved"?"Parent approved":st==="pending"?"Waiting for parent":"Slide when complete";const row=document.createElement("div");row.className="task-row";row.innerHTML=`<div><div class="task-title">${escapeHtml(t.title)}</div><div class="task-sub">${label}</div>${st!=="none"?`<span class="status-pill ${st==="approved"?"approved":"pending"}">${st.toUpperCase()}</span>`:""}</div><label class="switch"><input type="checkbox" ${checked?"checked":""} ${disabled?"disabled":""} onchange="submitTask('${t.id}')"><span class="slider"></span></label>`;wrap.appendChild(row)});const c=approvedTasks(activeChild),total=data.tasks.length;document.getElementById("taskBar").style.width=total?((c/total)*100)+"%":"100%";document.getElementById("taskProgress").textContent=c+" of "+total+" approved"}
+function renderGoal(){const box=document.getElementById("bigGoalBox"),child=data.children[activeChild],g=data.goals?.[activeChild];if(!g){box.innerHTML=`<div class="lock-box">No goal set yet.<br>Ask a parent to create your big summer goal.</div>`;return}const saved=Number(g.saved||0),target=Number(g.target||0),pct=target?Math.min(100,(saved/target)*100):0,can=Number(child.money||0)>0&&saved<target;box.innerHTML=`<div class="goal-card"><div class="card-title">${escapeHtml(g.title)}</div><div class="job-value">$${fmt(saved)} / $${fmt(target)}</div><div class="progress"><div class="bar" style="width:${pct}%"></div></div><div class="task-sub">${Math.round(pct)}% complete • Balance: $${fmt(child.money)}</div>${can?`<div class="goal-actions"><button class="claim" onclick="depositGoal(1)">+$1</button><button class="claim" onclick="depositGoal(5)">+$5</button><button class="claim" onclick="depositGoal('all')">All</button></div>`:""}</div>`}
+function ensureDailyQuest(childId){const d=dailyFor(childId);if(d.quest)return d.quest;if(!data.quests?.length)return null;const seed=(todayKey()+childId).split("").reduce((a,c)=>a+c.charCodeAt(0),0),q=data.quests[seed%data.quests.length];d.quest={id:q.id,title:q.title,reward:Number(q.reward||2),status:"available"};saveData();return d.quest}
+function renderQuestBox(){const q=ensureDailyQuest(activeChild);if(!q)return`<div class="quest-card"><strong>☀️ Daily Quest</strong><div class="task-sub">No quests are in the quest bank yet.</div></div>`;const st=q.status||"available",btn=st==="available"?`<button class="claim" onclick="submitQuest()">Submit Quest</button>`:`<button class="claim" disabled>${st==="pending"?"Pending":"Done"}</button>`,note=st==="pending"?"Waiting for parent approval":st==="approved"?"Quest complete!":"Optional one-time quest for today";return`<div class="quest-card"><div class="card-title">☀️ Daily Quest</div><div class="task-sub">${escapeHtml(q.title)}</div><div class="job-value">Reward: $${fmt(q.reward)}</div><div class="task-sub">${note}</div><div style="margin-top:12px;">${btn}</div></div>`}
+function renderJobs(){const unlocked=tasksUnlocked(activeChild),d=dailyFor(activeChild),status=document.getElementById("jobStatus"),jobs=document.getElementById("childJobs");jobs.innerHTML="";if(!unlocked){status.innerHTML=`<div class="lock-box">🔒 Jobs are locked.<br>Complete morning tasks and wait for parent approval.</div>`;return}status.innerHTML=`<div class="unlock">🔓 Jobs Unlocked!</div>${renderQuestBox()}<div class="section-title">💼 Available Jobs</div>`;data.jobs.forEach(j=>{const st=state(d.jobs,j.id),done=st==="pending"||st==="approved",note=st==="approved"?"Approved and paid":st==="pending"?"Waiting for parent approval":"Tap when finished";const card=document.createElement("div");card.className="card"+(done?" disabled":"");card.innerHTML=`<div><div class="card-title">${escapeHtml(j.title)}</div><div class="job-value">$${fmt(j.value)}</div><div class="task-sub">${note}</div>${st!=="none"?`<span class="status-pill ${st==="approved"?"approved":"pending"}">${st.toUpperCase()}</span>`:""}</div><button class="claim" ${done?"disabled":""} onclick="submitJob('${j.id}')">${st==="pending"?"Pending":st==="approved"?"Done":"Complete"}</button>`;jobs.appendChild(card)})}
+function renderStore(){const wrap=document.getElementById("storeList"),child=data.children[activeChild],d=dailyFor(activeChild);wrap.innerHTML="";document.getElementById("storeBalance").textContent=`Current balance: $${fmt(child.money)} • Purchases require parent approval`;data.rewards.forEach(r=>{const st=state(d.rewards,r.id),pending=st==="pending",approved=st==="approved",affordable=Number(child.money)>=Number(r.cost),disabled=pending||approved||!affordable,note=pending?"Waiting for parent approval":approved?"Purchased today":affordable?"Buy with your money":"Not enough money yet";const card=document.createElement("div");card.className="card"+(disabled?" disabled":"");card.innerHTML=`<div><div class="card-title">${escapeHtml(r.title)}</div><div class="job-value">Cost: $${fmt(r.cost)}</div><div class="task-sub">${note}</div></div><button class="claim" ${disabled?"disabled":""} onclick="buyReward('${r.id}')">${pending?"Pending":approved?"Bought":"Buy"}</button>`;wrap.appendChild(card)})}
+function renderActivity(){const list=document.getElementById("activityList"),acts=(data.activity[activeChild]||[]).slice(0,40),child=data.children[activeChild];list.innerHTML="";document.getElementById("activitySummary").textContent=`Balance: $${fmt(child.money)} • Lifetime earned: $${fmt(child.lifetime)}`;if(!acts.length){list.innerHTML=`<div class="lock-box">No activity yet.</div>`;return}acts.forEach(a=>{const cls=a.amount>0?"positive":a.amount<0?"negative":a.kind==="reward"?"gold":"neutral",amount=a.amount?`${a.amount>0?"+":"-"}$${fmt(Math.abs(a.amount))}`:"";const row=document.createElement("div");row.className="activity-row";row.innerHTML=`<div class="activity-icon">${a.icon||"•"}</div><div><strong>${escapeHtml(a.title)}</strong><div class="task-sub">${new Date(a.date).toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}${a.note?` • ${escapeHtml(a.note)}`:""}</div></div><div class="activity-amount ${cls}">${amount}</div>`;list.appendChild(row)})}
+function renderAchievements(){const grid=document.getElementById("badgeGrid");grid.innerHTML="";const unlocked=achievementCount(activeChild);document.getElementById("achievementSummary").textContent=`${unlocked} / ${ACHIEVEMENTS.length} unlocked • ${childXP(activeChild)} XP`;ACHIEVEMENTS.forEach(a=>{const got=isAchievementUnlocked(activeChild,a),p=Math.min(getAchievementProgress(activeChild,a),a.target);const card=document.createElement("div");card.className="badge"+(got?"":" locked-badge");card.innerHTML=`<div class="badge-icon">${got?a.icon:"❓"}</div><div class="badge-title">${got?escapeHtml(a.title):"???"}</div><div class="badge-desc">${escapeHtml(a.desc)}</div><div class="badge-xp">${got?"Unlocked":Math.floor(p)+" / "+a.target} • ${a.xp} XP</div>`;grid.appendChild(card)})}
+function renderAvatarPicker(){const wrap=document.getElementById("avatarPicker"),count=baseAchievementCount(activeChild),current=data.children[activeChild].avatar;wrap.innerHTML="";document.getElementById("avatarSummary").textContent=`Avatars unlock by achievements. Current achievements: ${count}`;AVATARS.forEach(v=>{const unlocked=count>=v.need,card=document.createElement("button");card.className="badge avatar-choice"+(unlocked?"":" locked-badge")+(current===v.emoji?" selected-avatar":"");card.disabled=!unlocked;card.onclick=()=>setAvatar(v.emoji);card.innerHTML=`<div class="badge-icon">${unlocked?v.emoji:"🔒"}</div><div class="badge-title">${unlocked?(current===v.emoji?"Selected":"Unlocked"):"Locked"}</div><div class="badge-desc">${v.need} achievements required</div>`;wrap.appendChild(card)})}
+function renderLeaderboard(){const wrap=document.getElementById("leaderboard");wrap.innerHTML="";Object.keys(data.children).map(id=>({id,...data.children[id],xp:childXP(id)})).sort((a,b)=>b.xp-a.xp).forEach((c,i)=>{const r=rankForXP(c.xp).current.name,row=document.createElement("div");row.className="row";row.innerHTML=`<div><strong>${i+1}. ${c.avatar} ${c.name}</strong><div class="task-sub">${r} • ${achievementCount(c.id)} achievements</div></div><strong>${c.xp} XP</strong>`;wrap.appendChild(row)})}
+function submitTask(id){if(!requireLoaded())return;dailyFor(activeChild).tasks[id]="pending";saveData();renderChild()}function submitJob(id){if(!requireLoaded())return;dailyFor(activeChild).jobs[id]="pending";saveData();renderChild()}function submitQuest(){if(!requireLoaded())return;const q=ensureDailyQuest(activeChild);if(q&&q.status==="available"){q.status="pending";saveData();renderChild()}}function buyReward(id){if(!requireLoaded())return;const r=data.rewards.find(x=>x.id===id),child=data.children[activeChild];if(!r)return;if(Number(child.money)<Number(r.cost)){alert("Not enough money yet.");return}dailyFor(activeChild).rewards[id]="pending";saveData();renderChild()}function depositGoal(amount){if(!requireLoaded())return;const g=data.goals?.[activeChild],child=data.children[activeChild];if(!g)return;let dep=amount==="all"?Number(child.money):Number(amount);dep=Math.min(dep,Number(child.money),Math.max(0,Number(g.target)-Number(g.saved||0)));if(!dep)return;child.money=Number(child.money)-dep;g.saved=Number(g.saved||0)+dep;addActivity(activeChild,{kind:"goal",icon:"🎯",title:"Goal Deposit: "+g.title,amount:-dep});saveData();renderChild()}function setAvatar(emoji){if(!requireLoaded())return;data.children[activeChild].avatar=emoji;saveData();renderChild()}
+function showParentLogin(){document.getElementById("pinModal").classList.add("active");document.getElementById("pinInput").value="";document.getElementById("pinError").classList.remove("active");setTimeout(()=>document.getElementById("pinInput").focus(),100)}function hideParentLogin(){document.getElementById("pinModal").classList.remove("active")}function checkPin(){if(!requireLoaded())return;if(document.getElementById("pinInput").value.trim()===data.pin){hideParentLogin();showAdminTab(activeAdminTab);showScreen("parent")}else document.getElementById("pinError").classList.add("active")}function showAdminTab(tab){activeAdminTab=tab;["approvals","overview","jobs","goals","quests","rewards","bonuses","fines"].forEach(t=>{document.getElementById("admin"+cap(t)).style.display=t===tab?"block":"none";document.getElementById("tab"+cap(t)).classList.toggle("active",t===tab)});renderAdmin()}
+function renderAdmin(){document.getElementById("spencerStat").textContent="$"+fmt(data.children.spencer.money);document.getElementById("harperStat").textContent="$"+fmt(data.children.harper.money);renderApprovals();renderOverview();renderAdminLists()}
+function renderApprovals(){const list=document.getElementById("approvalList");list.innerHTML="";let count=0;Object.keys(data.children).forEach(childId=>{const c=data.children[childId],d=dailyFor(childId);data.tasks.forEach(t=>{if(d.tasks[t.id]==="pending"){count++;list.appendChild(approvalRow(childId,"task",t.id,c.name,t.title,0))}});data.jobs.forEach(j=>{if(d.jobs[j.id]==="pending"){count++;list.appendChild(approvalRow(childId,"job",j.id,c.name,j.title,j.value))}});data.rewards.forEach(r=>{if(d.rewards[r.id]==="pending"){count++;list.appendChild(approvalRow(childId,"reward",r.id,c.name,r.title,r.cost))}});if(d.quest?.status==="pending"){count++;list.appendChild(approvalRow(childId,"quest",d.quest.id,c.name,d.quest.title,d.quest.reward))}});if(!count)list.innerHTML=`<div class="lock-box">No pending approvals right now.</div>`;document.getElementById("tabApprovals").textContent=`Approvals${count?` (${count})`:""}`}
+function approvalRow(childId,type,itemId,childName,title,value){const label=type==="job"?"Job value: $"+fmt(value):type==="reward"?"Reward cost: $"+fmt(value):type==="quest"?"Quest reward: $"+fmt(value):"Daily task",row=document.createElement("div");row.className="admin-list-row";row.innerHTML=`<div><strong>${escapeHtml(childName)}: ${escapeHtml(title)}</strong><div class="task-sub">${label} waiting for approval</div></div><div class="approval-actions"><button class="approve" onclick="approveItem('${childId}','${type}','${itemId}')">Approve</button><button class="reject" onclick="rejectItem('${childId}','${type}','${itemId}')">Reject</button></div>`;return row}
+function renderOverview(){const list=document.getElementById("childStatusList");list.innerHTML="";Object.keys(data.children).forEach(id=>{const c=data.children[id],xp=childXP(id),rank=rankForXP(xp).current.name,g=data.goals?.[id],row=document.createElement("div");row.className="admin-list-row";row.innerHTML=`<div><strong>${c.avatar} ${c.name}</strong><div class="task-sub">${rank} • ${xp} XP • ${achievementCount(id)}/${ACHIEVEMENTS.length} achievements</div><div class="task-sub">Balance: $${fmt(c.money)} • Lifetime: $${fmt(c.lifetime)}</div><div class="task-sub">Goal: ${g?escapeHtml(g.title)+" • $"+fmt(g.saved||0)+" / $"+fmt(g.target):"None"}</div></div><button class="pay" onclick="paidOut('${id}')">PAID OUT</button>`;list.appendChild(row)})}
+function renderAdminLists(){fillList("adminJobList",data.jobs,j=>`<div><strong>${escapeHtml(j.title)}</strong><div class="task-sub">$${fmt(j.value)}</div></div><button class="danger" onclick="deleteJob('${j.id}')">Delete</button>`);fillList("adminRewardList",data.rewards,r=>`<div><strong>${escapeHtml(r.title)}</strong><div class="task-sub">Cost: $${fmt(r.cost)}</div></div><button class="danger" onclick="deleteReward('${r.id}')">Delete</button>`);fillList("adminQuestList",data.quests,q=>`<div><strong>${escapeHtml(q.title)}</strong><div class="task-sub">Reward: $${fmt(q.reward)}</div></div><button class="danger" onclick="deleteQuest('${q.id}')">Delete</button>`);const goalList=document.getElementById("adminGoalList");goalList.innerHTML="";Object.keys(data.children).forEach(id=>{const c=data.children[id],g=data.goals?.[id],row=document.createElement("div");row.className="admin-list-row";row.innerHTML=`<div><strong>${c.avatar} ${c.name}</strong><div class="task-sub">${g?escapeHtml(g.title)+" • $"+fmt(g.saved||0)+" / $"+fmt(g.target):"No goal set"}</div></div>`;goalList.appendChild(row)})}
+function fillList(id,items,htmlFn){const wrap=document.getElementById(id);wrap.innerHTML="";items.forEach(item=>{const row=document.createElement("div");row.className="admin-list-row";row.innerHTML=htmlFn(item);wrap.appendChild(row)})}
+function checkDailyMilestones(childId){const d=dailyFor(childId),s=data.children[childId].stats;if(tasksUnlocked(childId)&&!d.dailyCounted){d.dailyCounted=true;s.dailyDays+=1;s.streak+=1;s.bestStreak=Math.max(s.bestStreak||0,s.streak||0)}}
+function approveItem(childId,type,itemId){if(!requireLoaded())return;const d=dailyFor(childId),c=data.children[childId];if(type==="task"){d.tasks[itemId]="approved";checkDailyMilestones(childId)}if(type==="job"&&d.jobs[itemId]==="pending"){d.jobs[itemId]="approved";const j=data.jobs.find(x=>x.id===itemId),v=Number(j?.value||0);c.money+=v;c.lifetime+=v;c.stats.jobs+=1;addActivity(childId,{kind:"earning",icon:"🟢",title:j?.title||"Job completed",amount:v})}if(type==="reward"&&d.rewards[itemId]==="pending"){const r=data.rewards.find(x=>x.id===itemId),cost=Number(r?.cost||0);c.money=Math.max(0,c.money-cost);d.rewards[itemId]="approved";addActivity(childId,{kind:"reward",icon:"🟡",title:"Reward Purchased: "+(r?.title||"Reward"),amount:-cost})}if(type==="quest"&&d.quest?.status==="pending"){const v=Number(d.quest.reward||0);d.quest.status="approved";c.money+=v;c.lifetime+=v;c.stats.quests+=1;addActivity(childId,{kind:"quest",icon:"🎯",title:"Daily Quest: "+d.quest.title,amount:v})}saveData();renderAdmin()}
+function rejectItem(childId,type,itemId){if(!requireLoaded())return;const d=dailyFor(childId);if(type==="task")delete d.tasks[itemId];if(type==="job")delete d.jobs[itemId];if(type==="reward")delete d.rewards[itemId];if(type==="quest"&&d.quest)d.quest.status="available";saveData();renderAdmin()}
+function addJob(){const title=val("newJobTitle"),value=Number(val("newJobValue"));if(!title||isNaN(value))return;data.jobs.push({id:slug(title)+"-"+Date.now(),title,value});clear("newJobTitle","newJobValue");saveData();renderAdmin()}function deleteJob(id){data.jobs=data.jobs.filter(j=>j.id!==id);saveData();renderAdmin()}function addReward(){const title=val("newRewardTitle"),cost=Number(val("newRewardCost"));if(!title||isNaN(cost))return;data.rewards.push({id:slug(title)+"-"+Date.now(),title,cost});clear("newRewardTitle","newRewardCost");saveData();renderAdmin()}function deleteReward(id){data.rewards=data.rewards.filter(r=>r.id!==id);saveData();renderAdmin()}function addQuest(){const title=val("newQuestTitle"),reward=Number(val("newQuestReward")||2);if(!title)return;data.quests.push({id:slug(title)+"-"+Date.now(),title,reward});clear("newQuestTitle");saveData();renderAdmin()}function deleteQuest(id){data.quests=data.quests.filter(q=>q.id!==id);saveData();renderAdmin()}function setGoal(){const childId=val("goalChild"),title=val("goalTitle"),target=Number(val("goalTarget"));if(!title||!target)return;data.goals[childId]={title,target,saved:0,createdAt:timeStamp()};clear("goalTitle","goalTarget");saveData();renderAdmin()}
+function applyBonus(){const childId=val("bonusChild"),reason=val("bonusReason"),amount=Number(val("bonusAmount")||0),note=val("bonusNote");if(!amount)return;const c=data.children[childId];c.money+=amount;c.lifetime+=amount;c.stats.bonuses+=1;addActivity(childId,{kind:"bonus",icon:"🟡",title:reason,amount,note,seen:false});clear("bonusNote");saveData();renderAdmin();alert("Bonus applied.")}function applyFine(){const childId=val("fineChild"),reason=val("fineReason"),amount=Number(val("fineAmount")||0),note=val("fineNote");if(!amount)return;const c=data.children[childId];c.money=Math.max(0,c.money-amount);addActivity(childId,{kind:"fine",icon:"🔴",title:reason,amount:-amount,note});clear("fineNote");saveData();renderAdmin();alert("Fine applied.")}function paidOut(childId){const c=data.children[childId],amount=Number(c.money||0);c.lastPayout={amount,date:niceDate()};c.money=0;addActivity(childId,{kind:"payout",icon:"🔵",title:"Paid Out",amount:-amount});saveData();renderAdmin()}
+function val(id){return document.getElementById(id).value.trim()}function clear(...ids){ids.forEach(id=>document.getElementById(id).value="")}
+function showNewBonusIfNeeded(childId){const bonus=(data.activity[childId]||[]).find(a=>a.kind==="bonus"&&a.seen===false);if(!bonus)return;document.getElementById("bonusTitle").textContent="🎉 Bonus Awarded!";document.getElementById("bonusMessage").innerHTML=`<strong>${escapeHtml(bonus.title)}</strong><br><br>You earned +$${fmt(bonus.amount)}!${bonus.note?`<br><br>${escapeHtml(bonus.note)}`:""}`;document.getElementById("bonusModal").classList.add("active")}
+function closeBonusModal(){if(activeChild){const bonus=(data.activity[activeChild]||[]).find(a=>a.kind==="bonus"&&a.seen===false);if(bonus){bonus.seen=true;saveData();renderChild()}}document.getElementById("bonusModal").classList.remove("active")}
+Object.assign(window,{openChild,showChildTab,goHome,submitTask,submitJob,submitQuest,buyReward,depositGoal,setAvatar,showParentLogin,hideParentLogin,checkPin,showAdminTab,approveItem,rejectItem,addJob,deleteJob,addReward,deleteReward,addQuest,deleteQuest,setGoal,applyBonus,applyFine,paidOut,closeBonusModal});
 document.getElementById("pinInput").addEventListener("keydown",e=>{if(e.key==="Enter")checkPin()});
 initFirebase();
 </script>
