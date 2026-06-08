@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Bell Summer</title>
+  <style>
+    :root {
+      --navy: #123a5a;
+      --teal: #2f7f73;
+      --purple: #6b4bb7;
+      --gold: #b68618;
+      --green-bg: #eefaf4;
+      --purple-bg: #f4efff;
+      --gold-bg: #fff6df;
+      --card: rgba(255,255,255,0.86);
+      --shadow: 0 14px 35px rgba(24, 52, 72, 0.14);
+      --border: rgba(255,255,255,0.95);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--navy);
+      background:
+        radial-gradient(circle at top left, rgba(192, 225, 210, .65), transparent 34%),
+        radial-gradient(circle at top right, rgba(244, 221, 158, .55), transparent 34%),
+        linear-gradient(180deg, #fff9ef 0%, #eef9ff 43%, #fffaf3 100%);
+      overflow-x: hidden;
+    }
+
+    .phone {
+      width: min(100%, 430px);
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 28px 20px calc(24px + env(safe-area-inset-bottom));
+      position: relative;
+    }
+
+    .leaves {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: .75;
+    }
+
+    .leaf {
+      position: absolute;
+      width: 90px;
+      height: 18px;
+      border-radius: 100% 0 100% 0;
+      background: #9dbb6f;
+      transform-origin: center;
+    }
+
+    .leaf.one { top: 18px; left: -22px; transform: rotate(28deg); }
+    .leaf.two { top: 44px; left: -8px; transform: rotate(-18deg); background: #77a68e; }
+    .leaf.three { top: 22px; right: -35px; transform: rotate(145deg); }
+    .leaf.four { top: 58px; right: -18px; transform: rotate(118deg); background: #77a68e; }
+
+    .hero {
+      text-align: center;
+      padding-top: 58px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sun {
+      width: 96px;
+      height: 54px;
+      margin: 0 auto -6px;
+      position: relative;
+    }
+
+    .sun::before {
+      content: "";
+      position: absolute;
+      left: 17px;
+      top: 18px;
+      width: 62px;
+      height: 32px;
+      border: 7px solid #f4bd2d;
+      border-bottom: none;
+      border-radius: 80px 80px 0 0;
+    }
+
+    .ray {
+      position: absolute;
+      width: 6px;
+      height: 25px;
+      border-radius: 8px;
+      background: #f4bd2d;
+      left: 45px;
+      top: -8px;
+    }
+
+    .ray.r2 { transform: rotate(35deg); left: 76px; top: 7px; }
+    .ray.r3 { transform: rotate(75deg); left: 87px; top: 34px; }
+    .ray.r4 { transform: rotate(-35deg); left: 14px; top: 7px; }
+    .ray.r5 { transform: rotate(-75deg); left: 0; top: 34px; }
+
+    h1 {
+      margin: 0;
+      font-size: 78px;
+      letter-spacing: -4px;
+      line-height: .82;
+      font-family: "Brush Script MT", "Snell Roundhand", cursive;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .summer {
+      margin-top: 2px;
+      font-size: 39px;
+      font-weight: 800;
+      letter-spacing: 10px;
+      color: #40867d;
+    }
+
+    .waves {
+      color: #4aa6d9;
+      font-size: 36px;
+      letter-spacing: 5px;
+      line-height: .65;
+      margin-top: 4px;
+      font-weight: 700;
+    }
+
+    .tagline {
+      margin: 33px auto 22px;
+      max-width: 330px;
+      font-size: 21px;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+
+    .ocean {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 388px;
+      height: 118px;
+      background:
+        repeating-linear-gradient(170deg, rgba(85, 181, 220, .18) 0 12px, rgba(255,255,255,.36) 12px 26px),
+        linear-gradient(180deg, rgba(129, 211, 237, .35), rgba(255,255,255,0));
+      z-index: 0;
+    }
+
+    .cards {
+      margin-top: 38px;
+      display: grid;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    button.card {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 18px 20px;
+      min-height: 118px;
+      display: grid;
+      grid-template-columns: 78px 1fr 24px;
+      gap: 18px;
+      align-items: center;
+      width: 100%;
+      cursor: pointer;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      text-align: left;
+      color: inherit;
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+
+    button.card:active {
+      transform: scale(.985);
+      box-shadow: 0 8px 22px rgba(24, 52, 72, 0.13);
+    }
+
+    .spencer { background: linear-gradient(180deg, var(--green-bg), rgba(255,255,255,.92)); }
+    .harper { background: linear-gradient(180deg, var(--purple-bg), rgba(255,255,255,.94)); }
+    .parent { background: linear-gradient(180deg, var(--gold-bg), rgba(255,255,255,.94)); }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 42px;
+      background: rgba(255,255,255,.55);
+    }
+
+    .card h2 {
+      margin: 0 0 4px;
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .spencer h2 { color: #2c776c; }
+    .harper h2 { color: #6546a6; }
+    .parent h2 { color: #9a710f; }
+
+    .card p {
+      margin: 0;
+      font-size: 17px;
+      color: #405566;
+    }
+
+    .chev {
+      font-size: 42px;
+      font-weight: 500;
+    }
+
+    .footer {
+      margin: 34px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      color: #28465d;
+      font-size: 17px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .shield {
+      width: 28px;
+      height: 32px;
+      border: 3px solid #3b8b7c;
+      border-radius: 14px 14px 18px 18px;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      color: #3b8b7c;
+      font-weight: bold;
+    }
+
+    .screen {
+      display: none;
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      padding-top: 20px;
+    }
+
+    .screen.active { display: block; }
+
+    .dash-card {
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(255,255,255,.9);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .dash-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .dash-top .avatar { width: 58px; height: 58px; font-size: 34px; }
+
+    .dash-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .mini {
+      color: #526878;
+      margin: 3px 0 0;
+    }
+
+    .placeholder {
+      margin-top: 22px;
+      padding: 18px;
+      border-radius: 18px;
+      background: #f5f7fb;
+      color: #405566;
+      line-height: 1.4;
+    }
+
+    .back {
+      border: none;
+      background: rgba(255,255,255,.82);
+      box-shadow: 0 8px 18px rgba(24, 52, 72, 0.1);
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    .modal-wrap {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(18,58,90,.28);
+      z-index: 10;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .modal-wrap.active { display: flex; }
+
+    .modal {
+      width: min(100%, 430px);
+      background: white;
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.22);
+      animation: slide .18s ease;
+    }
+
+    @keyframes slide {
+      from { transform: translateY(20px); opacity: .7; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal h2 { margin: 0 0 8px; }
+    .modal p { color: #526878; margin-top: 0; }
+
+    input {
+      width: 100%;
+      border: 1px solid #d7e0e7;
+      border-radius: 16px;
+      padding: 16px;
+      font-size: 18px;
+      outline: none;
+      margin: 8px 0 14px;
+    }
+
+    .primary {
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      padding: 16px;
+      color: white;
+      font-size: 17px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6c4fc7, #8f60ee);
+      cursor: pointer;
+    }
+
+    .secondary {
+      width: 100%;
+      border: none;
+      background: transparent;
+      padding: 15px;
+      font-size: 16px;
+      color: #526878;
+      cursor: pointer;
+    }
+
+    .error {
+      display: none;
+      color: #b42318;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .error.active { display: block; }
+
+    @media (max-width: 380px) {
+      h1 { font-size: 66px; }
+      .summer { font-size: 32px; }
+      button.card { grid-template-columns: 66px 1fr 20px; padding: 16px; }
+      .avatar { width: 62px; height: 62px; font-size: 36px; }
+      .card h2 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="phone">
+    <div class="leaves">
+      <div class="leaf one"></div>
+      <div class="leaf two"></div>
+      <div class="leaf three"></div>
+      <div class="leaf four"></div>
+    </div>
+    <div class="ocean"></div>
+
+    <section id="loginScreen">
+      <div class="hero">
+        <div class="sun">
+          <div class="ray"></div>
+          <div class="ray r2"></div>
+          <div class="ray r3"></div>
+          <div class="ray r4"></div>
+          <div class="ray r5"></div>
+        </div>
+
+        <h1>Bell</h1>
+        <div class="summer">SUMMER</div>
+        <div class="waves">~~~</div>
+
+        <div class="tagline">
+          Chores. Jobs. Earnings.<br />
+          Building Responsibility Together.
+        </div>
+      </div>
+
+      <div class="cards">
+        <button class="card spencer" onclick="openChild('Spencer', '👦')">
+          <div class="avatar">👦</div>
+          <div>
+            <h2>Spencer</h2>
+            <p>Go to my dashboard</p>
+          </div>
+          <div class="chev">›</div>
+        </button>
+
+        <button class="card harper" onclick="openChild('Harper', '👧')">
+          <div class="avatar">👧</div>
+          <div>
+            <h2>Harper</h2>
+            <p>Go to my dashboard</p>
+          </div>
+          <div class="chev">›</div>
+        </button>
+
+        <button class="card parent" onclick="showParentLogin()">
+          <div class="avatar">🔒</div>
+          <div>
+            <h2>Parent</h2>
+            <p>Access parent dashboard</p>
+          </div>
+          <div class="chev">›</div>
+        </button>
+      </div>
+
+      <div class="footer">
+        <div class="shield">✓</div>
+        <div>This is a private family app</div>
+      </div>
+    </section>
+
+    <section id="dashboardScreen" class="screen">
+      <button class="back" onclick="goHome()">← Back</button>
+
+      <div class="dash-card">
+        <div class="dash-top">
+          <div id="dashAvatar" class="avatar">👦</div>
+          <div>
+            <h2 id="dashTitle" class="dash-title">Spencer</h2>
+            <p id="dashSubtitle" class="mini">Child dashboard</p>
+          </div>
+        </div>
+
+        <div id="dashBody" class="placeholder">
+          This is where the chore list, completed chores, locked jobs, unlocked jobs, and earnings will go next.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="parentModal" class="modal-wrap">
+    <div class="modal">
+      <h2>Parent Access</h2>
+      <p>Enter the parent password to open the admin dashboard.</p>
+      <input id="parentPassword" type="password" placeholder="Parent password" />
+      <div id="passwordError" class="error">Wrong password. Try again.</div>
+      <button class="primary" onclick="checkParentPassword()">Unlock Parent Dashboard</button>
+      <button class="secondary" onclick="hideParentLogin()">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    const parentPassword = "bell"; // Change this later.
+
+    function openChild(name, emoji) {
+      document.getElementById("loginScreen").style.display = "none";
+      document.getElementById("dashboardScreen").classList.add("active");
+      document.getElementById("dashAvatar").textContent = emoji;
+      document.getElementById("dashTitle").textContent = name;
+      document.getElementById("dashSubtitle").textContent = "Child dashboard";
+      document.getElementById("dashBody").innerHTML =
+        "Welcome, " + name + "!<br><br>Next we will add:<br>• Chores to complete<br>• Progress toward unlocking jobs<br>• Available paid jobs<br>• Earnings tracker";
+    }
+
+    function showParentLogin() {
+      document.getElementById("parentModal").classList.add("active");
+      document.getElementById("parentPassword").value = "";
+      document.getElementById("passwordError").classList.remove("active");
+      setTimeout(() => document.getElementById("parentPassword").focus(), 150);
+    }
+
+    function hideParentLogin() {
+      document.getElementById("parentModal").classList.remove("active");
+    }
+
+    function checkParentPassword() {
+      const entered = document.getElementById("parentPassword").value.trim();
+      if (entered === parentPassword) {
+        hideParentLogin();
+        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("dashboardScreen").classList.add("active");
+        document.getElementById("dashAvatar").textContent = "🔐";
+        document.getElementById("dashTitle").textContent = "Parent";
+        document.getElementById("dashSubtitle").textContent = "Admin dashboard";
+        document.getElementById("dashBody").innerHTML =
+          "Parent dashboard unlocked.<br><br>Next we will add:<br>• Verify completed chores<br>• Manage chores<br>• Manage paid jobs<br>• Reset the week<br>• View Spencer and Harper's earnings";
+      } else {
+        document.getElementById("passwordError").classList.add("active");
+      }
+    }
+
+    function goHome() {
+      document.getElementById("dashboardScreen").classList.remove("active");
+      document.getElementById("loginScreen").style.display = "block";
+    }
+
+    document.getElementById("parentPassword").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") checkParentPassword();
+    });
+  </script>
+</body>
+</html>
