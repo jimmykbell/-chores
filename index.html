@@ -6,891 +6,118 @@
   <title>Bell Summer</title>
   <style>
     :root {
-      --navy: #113957;
-      --teal: #287b73;
-      --purple: #6d4fc2;
-      --gold: #b47a16;
-      --green: #26a269;
-      --red: #d14d4d;
-      --blue: #3294ca;
-      --cream: #fff8eb;
-      --card: rgba(255,255,255,.9);
-      --soft: #f3f7fb;
-      --border: rgba(17,57,87,.12);
-      --shadow: 0 16px 42px rgba(25, 62, 88, .14);
+      --navy:#113957; --teal:#287b73; --purple:#6d4fc2; --gold:#b47a16;
+      --green:#26a269; --red:#d14d4d; --blue:#3294ca; --card:rgba(255,255,255,.91);
+      --border:rgba(17,57,87,.12); --shadow:0 16px 42px rgba(25,62,88,.14);
     }
-
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--navy);
-      background:
-        radial-gradient(circle at top left, rgba(146, 213, 189, .65), transparent 34%),
-        radial-gradient(circle at top right, rgba(255, 224, 126, .55), transparent 36%),
-        linear-gradient(180deg, #fff9ec 0%, #effaff 44%, #fff9ee 100%);
-    }
-
-    button, input { font-family: inherit; }
-
-    .app {
-      width: min(100%, 460px);
-      margin: 0 auto;
-      min-height: 100vh;
-      padding: 22px 18px calc(26px + env(safe-area-inset-bottom));
-      position: relative;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .brand-small {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      font-weight: 900;
-      letter-spacing: -.5px;
-      font-size: 21px;
-    }
-
-    .sun-dot {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ffd15a, #ff9e3d);
-      box-shadow: 0 0 0 6px rgba(255, 190, 67, .2);
-    }
-
-    .back-btn, .small-btn {
-      border: 0;
-      background: rgba(255,255,255,.75);
-      color: var(--navy);
-      border-radius: 14px;
-      padding: 10px 13px;
-      font-weight: 800;
-      box-shadow: 0 8px 18px rgba(25, 62, 88, .09);
-      cursor: pointer;
-    }
-
-    .screen { display: none; }
-    .screen.active { display: block; animation: fade .16s ease; }
-
-    @keyframes fade { from { opacity: .5; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-
-    .hero {
-      text-align: center;
-      padding: 38px 8px 22px;
-    }
-
-    .sun-logo {
-      width: 92px;
-      height: 54px;
-      margin: 0 auto -8px;
-      position: relative;
-    }
-
-    .sun-logo:before {
-      content: "";
-      position: absolute;
-      left: 17px;
-      top: 18px;
-      width: 58px;
-      height: 30px;
-      border: 7px solid #f3ba2d;
-      border-bottom: 0;
-      border-radius: 80px 80px 0 0;
-    }
-
-    .sun-logo span {
-      position: absolute;
-      width: 6px;
-      height: 24px;
-      border-radius: 10px;
-      background: #f3ba2d;
-      left: 43px;
-      top: -8px;
-    }
-    .sun-logo .r2 { transform: rotate(39deg); left: 74px; top: 7px; }
-    .sun-logo .r3 { transform: rotate(75deg); left: 84px; top: 34px; }
-    .sun-logo .r4 { transform: rotate(-39deg); left: 12px; top: 7px; }
-    .sun-logo .r5 { transform: rotate(-75deg); left: 0px; top: 34px; }
-
-    h1 {
-      margin: 0;
-      font-size: 76px;
-      line-height: .82;
-      letter-spacing: -4px;
-      font-family: "Brush Script MT", "Snell Roundhand", cursive;
-    }
-
-    .summer {
-      margin-top: 2px;
-      font-size: 36px;
-      font-weight: 900;
-      letter-spacing: 10px;
-      color: var(--teal);
-    }
-
-    .tagline {
-      margin: 28px auto 0;
-      font-size: 20px;
-      line-height: 1.32;
-      font-weight: 700;
-      max-width: 330px;
-    }
-
-    .cards { display: grid; gap: 16px; margin-top: 20px; }
-
-    .person-card, .panel, .job-card, .task-row {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,.8);
-      box-shadow: var(--shadow);
-      border-radius: 25px;
-    }
-
-    .person-card {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,.9);
-      display: grid;
-      grid-template-columns: 70px 1fr 26px;
-      align-items: center;
-      gap: 14px;
-      padding: 16px 18px;
-      text-align: left;
-      color: inherit;
-      cursor: pointer;
-    }
-
-    .avatar {
-      width: 66px;
-      height: 66px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 37px;
-      background: rgba(255,255,255,.62);
-    }
-
-    .person-card h2 { margin: 0 0 4px; font-size: 28px; }
-    .person-card p { margin: 0; color: #526879; font-size: 16px; }
-    .chev { font-size: 38px; opacity: .75; }
-
-    .spencer { background: linear-gradient(180deg, #edfbf4, rgba(255,255,255,.92)); }
-    .harper { background: linear-gradient(180deg, #f3efff, rgba(255,255,255,.94)); }
-    .parent { background: linear-gradient(180deg, #fff5dc, rgba(255,255,255,.94)); }
-
-    .panel { padding: 18px; margin-bottom: 16px; }
-
-    .hello {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      margin-bottom: 16px;
-    }
-
-    .hello .avatar { width: 58px; height: 58px; font-size: 32px; }
-    .hello h2 { margin: 0; font-size: 27px; }
-    .hello p { margin: 2px 0 0; color: #526879; font-weight: 650; }
-
-    .money-card {
-      border-radius: 24px;
-      padding: 20px;
-      background: linear-gradient(135deg, #e9fff3, #ffffff);
-      border: 1px solid rgba(38,162,105,.16);
-      box-shadow: 0 12px 30px rgba(38,162,105,.12);
-      margin-bottom: 16px;
-    }
-
-    .money-label { color: #526879; font-weight: 800; }
-    .money { font-size: 48px; font-weight: 950; letter-spacing: -2px; margin-top: 2px; color: #168357; }
-
-    .progress {
-      height: 13px;
-      border-radius: 999px;
-      background: #dfe8ee;
-      overflow: hidden;
-      margin: 12px 0 4px;
-    }
-
-    .bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #2aa56d, #58c98c);
-      border-radius: 999px;
-      transition: width .2s ease;
-    }
-
-    .section-title {
-      font-size: 22px;
-      margin: 4px 0 12px;
-      font-weight: 950;
-    }
-
-    .task-row {
-      padding: 14px 14px 14px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      box-shadow: 0 10px 24px rgba(25, 62, 88, .09);
-      margin-bottom: 12px;
-    }
-
-    .task-title { font-size: 18px; font-weight: 850; }
-    .task-sub { color: #6b7b87; font-size: 14px; margin-top: 3px; }
-
-    .switch {
-      position: relative;
-      width: 66px;
-      height: 38px;
-      flex: 0 0 auto;
-    }
-
-    .switch input { display: none; }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      inset: 0;
-      background: #cdd8df;
-      border-radius: 999px;
-      transition: .2s;
-      box-shadow: inset 0 2px 6px rgba(0,0,0,.12);
-    }
-
-    .slider:before {
-      content: "";
-      position: absolute;
-      width: 31px;
-      height: 31px;
-      left: 4px;
-      top: 3.5px;
-      background: white;
-      border-radius: 50%;
-      transition: .2s;
-      box-shadow: 0 4px 10px rgba(0,0,0,.18);
-    }
-
-    .switch input:checked + .slider {
-      background: #2aa56d;
-    }
-
-    .switch input:checked + .slider:before {
-      transform: translateX(27px);
-    }
-
-    .lock-box {
-      text-align: center;
-      padding: 20px;
-      background: rgba(255,255,255,.7);
-      border: 1px dashed rgba(17,57,87,.22);
-      border-radius: 22px;
-      color: #526879;
-      font-weight: 750;
-      line-height: 1.4;
-    }
-
-    .unlock {
-      text-align: center;
-      background: linear-gradient(135deg, #fff5d6, #ffffff);
-      border: 1px solid rgba(180,122,22,.16);
-      border-radius: 22px;
-      padding: 15px;
-      font-weight: 900;
-      color: var(--gold);
-      margin-bottom: 12px;
-    }
-
-    .job-card {
-      padding: 16px;
-      margin-bottom: 12px;
-      box-shadow: 0 10px 24px rgba(25, 62, 88, .09);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .job-card.disabled {
-      opacity: .48;
-      filter: grayscale(.25);
-    }
-
-    .job-title { font-size: 19px; font-weight: 900; margin: 0 0 3px; }
-    .job-value { color: #168357; font-weight: 950; }
-    .job-note { color: #6b7b87; font-size: 14px; }
-
-    .claim {
-      border: none;
-      background: linear-gradient(135deg, #5b45b6, #8a62ed);
-      color: white;
-      border-radius: 15px;
-      padding: 12px 14px;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    .claim:disabled { background: #bdc6ce; cursor: not-allowed; }
-
-    .admin-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .stat {
-      background: rgba(255,255,255,.72);
-      border-radius: 19px;
-      padding: 15px;
-      border: 1px solid rgba(17,57,87,.08);
-    }
-
-    .stat small { color: #526879; font-weight: 800; }
-    .stat strong { display:block; font-size: 29px; margin-top: 3px; }
-
-    input {
-      width: 100%;
-      border: 1px solid #d7e2ea;
-      background: rgba(255,255,255,.86);
-      border-radius: 16px;
-      padding: 14px;
-      font-size: 17px;
-      outline: 0;
-      margin-bottom: 10px;
-    }
-
-    .primary {
-      border: none;
-      width: 100%;
-      border-radius: 16px;
-      padding: 15px;
-      background: linear-gradient(135deg, #2b8b79, #34b07f);
-      color: white;
-      font-size: 17px;
-      font-weight: 950;
-      cursor: pointer;
-    }
-
-    .danger, .pay {
-      border: none;
-      border-radius: 13px;
-      padding: 10px 12px;
-      color: white;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    .danger { background: #d75d5d; }
-    .pay { background: #168357; }
-
-    .admin-list-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-      align-items: center;
-      padding: 13px 0;
-      border-bottom: 1px solid rgba(17,57,87,.1);
-    }
-
-    .admin-list-row:last-child { border-bottom: none; }
-
-    .tabs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 14px;
-      overflow-x: auto;
-      padding-bottom: 3px;
-    }
-
-    .tab {
-      border: none;
-      background: rgba(255,255,255,.65);
-      border-radius: 999px;
-      padding: 10px 13px;
-      color: var(--navy);
-      font-weight: 900;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-
-    .tab.active { background: var(--navy); color: white; }
-
-    .modal-wrap {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: flex-end;
-      justify-content: center;
-      padding: 18px;
-      background: rgba(17,57,87,.32);
-      z-index: 10;
-    }
-
-    .modal-wrap.active { display: flex; }
-
-    .modal {
-      background: white;
-      border-radius: 28px;
-      width: min(100%, 430px);
-      padding: 23px;
-      box-shadow: 0 26px 70px rgba(0,0,0,.22);
-    }
-
-    .modal h2 { margin: 0 0 8px; }
-    .modal p { margin: 0 0 12px; color: #526879; }
-    .error { display:none; color: #b42318; font-weight: 850; margin-bottom: 10px; }
-    .error.active { display:block; }
-    .secondary {
-      width: 100%;
-      border: 0;
-      background: transparent;
-      padding: 14px;
-      color: #526879;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    @media (max-width: 380px) {
-      h1 { font-size: 66px; }
-      .summer { font-size: 31px; }
-      .person-card { grid-template-columns: 62px 1fr 20px; padding: 14px; }
-      .avatar { width: 58px; height: 58px; font-size: 32px; }
-      .person-card h2 { font-size: 25px; }
-      .money { font-size: 42px; }
-    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    body{margin:0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--navy);background:radial-gradient(circle at top left,rgba(146,213,189,.65),transparent 34%),radial-gradient(circle at top right,rgba(255,224,126,.55),transparent 36%),linear-gradient(180deg,#fff9ec 0%,#effaff 44%,#fff9ee 100%)}
+    button,input{font-family:inherit}.app{width:min(100%,460px);margin:0 auto;min-height:100vh;padding:22px 18px calc(26px + env(safe-area-inset-bottom))}
+    .screen{display:none}.screen.active{display:block;animation:fade .16s ease}@keyframes fade{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:none}}
+    .hero{text-align:center;padding:38px 8px 22px}.sun-logo{width:92px;height:54px;margin:0 auto -8px;position:relative}.sun-logo:before{content:"";position:absolute;left:17px;top:18px;width:58px;height:30px;border:7px solid #f3ba2d;border-bottom:0;border-radius:80px 80px 0 0}.sun-logo span{position:absolute;width:6px;height:24px;border-radius:10px;background:#f3ba2d;left:43px;top:-8px}.sun-logo .r2{transform:rotate(39deg);left:74px;top:7px}.sun-logo .r3{transform:rotate(75deg);left:84px;top:34px}.sun-logo .r4{transform:rotate(-39deg);left:12px;top:7px}.sun-logo .r5{transform:rotate(-75deg);left:0;top:34px}
+    h1{margin:0;font-size:76px;line-height:.82;letter-spacing:-4px;font-family:"Brush Script MT","Snell Roundhand",cursive}.summer{margin-top:2px;font-size:36px;font-weight:900;letter-spacing:10px;color:var(--teal)}.tagline{margin:28px auto 0;font-size:20px;line-height:1.32;font-weight:700;max-width:330px}
+    .cards{display:grid;gap:16px;margin-top:20px}.person-card,.panel,.job-card,.task-row{background:var(--card);border:1px solid rgba(255,255,255,.85);box-shadow:var(--shadow);border-radius:25px}.person-card{width:100%;display:grid;grid-template-columns:70px 1fr 26px;align-items:center;gap:14px;padding:16px 18px;text-align:left;color:inherit;cursor:pointer}.avatar{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;font-size:37px;background:rgba(255,255,255,.62)}.person-card h2{margin:0 0 4px;font-size:28px}.person-card p{margin:0;color:#526879;font-size:16px}.chev{font-size:38px;opacity:.75}.spencer{background:linear-gradient(180deg,#edfbf4,rgba(255,255,255,.92))}.harper{background:linear-gradient(180deg,#f3efff,rgba(255,255,255,.94))}.parent{background:linear-gradient(180deg,#fff5dc,rgba(255,255,255,.94))}
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px}.brand-small{display:flex;align-items:center;gap:9px;font-weight:900;letter-spacing:-.5px;font-size:21px}.sun-dot{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#ffd15a,#ff9e3d);box-shadow:0 0 0 6px rgba(255,190,67,.2)}.back-btn,.small-btn{border:0;background:rgba(255,255,255,.75);color:var(--navy);border-radius:14px;padding:10px 13px;font-weight:800;box-shadow:0 8px 18px rgba(25,62,88,.09);cursor:pointer}
+    .panel{padding:18px;margin-bottom:16px}.hello{display:flex;align-items:center;gap:13px;margin-bottom:16px}.hello .avatar{width:58px;height:58px;font-size:32px}.hello h2{margin:0;font-size:27px}.hello p{margin:2px 0 0;color:#526879;font-weight:650}
+    .money-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.money-card{border-radius:22px;padding:16px;background:linear-gradient(135deg,#e9fff3,#fff);border:1px solid rgba(38,162,105,.16);box-shadow:0 12px 30px rgba(38,162,105,.12);margin-bottom:14px}.money-card.full{grid-column:1/-1}.money-label{color:#526879;font-weight:850;font-size:14px}.money{font-size:42px;font-weight:950;letter-spacing:-2px;margin-top:2px;color:#168357}.money.small{font-size:24px;color:var(--navy);letter-spacing:-.5px}
+    .section-title{font-size:22px;margin:4px 0 12px;font-weight:950}.task-row{padding:14px 14px 14px 16px;display:flex;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 10px 24px rgba(25,62,88,.09);margin-bottom:12px}.task-title{font-size:18px;font-weight:850}.task-sub{color:#6b7b87;font-size:14px;margin-top:3px}.status-pill{display:inline-block;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:950;margin-top:6px}.pending{background:#fff1c2;color:#8a5c00}.approved{background:#dff9ea;color:#137a4f}.locked{background:#e7edf2;color:#526879}
+    .switch{position:relative;width:66px;height:38px;flex:0 0 auto}.switch input{display:none}.slider{position:absolute;cursor:pointer;inset:0;background:#cdd8df;border-radius:999px;transition:.2s;box-shadow:inset 0 2px 6px rgba(0,0,0,.12)}.slider:before{content:"";position:absolute;width:31px;height:31px;left:4px;top:3.5px;background:white;border-radius:50%;transition:.2s;box-shadow:0 4px 10px rgba(0,0,0,.18)}.switch input:checked+.slider{background:#f1b932}.switch input:checked+.slider:before{transform:translateX(27px)}.switch input:disabled+.slider{opacity:.55;cursor:not-allowed}
+    .progress{height:13px;border-radius:999px;background:#dfe8ee;overflow:hidden;margin:12px 0 4px}.bar{height:100%;width:0;background:linear-gradient(90deg,#2aa56d,#58c98c);border-radius:999px;transition:width .2s ease}.lock-box{text-align:center;padding:20px;background:rgba(255,255,255,.7);border:1px dashed rgba(17,57,87,.22);border-radius:22px;color:#526879;font-weight:750;line-height:1.4}.unlock{text-align:center;background:linear-gradient(135deg,#fff5d6,#fff);border:1px solid rgba(180,122,22,.16);border-radius:22px;padding:15px;font-weight:900;color:var(--gold);margin-bottom:12px}
+    .job-card{padding:16px;margin-bottom:12px;box-shadow:0 10px 24px rgba(25,62,88,.09);display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}.job-card.disabled{opacity:.55}.job-title{font-size:19px;font-weight:900;margin:0 0 3px}.job-value{color:#168357;font-weight:950}.claim{border:none;background:linear-gradient(135deg,#5b45b6,#8a62ed);color:white;border-radius:15px;padding:12px 14px;font-weight:900;cursor:pointer}.claim:disabled{background:#bdc6ce;cursor:not-allowed}
+    .tabs{display:flex;gap:8px;margin-bottom:14px;overflow-x:auto;padding-bottom:3px}.tab{border:none;background:rgba(255,255,255,.65);border-radius:999px;padding:10px 13px;color:var(--navy);font-weight:900;white-space:nowrap;cursor:pointer}.tab.active{background:var(--navy);color:white}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}.stat{background:rgba(255,255,255,.72);border-radius:19px;padding:15px;border:1px solid rgba(17,57,87,.08)}.stat small{color:#526879;font-weight:800}.stat strong{display:block;font-size:29px;margin-top:3px}
+    input{width:100%;border:1px solid #d7e2ea;background:rgba(255,255,255,.86);border-radius:16px;padding:14px;font-size:17px;outline:0;margin-bottom:10px}.primary{border:none;width:100%;border-radius:16px;padding:15px;background:linear-gradient(135deg,#2b8b79,#34b07f);color:white;font-size:17px;font-weight:950;cursor:pointer}.danger,.pay,.approve,.reject{border:none;border-radius:13px;padding:10px 12px;color:white;font-weight:900;cursor:pointer}.danger,.reject{background:#d75d5d}.pay{background:#168357}.approve{background:#168357}.admin-list-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(17,57,87,.1)}.admin-list-row:last-child{border-bottom:none}.approval-actions{display:flex;gap:8px}
+    .modal-wrap{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;padding:18px;background:rgba(17,57,87,.32);z-index:10}.modal-wrap.active{display:flex}.modal{background:white;border-radius:28px;width:min(100%,430px);padding:23px;box-shadow:0 26px 70px rgba(0,0,0,.22)}.modal h2{margin:0 0 8px}.modal p{margin:0 0 12px;color:#526879}.error{display:none;color:#b42318;font-weight:850;margin-bottom:10px}.error.active{display:block}.secondary{width:100%;border:0;background:transparent;padding:14px;color:#526879;font-weight:800;cursor:pointer}
+    @media(max-width:380px){h1{font-size:66px}.summer{font-size:31px}.person-card{grid-template-columns:62px 1fr 20px;padding:14px}.avatar{width:58px;height:58px;font-size:32px}.person-card h2{font-size:25px}.money{font-size:38px}.admin-grid,.money-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <main class="app">
-    <section id="login" class="screen active">
-      <div class="hero">
-        <div class="sun-logo">
-          <span></span><span class="r2"></span><span class="r3"></span><span class="r4"></span><span class="r5"></span>
-        </div>
-        <h1>Bell</h1>
-        <div class="summer">SUMMER</div>
-        <div class="tagline">Daily tasks unlock paid jobs.</div>
-      </div>
-
-      <div class="cards">
-        <button class="person-card spencer" onclick="openChild('spencer')">
-          <div class="avatar">👦</div>
-          <div><h2>Spencer</h2><p>Open my chores</p></div>
-          <div class="chev">›</div>
-        </button>
-
-        <button class="person-card harper" onclick="openChild('harper')">
-          <div class="avatar">👧</div>
-          <div><h2>Harper</h2><p>Open my chores</p></div>
-          <div class="chev">›</div>
-        </button>
-
-        <button class="person-card parent" onclick="showParentLogin()">
-          <div class="avatar">🔒</div>
-          <div><h2>Parent</h2><p>Manage jobs and payouts</p></div>
-          <div class="chev">›</div>
-        </button>
-      </div>
-    </section>
-
-    <section id="child" class="screen">
-      <div class="topbar">
-        <button class="back-btn" onclick="goHome()">← Home</button>
-        <div class="brand-small"><span class="sun-dot"></span> Bell Summer</div>
-      </div>
-
-      <div class="panel">
-        <div class="hello">
-          <div id="childAvatar" class="avatar">👦</div>
-          <div>
-            <h2 id="childName">Spencer</h2>
-            <p id="todayText">Today is Monday</p>
-          </div>
-        </div>
-
-        <div class="money-card">
-          <div class="money-label">My current money</div>
-          <div id="childMoney" class="money">$0</div>
-        </div>
-
-        <div class="section-title">First Tasks</div>
-        <div id="tasks"></div>
-        <div class="progress"><div id="taskBar" class="bar"></div></div>
-        <div id="taskProgress" class="task-sub">0 of 3 complete</div>
-      </div>
-
-      <div class="panel">
-        <div id="jobStatus"></div>
-        <div id="childJobs"></div>
-      </div>
-    </section>
-
-    <section id="parent" class="screen">
-      <div class="topbar">
-        <button class="back-btn" onclick="goHome()">← Home</button>
-        <div class="brand-small"><span class="sun-dot"></span> Parent</div>
-      </div>
-
-      <div class="tabs">
-        <button id="tabOverview" class="tab active" onclick="showAdminTab('overview')">Overview</button>
-        <button id="tabJobs" class="tab" onclick="showAdminTab('jobs')">Jobs</button>
-        <button id="tabTasks" class="tab" onclick="showAdminTab('tasks')">Tasks</button>
-      </div>
-
-      <div id="adminOverview" class="panel">
-        <div class="section-title">Family Overview</div>
-        <div class="admin-grid">
-          <div class="stat"><small>Spencer Money</small><strong id="spencerStat">$0</strong></div>
-          <div class="stat"><small>Harper Money</small><strong id="harperStat">$0</strong></div>
-        </div>
-        <div id="childStatusList"></div>
-      </div>
-
-      <div id="adminJobs" class="panel" style="display:none;">
-        <div class="section-title">Add a Job</div>
-        <input id="newJobTitle" placeholder="Job title, example: Wash the car" />
-        <input id="newJobValue" type="number" min="0" step="0.50" placeholder="Value, example: 5" />
-        <button class="primary" onclick="addJob()">Add Job</button>
-
-        <div class="section-title" style="margin-top:22px;">Current Jobs</div>
-        <div id="adminJobList"></div>
-      </div>
-
-      <div id="adminTasks" class="panel" style="display:none;">
-        <div class="section-title">Daily Tasks</div>
-        <input id="newTaskTitle" placeholder="Task title, example: Pack backpack" />
-        <button class="primary" onclick="addTask()">Add Task</button>
-        <div id="adminTaskList" style="margin-top:14px;"></div>
-      </div>
-    </section>
-  </main>
-
-  <div id="pinModal" class="modal-wrap">
-    <div class="modal">
-      <h2>Parent PIN</h2>
-      <p>Enter the parent PIN to manage Bell Summer.</p>
-      <input id="pinInput" type="password" inputmode="numeric" placeholder="PIN" />
-      <div id="pinError" class="error">Wrong PIN. Try again.</div>
-      <button class="primary" onclick="checkPin()">Unlock</button>
-      <button class="secondary" onclick="hideParentLogin()">Cancel</button>
+<main class="app">
+  <section id="login" class="screen active">
+    <div class="hero">
+      <div class="sun-logo"><span></span><span class="r2"></span><span class="r3"></span><span class="r4"></span><span class="r5"></span></div>
+      <h1>Bell</h1><div class="summer">SUMMER</div><div class="tagline">Daily tasks unlock paid jobs.</div>
     </div>
-  </div>
+    <div class="cards">
+      <button class="person-card spencer" onclick="openChild('spencer')"><div class="avatar">👦</div><div><h2>Spencer</h2><p>Open my chores</p></div><div class="chev">›</div></button>
+      <button class="person-card harper" onclick="openChild('harper')"><div class="avatar">👧</div><div><h2>Harper</h2><p>Open my chores</p></div><div class="chev">›</div></button>
+      <button class="person-card parent" onclick="showParentLogin()"><div class="avatar">🔒</div><div><h2>Parent</h2><p>Approve jobs and payouts</p></div><div class="chev">›</div></button>
+    </div>
+  </section>
 
-  <script>
-    const DEFAULT_DATA = {
-      pin: "1234",
-      currentDate: todayKey(),
-      children: {
-        spencer: { name: "Spencer", avatar: "👦", money: 0 },
-        harper: { name: "Harper", avatar: "👧", money: 0 }
-      },
-      tasks: [
-        { id: "make-bed", title: "Make your bed" },
-        { id: "brush-teeth", title: "Brush your teeth" },
-        { id: "get-dressed", title: "Get dressed" }
-      ],
-      jobs: [
-        { id: "wash-car", title: "Wash the car", value: 5 },
-        { id: "pull-weeds", title: "Pull weeds", value: 4 },
-        { id: "fold-laundry", title: "Fold laundry", value: 3 }
-      ],
-      daily: {}
-    };
+  <section id="child" class="screen">
+    <div class="topbar"><button class="back-btn" onclick="goHome()">← Home</button><div class="brand-small"><span class="sun-dot"></span> Bell Summer</div></div>
+    <div class="panel">
+      <div class="hello"><div id="childAvatar" class="avatar">👦</div><div><h2 id="childName">Spencer</h2><p id="todayText">Today is Monday</p></div></div>
+      <div class="money-grid">
+        <div class="money-card full"><div class="money-label">My current money</div><div id="childMoney" class="money">$0</div></div>
+        <div class="money-card"><div class="money-label">Lifetime earned</div><div id="childLifetime" class="money small">$0</div></div>
+        <div class="money-card"><div class="money-label">Last payout</div><div id="childPayout" class="money small">None</div></div>
+      </div>
+      <div class="section-title">First Tasks</div><div id="tasks"></div>
+      <div class="progress"><div id="taskBar" class="bar"></div></div><div id="taskProgress" class="task-sub">0 of 3 approved</div>
+    </div>
+    <div class="panel"><div id="jobStatus"></div><div id="childJobs"></div></div>
+  </section>
 
-    let data = loadData();
-    let activeChild = null;
+  <section id="parent" class="screen">
+    <div class="topbar"><button class="back-btn" onclick="goHome()">← Home</button><div class="brand-small"><span class="sun-dot"></span> Parent</div></div>
+    <div class="tabs">
+      <button id="tabApprovals" class="tab active" onclick="showAdminTab('approvals')">Approvals</button>
+      <button id="tabOverview" class="tab" onclick="showAdminTab('overview')">Overview</button>
+      <button id="tabJobs" class="tab" onclick="showAdminTab('jobs')">Jobs</button>
+      <button id="tabTasks" class="tab" onclick="showAdminTab('tasks')">Tasks</button>
+    </div>
+    <div id="adminApprovals" class="panel"><div class="section-title">Pending Approvals</div><div id="approvalList"></div></div>
+    <div id="adminOverview" class="panel" style="display:none;"><div class="section-title">Family Overview</div><div class="admin-grid"><div class="stat"><small>Spencer Money</small><strong id="spencerStat">$0</strong></div><div class="stat"><small>Harper Money</small><strong id="harperStat">$0</strong></div></div><div id="childStatusList"></div></div>
+    <div id="adminJobs" class="panel" style="display:none;"><div class="section-title">Add a Job</div><input id="newJobTitle" placeholder="Job title, example: Wash the car" /><input id="newJobValue" type="number" min="0" step="0.50" placeholder="Value, example: 5" /><button class="primary" onclick="addJob()">Add Job</button><div class="section-title" style="margin-top:22px;">Current Jobs</div><div id="adminJobList"></div></div>
+    <div id="adminTasks" class="panel" style="display:none;"><div class="section-title">Daily Tasks</div><input id="newTaskTitle" placeholder="Task title, example: Pack backpack" /><button class="primary" onclick="addTask()">Add Task</button><div id="adminTaskList" style="margin-top:14px;"></div></div>
+  </section>
+</main>
 
-    function todayKey() {
-      const d = new Date();
-      return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
-    }
+<div id="pinModal" class="modal-wrap"><div class="modal"><h2>Parent PIN</h2><p>Enter the parent PIN to manage Bell Summer.</p><input id="pinInput" type="password" inputmode="numeric" placeholder="PIN" /><div id="pinError" class="error">Wrong PIN. Try again.</div><button class="primary" onclick="checkPin()">Unlock</button><button class="secondary" onclick="hideParentLogin()">Cancel</button></div></div>
 
-    function dayName() {
-      return new Date().toLocaleDateString(undefined, { weekday: "long" });
-    }
-
-    function loadData() {
-      const saved = localStorage.getItem("bellSummerData");
-      let parsed = saved ? JSON.parse(saved) : structuredClone(DEFAULT_DATA);
-
-      if (parsed.currentDate !== todayKey()) {
-        parsed.currentDate = todayKey();
-        parsed.daily = {};
-      }
-
-      localStorage.setItem("bellSummerData", JSON.stringify(parsed));
-      return parsed;
-    }
-
-    function saveData() {
-      localStorage.setItem("bellSummerData", JSON.stringify(data));
-    }
-
-    function dailyFor(childId) {
-      if (!data.daily[childId]) {
-        data.daily[childId] = { tasks: {}, jobs: {} };
-      }
-      return data.daily[childId];
-    }
-
-    function showScreen(id) {
-      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-    }
-
-    function goHome() {
-      activeChild = null;
-      showScreen("login");
-    }
-
-    function openChild(childId) {
-      activeChild = childId;
-      renderChild();
-      showScreen("child");
-    }
-
-    function renderChild() {
-      const child = data.children[activeChild];
-      const daily = dailyFor(activeChild);
-      document.getElementById("childAvatar").textContent = child.avatar;
-      document.getElementById("childName").textContent = child.name;
-      document.getElementById("todayText").textContent = "Today is " + dayName();
-      document.getElementById("childMoney").textContent = "$" + Number(child.money).toFixed(2).replace(".00", "");
-
-      const taskWrap = document.getElementById("tasks");
-      taskWrap.innerHTML = "";
-
-      data.tasks.forEach(task => {
-        const checked = !!daily.tasks[task.id];
-        const row = document.createElement("div");
-        row.className = "task-row";
-        row.innerHTML = `
-          <div>
-            <div class="task-title">${escapeHtml(task.title)}</div>
-            <div class="task-sub">${checked ? "Done for today" : "Slide when complete"}</div>
-          </div>
-          <label class="switch">
-            <input type="checkbox" ${checked ? "checked" : ""} onchange="toggleTask('${task.id}', this.checked)">
-            <span class="slider"></span>
-          </label>
-        `;
-        taskWrap.appendChild(row);
-      });
-
-      const completeCount = data.tasks.filter(t => daily.tasks[t.id]).length;
-      const total = data.tasks.length;
-      const unlocked = completeCount >= total;
-      document.getElementById("taskBar").style.width = total ? ((completeCount / total) * 100) + "%" : "100%";
-      document.getElementById("taskProgress").textContent = completeCount + " of " + total + " complete";
-
-      const status = document.getElementById("jobStatus");
-      const jobs = document.getElementById("childJobs");
-      jobs.innerHTML = "";
-
-      if (!unlocked) {
-        status.innerHTML = `<div class="lock-box">🔒 Jobs are locked.<br>Complete your first tasks to unlock paid jobs.</div>`;
-        return;
-      }
-
-      status.innerHTML = `<div class="unlock">🔓 Jobs Unlocked!</div><div class="section-title">Available Jobs</div>`;
-
-      if (data.jobs.length === 0) {
-        jobs.innerHTML = `<div class="lock-box">No jobs are available right now.</div>`;
-        return;
-      }
-
-      data.jobs.forEach(job => {
-        const done = !!daily.jobs[job.id];
-        const card = document.createElement("div");
-        card.className = "job-card" + (done ? " disabled" : "");
-        card.innerHTML = `
-          <div>
-            <div class="job-title">${escapeHtml(job.title)}</div>
-            <div class="job-value">$${Number(job.value).toFixed(2).replace(".00", "")}</div>
-            <div class="job-note">${done ? "Completed today" : "Tap when finished"}</div>
-          </div>
-          <button class="claim" ${done ? "disabled" : ""} onclick="completeJob('${job.id}')">${done ? "Done" : "Complete"}</button>
-        `;
-        jobs.appendChild(card);
-      });
-
-      saveData();
-    }
-
-    function toggleTask(taskId, checked) {
-      const daily = dailyFor(activeChild);
-      if (checked) daily.tasks[taskId] = true;
-      else delete daily.tasks[taskId];
-      saveData();
-      renderChild();
-    }
-
-    function completeJob(jobId) {
-      const daily = dailyFor(activeChild);
-      if (daily.jobs[jobId]) return;
-
-      const job = data.jobs.find(j => j.id === jobId);
-      daily.jobs[jobId] = true;
-      data.children[activeChild].money = Number(data.children[activeChild].money || 0) + Number(job.value || 0);
-      saveData();
-      renderChild();
-    }
-
-    function showParentLogin() {
-      document.getElementById("pinModal").classList.add("active");
-      document.getElementById("pinInput").value = "";
-      document.getElementById("pinError").classList.remove("active");
-      setTimeout(() => document.getElementById("pinInput").focus(), 100);
-    }
-
-    function hideParentLogin() {
-      document.getElementById("pinModal").classList.remove("active");
-    }
-
-    function checkPin() {
-      const pin = document.getElementById("pinInput").value.trim();
-      if (pin === data.pin) {
-        hideParentLogin();
-        renderAdmin();
-        showScreen("parent");
-      } else {
-        document.getElementById("pinError").classList.add("active");
-      }
-    }
-
-    function showAdminTab(tab) {
-      ["overview", "jobs", "tasks"].forEach(t => {
-        document.getElementById("admin" + cap(t)).style.display = t === tab ? "block" : "none";
-        document.getElementById("tab" + cap(t)).classList.toggle("active", t === tab);
-      });
-      renderAdmin();
-    }
-
-    function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
-
-    function renderAdmin() {
-      document.getElementById("spencerStat").textContent = "$" + Number(data.children.spencer.money).toFixed(2).replace(".00", "");
-      document.getElementById("harperStat").textContent = "$" + Number(data.children.harper.money).toFixed(2).replace(".00", "");
-
-      const statusList = document.getElementById("childStatusList");
-      statusList.innerHTML = "";
-      Object.keys(data.children).forEach(childId => {
-        const child = data.children[childId];
-        const daily = dailyFor(childId);
-        const doneTasks = data.tasks.filter(t => daily.tasks[t.id]).map(t => t.title);
-        const doneJobs = data.jobs.filter(j => daily.jobs[j.id]).map(j => j.title);
-
-        const row = document.createElement("div");
-        row.className = "admin-list-row";
-        row.innerHTML = `
-          <div>
-            <strong>${child.avatar} ${child.name}</strong>
-            <div class="task-sub">Tasks: ${doneTasks.length ? escapeHtml(doneTasks.join(", ")) : "None yet"}</div>
-            <div class="task-sub">Jobs: ${doneJobs.length ? escapeHtml(doneJobs.join(", ")) : "None yet"}</div>
-          </div>
-          <button class="pay" onclick="paidOut('${childId}')">PAID OUT</button>
-        `;
-        statusList.appendChild(row);
-      });
-
-      const jobList = document.getElementById("adminJobList");
-      jobList.innerHTML = "";
-      data.jobs.forEach(job => {
-        const row = document.createElement("div");
-        row.className = "admin-list-row";
-        row.innerHTML = `
-          <div>
-            <strong>${escapeHtml(job.title)}</strong>
-            <div class="task-sub">$${Number(job.value).toFixed(2).replace(".00", "")}</div>
-          </div>
-          <button class="danger" onclick="deleteJob('${job.id}')">Delete</button>
-        `;
-        jobList.appendChild(row);
-      });
-
-      const taskList = document.getElementById("adminTaskList");
-      taskList.innerHTML = "";
-      data.tasks.forEach(task => {
-        const row = document.createElement("div");
-        row.className = "admin-list-row";
-        row.innerHTML = `
-          <div><strong>${escapeHtml(task.title)}</strong></div>
-          <button class="danger" onclick="deleteTask('${task.id}')">Delete</button>
-        `;
-        taskList.appendChild(row);
-      });
-
-      saveData();
-    }
-
-    function addJob() {
-      const title = document.getElementById("newJobTitle").value.trim();
-      const value = Number(document.getElementById("newJobValue").value);
-      if (!title || isNaN(value)) return;
-
-      data.jobs.push({
-        id: title.toLowerCase().replace(/[^a-z0-9]+/g, "-") + "-" + Date.now(),
-        title,
-        value
-      });
-
-      document.getElementById("newJobTitle").value = "";
-      document.getElementById("newJobValue").value = "";
-      saveData();
-      renderAdmin();
-    }
-
-    function deleteJob(jobId) {
-      data.jobs = data.jobs.filter(j => j.id !== jobId);
-      Object.values(data.daily).forEach(d => { if (d.jobs) delete d.jobs[jobId]; });
-      saveData();
-      renderAdmin();
-    }
-
-    function addTask() {
-      const title = document.getElementById("newTaskTitle").value.trim();
-      if (!title) return;
-
-      data.tasks.push({
-        id: title.toLowerCase().replace(/[^a-z0-9]+/g, "-") + "-" + Date.now(),
-        title
-      });
-
-      document.getElementById("newTaskTitle").value = "";
-      saveData();
-      renderAdmin();
-    }
-
-    function deleteTask(taskId) {
-      data.tasks = data.tasks.filter(t => t.id !== taskId);
-      Object.values(data.daily).forEach(d => { if (d.tasks) delete d.tasks[taskId]; });
-      saveData();
-      renderAdmin();
-    }
-
-    function paidOut(childId) {
-      data.children[childId].money = 0;
-      saveData();
-      renderAdmin();
-    }
-
-    function escapeHtml(str) {
-      return String(str).replace(/[&<>"']/g, m => ({
-        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
-      }[m]));
-    }
-
-    document.getElementById("pinInput").addEventListener("keydown", e => {
-      if (e.key === "Enter") checkPin();
-    });
-  </script>
+<script>
+const DEFAULT_DATA={pin:"1234",currentDate:todayKey(),children:{spencer:{name:"Spencer",avatar:"👦",money:0,lifetime:0,lastPayout:null},harper:{name:"Harper",avatar:"👧",money:0,lifetime:0,lastPayout:null}},tasks:[{id:"make-bed",title:"Make your bed"},{id:"brush-teeth",title:"Brush your teeth"},{id:"get-dressed",title:"Get dressed"}],jobs:[{id:"wash-car",title:"Wash the car",value:5},{id:"pull-weeds",title:"Pull weeds",value:4},{id:"fold-laundry",title:"Fold laundry",value:3}],daily:{}};
+let data=loadData(),activeChild=null,activeTab="approvals";
+function todayKey(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function dayName(){return new Date().toLocaleDateString(undefined,{weekday:"long"})}
+function niceDate(){return new Date().toLocaleDateString(undefined,{month:"short",day:"numeric"})}
+function loadData(){const saved=localStorage.getItem("bellSummerDataV2");let parsed=saved?JSON.parse(saved):JSON.parse(JSON.stringify(DEFAULT_DATA));if(parsed.currentDate!==todayKey()){parsed.currentDate=todayKey();parsed.daily={}};Object.keys(DEFAULT_DATA.children).forEach(id=>{parsed.children[id].lifetime??=0;parsed.children[id].lastPayout??=null});localStorage.setItem("bellSummerDataV2",JSON.stringify(parsed));return parsed}
+function saveData(){localStorage.setItem("bellSummerDataV2",JSON.stringify(data))}
+function dailyFor(childId){if(!data.daily[childId])data.daily[childId]={tasks:{},jobs:{}};return data.daily[childId]}
+function showScreen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active")}
+function goHome(){activeChild=null;showScreen("login")}
+function openChild(childId){activeChild=childId;renderChild();showScreen("child")}
+function entryState(map,id){return map[id]||"none"}
+function approvedTasks(childId){const d=dailyFor(childId);return data.tasks.filter(t=>d.tasks[t.id]==="approved").length}
+function tasksUnlocked(childId){return approvedTasks(childId)>=data.tasks.length}
+function renderChild(){const child=data.children[activeChild],daily=dailyFor(activeChild);document.getElementById("childAvatar").textContent=child.avatar;document.getElementById("childName").textContent=child.name;document.getElementById("todayText").textContent="Today is "+dayName();document.getElementById("childMoney").textContent="$"+fmt(child.money);document.getElementById("childLifetime").textContent="$"+fmt(child.lifetime||0);document.getElementById("childPayout").textContent=child.lastPayout?("$"+fmt(child.lastPayout.amount)+" on "+child.lastPayout.date):"None";
+const taskWrap=document.getElementById("tasks");taskWrap.innerHTML="";data.tasks.forEach(task=>{const state=entryState(daily.tasks,task.id);const checked=state==="pending"||state==="approved";const disabled=state==="pending"||state==="approved";const pill=state==="approved"?"approved":state==="pending"?"pending":"locked";const label=state==="approved"?"Parent approved":state==="pending"?"Waiting for parent":"Slide when complete";const row=document.createElement("div");row.className="task-row";row.innerHTML=`<div><div class="task-title">${escapeHtml(task.title)}</div><div class="task-sub">${label}</div>${state!=="none"?`<span class="status-pill ${pill}">${state.toUpperCase()}</span>`:""}</div><label class="switch"><input type="checkbox" ${checked?"checked":""} ${disabled?"disabled":""} onchange="submitTask('${task.id}')"><span class="slider"></span></label>`;taskWrap.appendChild(row)});
+const completeCount=approvedTasks(activeChild),total=data.tasks.length,unlocked=tasksUnlocked(activeChild);document.getElementById("taskBar").style.width=total?((completeCount/total)*100)+"%":"100%";document.getElementById("taskProgress").textContent=completeCount+" of "+total+" approved";
+const status=document.getElementById("jobStatus"),jobs=document.getElementById("childJobs");jobs.innerHTML="";if(!unlocked){status.innerHTML=`<div class="lock-box">🔒 Jobs are locked.<br>Submit your first tasks and wait for parent approval.</div>`;saveData();return}status.innerHTML=`<div class="unlock">🔓 Jobs Unlocked!</div><div class="section-title">Available Jobs</div>`;if(data.jobs.length===0){jobs.innerHTML=`<div class="lock-box">No jobs are available right now.</div>`;return}data.jobs.forEach(job=>{const state=entryState(daily.jobs,job.id);const done=state==="pending"||state==="approved";const card=document.createElement("div");card.className="job-card"+(done?" disabled":"");const note=state==="approved"?"Approved and paid":state==="pending"?"Waiting for parent approval":"Tap when finished";card.innerHTML=`<div><div class="job-title">${escapeHtml(job.title)}</div><div class="job-value">$${fmt(job.value)}</div><div class="task-sub">${note}</div>${state!=="none"?`<span class="status-pill ${state==="approved"?"approved":"pending"}">${state.toUpperCase()}</span>`:""}</div><button class="claim" ${done?"disabled":""} onclick="submitJob('${job.id}')">${state==="pending"?"Pending":state==="approved"?"Done":"Complete"}</button>`;jobs.appendChild(card)});saveData()}
+function submitTask(taskId){dailyFor(activeChild).tasks[taskId]="pending";saveData();renderChild()}
+function submitJob(jobId){dailyFor(activeChild).jobs[jobId]="pending";saveData();renderChild()}
+function showParentLogin(){document.getElementById("pinModal").classList.add("active");document.getElementById("pinInput").value="";document.getElementById("pinError").classList.remove("active");setTimeout(()=>document.getElementById("pinInput").focus(),100)}
+function hideParentLogin(){document.getElementById("pinModal").classList.remove("active")}
+function checkPin(){if(document.getElementById("pinInput").value.trim()===data.pin){hideParentLogin();renderAdmin();showScreen("parent")}else document.getElementById("pinError").classList.add("active")}
+function showAdminTab(tab){activeTab=tab;["approvals","overview","jobs","tasks"].forEach(t=>{document.getElementById("admin"+cap(t)).style.display=t===tab?"block":"none";document.getElementById("tab"+cap(t)).classList.toggle("active",t===tab)});renderAdmin()}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+function renderAdmin(){document.getElementById("spencerStat").textContent="$"+fmt(data.children.spencer.money);document.getElementById("harperStat").textContent="$"+fmt(data.children.harper.money);
+const approvals=document.getElementById("approvalList");approvals.innerHTML="";let count=0;Object.keys(data.children).forEach(childId=>{const child=data.children[childId],d=dailyFor(childId);data.tasks.forEach(t=>{if(d.tasks[t.id]==="pending"){count++;approvals.appendChild(approvalRow(childId,"task",t.id,child.name,t.title,0))}});data.jobs.forEach(j=>{if(d.jobs[j.id]==="pending"){count++;approvals.appendChild(approvalRow(childId,"job",j.id,child.name,j.title,j.value))}});});if(!count) approvals.innerHTML=`<div class="lock-box">No pending approvals right now.</div>`;document.querySelector("#tabApprovals").textContent=`Approvals${count?` (${count})`:""}`;
+const statusList=document.getElementById("childStatusList");statusList.innerHTML="";Object.keys(data.children).forEach(childId=>{const child=data.children[childId],d=dailyFor(childId);const doneTasks=data.tasks.filter(t=>d.tasks[t.id]==="approved").map(t=>t.title);const pendingTasks=data.tasks.filter(t=>d.tasks[t.id]==="pending").map(t=>t.title);const doneJobs=data.jobs.filter(j=>d.jobs[j.id]==="approved").map(j=>j.title);const pendingJobs=data.jobs.filter(j=>d.jobs[j.id]==="pending").map(j=>j.title);const row=document.createElement("div");row.className="admin-list-row";row.innerHTML=`<div><strong>${child.avatar} ${child.name}</strong><div class="task-sub">Approved tasks: ${doneTasks.length?escapeHtml(doneTasks.join(", ")):"None yet"}</div><div class="task-sub">Pending tasks: ${pendingTasks.length?escapeHtml(pendingTasks.join(", ")):"None"}</div><div class="task-sub">Approved jobs: ${doneJobs.length?escapeHtml(doneJobs.join(", ")):"None yet"}</div><div class="task-sub">Pending jobs: ${pendingJobs.length?escapeHtml(pendingJobs.join(", ")):"None"}</div><div class="task-sub">Lifetime: $${fmt(child.lifetime||0)} | Last payout: ${child.lastPayout?("$"+fmt(child.lastPayout.amount)+" on "+child.lastPayout.date):"None"}</div></div><button class="pay" onclick="paidOut('${childId}')">PAID OUT</button>`;statusList.appendChild(row)});
+const jobList=document.getElementById("adminJobList");jobList.innerHTML="";data.jobs.forEach(job=>{const row=document.createElement("div");row.className="admin-list-row";row.innerHTML=`<div><strong>${escapeHtml(job.title)}</strong><div class="task-sub">$${fmt(job.value)}</div></div><button class="danger" onclick="deleteJob('${job.id}')">Delete</button>`;jobList.appendChild(row)});
+const taskList=document.getElementById("adminTaskList");taskList.innerHTML="";data.tasks.forEach(task=>{const row=document.createElement("div");row.className="admin-list-row";row.innerHTML=`<div><strong>${escapeHtml(task.title)}</strong></div><button class="danger" onclick="deleteTask('${task.id}')">Delete</button>`;taskList.appendChild(row)});saveData()}
+function approvalRow(childId,type,itemId,childName,title,value){const row=document.createElement("div");row.className="admin-list-row";row.innerHTML=`<div><strong>${escapeHtml(childName)}: ${escapeHtml(title)}</strong><div class="task-sub">${type==="job"?"Job value: $"+fmt(value):"Daily task"} waiting for approval</div></div><div class="approval-actions"><button class="approve" onclick="approveItem('${childId}','${type}','${itemId}')">Approve</button><button class="reject" onclick="rejectItem('${childId}','${type}','${itemId}')">Reject</button></div>`;return row}
+function approveItem(childId,type,itemId){const d=dailyFor(childId);if(type==="task") d.tasks[itemId]="approved";if(type==="job"&&d.jobs[itemId]==="pending"){d.jobs[itemId]="approved";const job=data.jobs.find(j=>j.id===itemId);data.children[childId].money=Number(data.children[childId].money||0)+Number(job?.value||0);data.children[childId].lifetime=Number(data.children[childId].lifetime||0)+Number(job?.value||0)}saveData();renderAdmin()}
+function rejectItem(childId,type,itemId){const d=dailyFor(childId);if(type==="task") delete d.tasks[itemId];if(type==="job") delete d.jobs[itemId];saveData();renderAdmin()}
+function addJob(){const title=document.getElementById("newJobTitle").value.trim(),value=Number(document.getElementById("newJobValue").value);if(!title||isNaN(value))return;data.jobs.push({id:title.toLowerCase().replace(/[^a-z0-9]+/g,"-")+"-"+Date.now(),title,value});document.getElementById("newJobTitle").value="";document.getElementById("newJobValue").value="";saveData();renderAdmin()}
+function deleteJob(jobId){data.jobs=data.jobs.filter(j=>j.id!==jobId);Object.values(data.daily).forEach(d=>{if(d.jobs)delete d.jobs[jobId]});saveData();renderAdmin()}
+function addTask(){const title=document.getElementById("newTaskTitle").value.trim();if(!title)return;data.tasks.push({id:title.toLowerCase().replace(/[^a-z0-9]+/g,"-")+"-"+Date.now(),title});document.getElementById("newTaskTitle").value="";saveData();renderAdmin()}
+function deleteTask(taskId){data.tasks=data.tasks.filter(t=>t.id!==taskId);Object.values(data.daily).forEach(d=>{if(d.tasks)delete d.tasks[taskId]});saveData();renderAdmin()}
+function paidOut(childId){const amount=Number(data.children[childId].money||0);data.children[childId].lastPayout={amount,date:niceDate()};data.children[childId].money=0;saveData();renderAdmin()}
+function fmt(n){return Number(n||0).toFixed(2).replace(".00","")}
+function escapeHtml(str){return String(str).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+document.getElementById("pinInput").addEventListener("keydown",e=>{if(e.key==="Enter")checkPin()});
+</script>
 </body>
 </html>
