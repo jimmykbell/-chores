@@ -17,7 +17,7 @@
     h1{margin:0;font-size:76px;line-height:.82;letter-spacing:-4px;font-family:"Brush Script MT","Snell Roundhand",cursive}.summer{margin-top:2px;font-size:36px;font-weight:900;letter-spacing:10px;color:var(--teal)}.tagline{margin:26px auto 0;font-size:20px;line-height:1.32;font-weight:750;max-width:330px}
     .cards{display:grid;gap:16px;margin-top:20px}.person-card,.panel,.card,.badge,.row,.activity-row{background:var(--card);border:1px solid rgba(255,255,255,.86);box-shadow:var(--shadow);border-radius:25px}.person-card{width:100%;display:grid;grid-template-columns:70px 1fr 26px;align-items:center;gap:14px;padding:16px 18px;text-align:left;color:inherit;cursor:pointer}.avatar{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;font-size:37px;background:rgba(255,255,255,.62)}.person-card h2{margin:0 0 4px;font-size:28px}.person-card p{margin:0;color:#526879;font-size:16px}.chev{font-size:38px;opacity:.75}.spencer{background:linear-gradient(180deg,#edfbf4,rgba(255,255,255,.92))}.harper{background:linear-gradient(180deg,#f3efff,rgba(255,255,255,.94))}.parent{background:linear-gradient(180deg,#fff5dc,rgba(255,255,255,.94))}
     .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}.brand-small{display:flex;align-items:center;gap:9px;font-weight:900;letter-spacing:-.5px;font-size:21px}.sun-dot{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#ffd15a,#ff9e3d);box-shadow:0 0 0 6px rgba(255,190,67,.2)}.back-btn,.small-btn{border:0;background:rgba(255,255,255,.78);color:var(--navy);border-radius:14px;padding:10px 13px;font-weight:850;box-shadow:0 8px 18px rgba(25,62,88,.09);cursor:pointer}
-    .tabs{display:flex;gap:8px;margin-bottom:14px;overflow-x:auto;padding-bottom:3px}.tab{border:none;background:rgba(255,255,255,.66);border-radius:999px;padding:10px 13px;color:var(--navy);font-weight:900;white-space:nowrap;cursor:pointer}.tab.active{background:var(--navy);color:white}
+    .swipe-hint{text-align:center;color:#6b7b87;font-size:13px;font-weight:850;margin:-2px 0 7px;letter-spacing:.2px}.tabs{display:flex;gap:8px;margin-bottom:14px;overflow-x:auto;padding-bottom:3px}.tab{border:none;background:rgba(255,255,255,.66);border-radius:999px;padding:10px 13px;color:var(--navy);font-weight:900;white-space:nowrap;cursor:pointer}.tab.active{background:var(--navy);color:white}
     .panel{padding:17px;margin-bottom:15px}.hello{display:flex;align-items:center;gap:13px;margin-bottom:14px}.hello .avatar{width:58px;height:58px;font-size:32px}.hello h2{margin:0;font-size:27px}.hello p{margin:2px 0 0;color:#526879;font-weight:650}
     .money-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.money-card{border-radius:22px;padding:15px;background:linear-gradient(135deg,#e9fff3,#fff);border:1px solid rgba(38,162,105,.16);box-shadow:0 12px 30px rgba(38,162,105,.12);margin-bottom:10px}.money-card.full{grid-column:1/-1}.money-label{color:#526879;font-weight:850;font-size:14px}.money{font-size:42px;font-weight:950;letter-spacing:-2px;margin-top:2px;color:#168357}.money.small{font-size:23px;color:var(--navy);letter-spacing:-.5px}
     .rank-card,.quest-card,.goal-card{border-radius:23px;padding:16px;margin-bottom:14px;box-shadow:0 12px 30px rgba(194,133,20,.10)}.rank-card,.quest-card{background:linear-gradient(135deg,#fff5d7,#fff);border:1px solid rgba(194,133,20,.16)}.goal-card{background:linear-gradient(135deg,#eef7ff,#fff);border:1px solid rgba(47,145,199,.16)}.rank-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.rank-name{font-size:25px;font-weight:950}.xp{font-weight:950;color:var(--gold)}
@@ -49,6 +49,7 @@
 
   <section id="child" class="screen">
     <div class="topbar"><button class="back-btn" onclick="goHome()">← Home</button><div class="brand-small"><span class="sun-dot"></span> Bell Summer</div></div>
+    <div class="swipe-hint">← Swipe for more →</div>
     <div class="tabs">
       <button id="childTabToday" class="tab active" onclick="showChildTab('today')">Today</button>
       <button id="childTabJobs" class="tab" onclick="showChildTab('jobs')">Jobs</button>
@@ -77,6 +78,7 @@
 
   <section id="parent" class="screen">
     <div class="topbar"><button class="back-btn" onclick="goHome()">← Home</button><div class="brand-small"><span class="sun-dot"></span> Parent</div></div>
+    <div class="swipe-hint">← Swipe for more →</div>
     <div class="tabs">
       <button id="tabApprovals" class="tab active" onclick="showAdminTab('approvals')">Approvals</button>
       <button id="tabOverview" class="tab" onclick="showAdminTab('overview')">Overview</button>
