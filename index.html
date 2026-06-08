@@ -90,6 +90,7 @@
       <button id="tabJobs" class="tab" onclick="showAdminTab('jobs')">Jobs</button>
       <button id="tabTasks" class="tab" onclick="showAdminTab('tasks')">Tasks</button>
       <button id="tabFines" class="tab" onclick="showAdminTab('fines')">Fines</button>
+      <button id="tabBonuses" class="tab" onclick="showAdminTab('bonuses')">Bonuses</button>
       <button id="tabRewards" class="tab" onclick="showAdminTab('rewards')">Rewards</button>
     </div>
     <div id="adminApprovals" class="panel"><div class="section-title">Pending Approvals</div><div id="approvalList"></div></div>
@@ -106,6 +107,22 @@
       <div class="section-title" style="margin-top:22px;">Fine Presets</div>
       <div class="task-sub">Not Listening • Fighting • Complaining • Breaking the Rules</div>
     </div>
+    <div id="adminBonuses" class="panel" style="display:none;">
+      <div class="section-title">Apply a Bonus</div>
+      <select id="bonusChild"><option value="spencer">Spencer</option><option value="harper">Harper</option></select>
+      <select id="bonusReason">
+        <option>Great Attitude</option>
+        <option>Helped Without Asking</option>
+        <option>Excellent Listening</option>
+        <option>Extra Effort</option>
+        <option>Kind to Sibling</option>
+      </select>
+      <input id="bonusAmount" type="number" min="0" step="0.50" value="1" placeholder="Bonus amount" />
+      <textarea id="bonusNote" placeholder="Optional note"></textarea>
+      <button class="primary" onclick="applyBonus()">Apply Bonus</button>
+      <div class="section-title" style="margin-top:22px;">Bonus Presets</div>
+      <div class="task-sub">Great Attitude • Helped Without Asking • Excellent Listening • Extra Effort • Kind to Sibling</div>
+    </div>
     <div id="adminRewards" class="panel" style="display:none;">
       <div class="section-title">Add Reward</div>
       <input id="newRewardTitle" placeholder="Reward name, example: Pick dinner" />
@@ -116,6 +133,15 @@
     </div>
   </section>
 </main>
+
+
+<div id="bonusModal" class="modal-wrap">
+  <div class="modal">
+    <h2 id="bonusTitle">⭐ Bonus!</h2>
+    <p id="bonusMessage">You got a bonus.</p>
+    <button class="primary" onclick="closeBonusModal()">Awesome!</button>
+  </div>
+</div>
 
 <div id="pinModal" class="modal-wrap"><div class="modal"><h2>Parent PIN</h2><p>Enter the parent PIN to manage Bell Summer.</p><input id="pinInput" type="password" inputmode="numeric" placeholder="PIN" /><div id="pinError" class="error">Wrong PIN. Try again.</div><button class="primary" onclick="checkPin()">Unlock</button><button class="secondary" onclick="hideParentLogin()">Cancel</button></div></div>
 
@@ -146,6 +172,9 @@ const ACHIEVEMENTS=[
 {id:"first-day",icon:"🏆",title:"First Day",desc:"Complete all first tasks once.",xp:10,type:"dailyDays",target:1},
 {id:"first-job",icon:"💼",title:"First Job",desc:"Complete your first paid job.",xp:10,type:"jobs",target:1},
 {id:"first-dollar",icon:"💰",title:"First Dollar",desc:"Earn your first dollar.",xp:10,type:"money",target:1},
+{id:"first-bonus",icon:"⭐",title:"First Bonus",desc:"Earn your first parent bonus.",xp:10,type:"bonuses",target:1},
+{id:"bonus-5",icon:"🌟",title:"Bonus Star",desc:"Earn 5 parent bonuses.",xp:25,type:"bonuses",target:5},
+{id:"bonus-10",icon:"✨",title:"Bonus Legend",desc:"Earn 10 parent bonuses.",xp:50,type:"bonuses",target:10},
 {id:"money-5",icon:"💵",title:"Five Bucks",desc:"Earn $5 total.",xp:15,type:"money",target:5},
 {id:"money-10",icon:"💵",title:"Ten Bucks",desc:"Earn $10 total.",xp:20,type:"money",target:10},
 {id:"money-20",icon:"💵",title:"Twenty Bucks",desc:"Earn $20 total.",xp:25,type:"money",target:20},
@@ -164,8 +193,8 @@ const DEFAULT_DATA={
   pin:"1234",
   currentDate:todayKey(),
   children:{
-    spencer:{name:"Spencer",avatar:"👦",money:0,lifetime:0,lastPayout:null,stats:{dailyDays:0,streak:0,bestStreak:0,jobs:0,unlockedJobsDays:0}},
-    harper:{name:"Harper",avatar:"👧",money:0,lifetime:0,lastPayout:null,stats:{dailyDays:0,streak:0,bestStreak:0,jobs:0,unlockedJobsDays:0}}
+    spencer:{name:"Spencer",avatar:"👦",money:0,lifetime:0,lastPayout:null,stats:{dailyDays:0,streak:0,bestStreak:0,jobs:0,unlockedJobsDays:0,bonuses:0}},
+    harper:{name:"Harper",avatar:"👧",money:0,lifetime:0,lastPayout:null,stats:{dailyDays:0,streak:0,bestStreak:0,jobs:0,unlockedJobsDays:0,bonuses:0}}
   },
   tasks:[
     {id:"make-bed",title:"Make your bed"},
@@ -224,6 +253,7 @@ function normalizeData(parsed){
     parsed.children[id].stats.bestStreak ??= 0;
     parsed.children[id].stats.jobs ??= 0;
     parsed.children[id].stats.unlockedJobsDays ??= 0;
+    parsed.children[id].stats.bonuses ??= 0;
     parsed.activity[id] ??= [];
   });
 
@@ -298,13 +328,13 @@ function dailyFor(childId){
 function addActivity(childId, entry){data.activity[childId]??=[];data.activity[childId].unshift({id:"act-"+Date.now()+"-"+Math.random().toString(16).slice(2),date:timeStamp(),...entry});data.activity[childId]=data.activity[childId].slice(0,100)}
 function showScreen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active")}
 function goHome(){activeChild=null;showScreen("login")}
-function openChild(childId){if(!requireLoaded())return;activeChild=childId;activeChildTab="today";showChildTab("today");renderChild();showScreen("child")}
+function openChild(childId){if(!requireLoaded())return;activeChild=childId;activeChildTab="today";showChildTab("today");renderChild();showScreen("child");setTimeout(()=>showNewBonusIfNeeded(childId),250)}
 function showChildTab(tab){activeChildTab=tab;["today","jobs","store","activity","achievements","leaderboard"].forEach(t=>{document.getElementById("childTab"+cap(t)).classList.toggle("active",t===tab)});document.getElementById("childToday").style.display=tab==="today"?"block":"none";document.getElementById("childJobsTab").style.display=tab==="jobs"?"block":"none";document.getElementById("childStoreTab").style.display=tab==="store"?"block":"none";document.getElementById("childActivityTab").style.display=tab==="activity"?"block":"none";document.getElementById("childAchievementsTab").style.display=tab==="achievements"?"block":"none";document.getElementById("childLeaderboardTab").style.display=tab==="leaderboard"?"block":"none";if(activeChild)renderChild()}
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 function entryState(map,id){return (map && map[id]) || "none"}
 function approvedTasks(childId){const d=dailyFor(childId);return data.tasks.filter(t=>d.tasks[t.id]==="approved").length}
 function tasksUnlocked(childId){return approvedTasks(childId)>=data.tasks.length}
-function getAchievementProgress(childId,a){const c=data.children[childId];const s=c.stats||{};if(a.type==="money")return Number(c.lifetime||0);if(a.type==="jobs")return Number(s.jobs||0);if(a.type==="streak")return Number(s.bestStreak||s.streak||0);if(a.type==="dailyDays")return Number(s.dailyDays||0);if(a.type==="legend")return ACHIEVEMENTS.filter(x=>x.id!=="summer-legend").every(x=>isAchievementUnlocked(childId,x))?1:0;return 0}
+function getAchievementProgress(childId,a){const c=data.children[childId];const s=c.stats||{};if(a.type==="money")return Number(c.lifetime||0);if(a.type==="jobs")return Number(s.jobs||0);if(a.type==="bonuses")return Number(s.bonuses||0);if(a.type==="streak")return Number(s.bestStreak||s.streak||0);if(a.type==="dailyDays")return Number(s.dailyDays||0);if(a.type==="legend")return ACHIEVEMENTS.filter(x=>x.id!=="summer-legend").every(x=>isAchievementUnlocked(childId,x))?1:0;return 0}
 function isAchievementUnlocked(childId,a){return getAchievementProgress(childId,a)>=a.target}
 function childXP(childId){return ACHIEVEMENTS.filter(a=>isAchievementUnlocked(childId,a)).reduce((sum,a)=>sum+a.xp,0)}
 function rankForXP(xp){let current=RANKS[0],next=null;for(let i=0;i<RANKS.length;i++){if(xp>=RANKS[i].xp){current=RANKS[i];next=RANKS[i+1]||null}}return{current,next}}
@@ -350,7 +380,7 @@ function buyReward(rewardId){if(!requireLoaded())return;const child=data.childre
 function showParentLogin(){document.getElementById("pinModal").classList.add("active");document.getElementById("pinInput").value="";document.getElementById("pinError").classList.remove("active");setTimeout(()=>document.getElementById("pinInput").focus(),100)}
 function hideParentLogin(){document.getElementById("pinModal").classList.remove("active")}
 function checkPin(){if(!requireLoaded())return;if(document.getElementById("pinInput").value.trim()===data.pin){hideParentLogin();showAdminTab(activeAdminTab);showScreen("parent")}else document.getElementById("pinError").classList.add("active")}
-function showAdminTab(tab){activeAdminTab=tab;["approvals","overview","jobs","tasks","fines","rewards"].forEach(t=>{document.getElementById("admin"+cap(t)).style.display=t===tab?"block":"none";document.getElementById("tab"+cap(t)).classList.toggle("active",t===tab)});renderAdmin()}
+function showAdminTab(tab){activeAdminTab=tab;["approvals","overview","jobs","tasks","fines","bonuses","rewards"].forEach(t=>{document.getElementById("admin"+cap(t)).style.display=t===tab?"block":"none";document.getElementById("tab"+cap(t)).classList.toggle("active",t===tab)});renderAdmin()}
 
 function renderAdmin(){
   document.getElementById("spencerStat").textContent="$"+fmt(data.children.spencer.money);
@@ -421,12 +451,37 @@ function deleteTask(taskId){if(!requireLoaded())return;data.tasks=data.tasks.fil
 function addReward(){if(!requireLoaded())return;const title=document.getElementById("newRewardTitle").value.trim(),cost=Number(document.getElementById("newRewardCost").value);if(!title||isNaN(cost))return;data.rewards.push({id:slug(title)+"-"+Date.now(),title,cost});document.getElementById("newRewardTitle").value="";document.getElementById("newRewardCost").value="";saveData();renderAdmin()}
 function deleteReward(rewardId){if(!requireLoaded())return;data.rewards=data.rewards.filter(r=>r.id!==rewardId);Object.values(data.daily).forEach(d=>{if(d.rewards)delete d.rewards[rewardId]});saveData();renderAdmin()}
 function applyFine(){if(!requireLoaded())return;const childId=document.getElementById("fineChild").value,reason=document.getElementById("fineReason").value,amount=Number(document.getElementById("fineAmount").value||0),note=document.getElementById("fineNote").value.trim();if(!amount)return;data.children[childId].money=Math.max(0,Number(data.children[childId].money||0)-amount);addActivity(childId,{kind:"fine",icon:"🔴",title:reason,amount:-amount,note});document.getElementById("fineNote").value="";saveData();renderAdmin();alert("Fine applied.")}
+function applyBonus(){if(!requireLoaded())return;const childId=document.getElementById("bonusChild").value,reason=document.getElementById("bonusReason").value,amount=Number(document.getElementById("bonusAmount").value||0),note=document.getElementById("bonusNote").value.trim();if(!amount)return;data.children[childId].money=Number(data.children[childId].money||0)+amount;data.children[childId].lifetime=Number(data.children[childId].lifetime||0)+amount;data.children[childId].stats.bonuses=Number(data.children[childId].stats.bonuses||0)+1;addActivity(childId,{kind:"bonus",icon:"🟡",title:reason,amount:amount,note,seen:false});document.getElementById("bonusNote").value="";saveData();renderAdmin();alert("Bonus applied.")}
 function paidOut(childId){if(!requireLoaded())return;const amount=Number(data.children[childId].money||0);data.children[childId].lastPayout={amount,date:niceDate()};data.children[childId].money=0;addActivity(childId,{kind:"payout",icon:"🔵",title:"Paid Out",amount:-amount});saveData();renderAdmin()}
+
+function showNewBonusIfNeeded(childId){
+  const bonus = (data.activity[childId]||[]).find(a => a.kind==="bonus" && a.seen===false);
+  if(!bonus) return;
+
+  document.getElementById("bonusTitle").textContent = "⭐ Bonus!";
+  document.getElementById("bonusMessage").innerHTML =
+    `<strong>${escapeHtml(bonus.title)}</strong><br><br>You earned +$${fmt(bonus.amount)}!${bonus.note?`<br><br>${escapeHtml(bonus.note)}`:""}`;
+
+  document.getElementById("bonusModal").classList.add("active");
+}
+
+function closeBonusModal(){
+  if(activeChild){
+    const bonus = (data.activity[activeChild]||[]).find(a => a.kind==="bonus" && a.seen===false);
+    if(bonus){
+      bonus.seen = true;
+      saveData();
+      renderChild();
+    }
+  }
+  document.getElementById("bonusModal").classList.remove("active");
+}
+
 function fmt(n){return Number(n||0).toFixed(2).replace(".00","")}
 function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}
 function escapeHtml(str){return String(str).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 
-Object.assign(window,{openChild,showChildTab,goHome,submitTask,submitJob,buyReward,showParentLogin,hideParentLogin,checkPin,showAdminTab,approveItem,rejectItem,addJob,deleteJob,addTask,deleteTask,addReward,deleteReward,applyFine,paidOut});
+Object.assign(window,{openChild,showChildTab,goHome,submitTask,submitJob,buyReward,showParentLogin,hideParentLogin,checkPin,showAdminTab,approveItem,rejectItem,addJob,deleteJob,addTask,deleteTask,addReward,deleteReward,applyFine,applyBonus,paidOut,closeBonusModal});
 document.getElementById("pinInput").addEventListener("keydown",e=>{if(e.key==="Enter")checkPin()});
 initFirebase();
 </script>
