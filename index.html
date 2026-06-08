@@ -6,19 +6,21 @@
   <title>Bell Summer</title>
   <style>
     :root {
-      --navy: #123a5a;
-      --teal: #2f7f73;
-      --purple: #6b4bb7;
-      --gold: #b68618;
-      --green-bg: #eefaf4;
-      --purple-bg: #f4efff;
-      --gold-bg: #fff6df;
-      --card: rgba(255,255,255,0.86);
-      --shadow: 0 14px 35px rgba(24, 52, 72, 0.14);
-      --border: rgba(255,255,255,0.95);
+      --navy: #113957;
+      --teal: #287b73;
+      --purple: #6d4fc2;
+      --gold: #b47a16;
+      --green: #26a269;
+      --red: #d14d4d;
+      --blue: #3294ca;
+      --cream: #fff8eb;
+      --card: rgba(255,255,255,.9);
+      --soft: #f3f7fb;
+      --border: rgba(17,57,87,.12);
+      --shadow: 0 16px 42px rgba(25, 62, 88, .14);
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
     body {
       margin: 0;
@@ -26,500 +28,868 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: var(--navy);
       background:
-        radial-gradient(circle at top left, rgba(192, 225, 210, .65), transparent 34%),
-        radial-gradient(circle at top right, rgba(244, 221, 158, .55), transparent 34%),
-        linear-gradient(180deg, #fff9ef 0%, #eef9ff 43%, #fffaf3 100%);
-      overflow-x: hidden;
+        radial-gradient(circle at top left, rgba(146, 213, 189, .65), transparent 34%),
+        radial-gradient(circle at top right, rgba(255, 224, 126, .55), transparent 36%),
+        linear-gradient(180deg, #fff9ec 0%, #effaff 44%, #fff9ee 100%);
     }
 
-    .phone {
-      width: min(100%, 430px);
+    button, input { font-family: inherit; }
+
+    .app {
+      width: min(100%, 460px);
       margin: 0 auto;
       min-height: 100vh;
-      padding: 28px 20px calc(24px + env(safe-area-inset-bottom));
+      padding: 22px 18px calc(26px + env(safe-area-inset-bottom));
       position: relative;
     }
 
-    .leaves {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      opacity: .75;
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
     }
 
-    .leaf {
-      position: absolute;
-      width: 90px;
-      height: 18px;
-      border-radius: 100% 0 100% 0;
-      background: #9dbb6f;
-      transform-origin: center;
+    .brand-small {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 900;
+      letter-spacing: -.5px;
+      font-size: 21px;
     }
 
-    .leaf.one { top: 18px; left: -22px; transform: rotate(28deg); }
-    .leaf.two { top: 44px; left: -8px; transform: rotate(-18deg); background: #77a68e; }
-    .leaf.three { top: 22px; right: -35px; transform: rotate(145deg); }
-    .leaf.four { top: 58px; right: -18px; transform: rotate(118deg); background: #77a68e; }
+    .sun-dot {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffd15a, #ff9e3d);
+      box-shadow: 0 0 0 6px rgba(255, 190, 67, .2);
+    }
+
+    .back-btn, .small-btn {
+      border: 0;
+      background: rgba(255,255,255,.75);
+      color: var(--navy);
+      border-radius: 14px;
+      padding: 10px 13px;
+      font-weight: 800;
+      box-shadow: 0 8px 18px rgba(25, 62, 88, .09);
+      cursor: pointer;
+    }
+
+    .screen { display: none; }
+    .screen.active { display: block; animation: fade .16s ease; }
+
+    @keyframes fade { from { opacity: .5; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
     .hero {
       text-align: center;
-      padding-top: 58px;
-      position: relative;
-      z-index: 1;
+      padding: 38px 8px 22px;
     }
 
-    .sun {
-      width: 96px;
+    .sun-logo {
+      width: 92px;
       height: 54px;
-      margin: 0 auto -6px;
+      margin: 0 auto -8px;
       position: relative;
     }
 
-    .sun::before {
+    .sun-logo:before {
       content: "";
       position: absolute;
       left: 17px;
       top: 18px;
-      width: 62px;
-      height: 32px;
-      border: 7px solid #f4bd2d;
-      border-bottom: none;
+      width: 58px;
+      height: 30px;
+      border: 7px solid #f3ba2d;
+      border-bottom: 0;
       border-radius: 80px 80px 0 0;
     }
 
-    .ray {
+    .sun-logo span {
       position: absolute;
       width: 6px;
-      height: 25px;
-      border-radius: 8px;
-      background: #f4bd2d;
-      left: 45px;
+      height: 24px;
+      border-radius: 10px;
+      background: #f3ba2d;
+      left: 43px;
       top: -8px;
     }
-
-    .ray.r2 { transform: rotate(35deg); left: 76px; top: 7px; }
-    .ray.r3 { transform: rotate(75deg); left: 87px; top: 34px; }
-    .ray.r4 { transform: rotate(-35deg); left: 14px; top: 7px; }
-    .ray.r5 { transform: rotate(-75deg); left: 0; top: 34px; }
+    .sun-logo .r2 { transform: rotate(39deg); left: 74px; top: 7px; }
+    .sun-logo .r3 { transform: rotate(75deg); left: 84px; top: 34px; }
+    .sun-logo .r4 { transform: rotate(-39deg); left: 12px; top: 7px; }
+    .sun-logo .r5 { transform: rotate(-75deg); left: 0px; top: 34px; }
 
     h1 {
       margin: 0;
-      font-size: 78px;
-      letter-spacing: -4px;
+      font-size: 76px;
       line-height: .82;
+      letter-spacing: -4px;
       font-family: "Brush Script MT", "Snell Roundhand", cursive;
-      font-weight: 700;
-      color: var(--navy);
     }
 
     .summer {
       margin-top: 2px;
-      font-size: 39px;
-      font-weight: 800;
-      letter-spacing: 10px;
-      color: #40867d;
-    }
-
-    .waves {
-      color: #4aa6d9;
       font-size: 36px;
-      letter-spacing: 5px;
-      line-height: .65;
-      margin-top: 4px;
-      font-weight: 700;
+      font-weight: 900;
+      letter-spacing: 10px;
+      color: var(--teal);
     }
 
     .tagline {
-      margin: 33px auto 22px;
+      margin: 28px auto 0;
+      font-size: 20px;
+      line-height: 1.32;
+      font-weight: 700;
       max-width: 330px;
-      font-size: 21px;
-      line-height: 1.35;
-      font-weight: 650;
     }
 
-    .ocean {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 388px;
-      height: 118px;
-      background:
-        repeating-linear-gradient(170deg, rgba(85, 181, 220, .18) 0 12px, rgba(255,255,255,.36) 12px 26px),
-        linear-gradient(180deg, rgba(129, 211, 237, .35), rgba(255,255,255,0));
-      z-index: 0;
-    }
+    .cards { display: grid; gap: 16px; margin-top: 20px; }
 
-    .cards {
-      margin-top: 38px;
-      display: grid;
-      gap: 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    button.card {
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 18px 20px;
-      min-height: 118px;
-      display: grid;
-      grid-template-columns: 78px 1fr 24px;
-      gap: 18px;
-      align-items: center;
-      width: 100%;
-      cursor: pointer;
+    .person-card, .panel, .job-card, .task-row {
       background: var(--card);
+      border: 1px solid rgba(255,255,255,.8);
       box-shadow: var(--shadow);
+      border-radius: 25px;
+    }
+
+    .person-card {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.9);
+      display: grid;
+      grid-template-columns: 70px 1fr 26px;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
       text-align: left;
       color: inherit;
-      transition: transform .16s ease, box-shadow .16s ease;
+      cursor: pointer;
     }
-
-    button.card:active {
-      transform: scale(.985);
-      box-shadow: 0 8px 22px rgba(24, 52, 72, 0.13);
-    }
-
-    .spencer { background: linear-gradient(180deg, var(--green-bg), rgba(255,255,255,.92)); }
-    .harper { background: linear-gradient(180deg, var(--purple-bg), rgba(255,255,255,.94)); }
-    .parent { background: linear-gradient(180deg, var(--gold-bg), rgba(255,255,255,.94)); }
 
     .avatar {
-      width: 72px;
-      height: 72px;
+      width: 66px;
+      height: 66px;
       border-radius: 50%;
       display: grid;
       place-items: center;
-      font-size: 42px;
-      background: rgba(255,255,255,.55);
+      font-size: 37px;
+      background: rgba(255,255,255,.62);
     }
 
-    .card h2 {
-      margin: 0 0 4px;
-      font-size: 30px;
-      line-height: 1;
-    }
+    .person-card h2 { margin: 0 0 4px; font-size: 28px; }
+    .person-card p { margin: 0; color: #526879; font-size: 16px; }
+    .chev { font-size: 38px; opacity: .75; }
 
-    .spencer h2 { color: #2c776c; }
-    .harper h2 { color: #6546a6; }
-    .parent h2 { color: #9a710f; }
+    .spencer { background: linear-gradient(180deg, #edfbf4, rgba(255,255,255,.92)); }
+    .harper { background: linear-gradient(180deg, #f3efff, rgba(255,255,255,.94)); }
+    .parent { background: linear-gradient(180deg, #fff5dc, rgba(255,255,255,.94)); }
 
-    .card p {
-      margin: 0;
-      font-size: 17px;
-      color: #405566;
-    }
+    .panel { padding: 18px; margin-bottom: 16px; }
 
-    .chev {
-      font-size: 42px;
-      font-weight: 500;
-    }
-
-    .footer {
-      margin: 34px auto 0;
+    .hello {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 11px;
-      color: #28465d;
-      font-size: 17px;
-      position: relative;
-      z-index: 1;
+      gap: 13px;
+      margin-bottom: 16px;
     }
 
-    .shield {
-      width: 28px;
-      height: 32px;
-      border: 3px solid #3b8b7c;
-      border-radius: 14px 14px 18px 18px;
-      display: grid;
-      place-items: center;
-      font-size: 14px;
-      color: #3b8b7c;
-      font-weight: bold;
+    .hello .avatar { width: 58px; height: 58px; font-size: 32px; }
+    .hello h2 { margin: 0; font-size: 27px; }
+    .hello p { margin: 2px 0 0; color: #526879; font-weight: 650; }
+
+    .money-card {
+      border-radius: 24px;
+      padding: 20px;
+      background: linear-gradient(135deg, #e9fff3, #ffffff);
+      border: 1px solid rgba(38,162,105,.16);
+      box-shadow: 0 12px 30px rgba(38,162,105,.12);
+      margin-bottom: 16px;
     }
 
-    .screen {
-      display: none;
-      position: relative;
-      z-index: 2;
-      min-height: 100vh;
-      padding-top: 20px;
+    .money-label { color: #526879; font-weight: 800; }
+    .money { font-size: 48px; font-weight: 950; letter-spacing: -2px; margin-top: 2px; color: #168357; }
+
+    .progress {
+      height: 13px;
+      border-radius: 999px;
+      background: #dfe8ee;
+      overflow: hidden;
+      margin: 12px 0 4px;
     }
 
-    .screen.active { display: block; }
-
-    .dash-card {
-      background: rgba(255,255,255,.88);
-      border: 1px solid rgba(255,255,255,.9);
-      border-radius: 26px;
-      box-shadow: var(--shadow);
-      padding: 24px;
-      margin-top: 24px;
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #2aa56d, #58c98c);
+      border-radius: 999px;
+      transition: width .2s ease;
     }
 
-    .dash-top {
+    .section-title {
+      font-size: 22px;
+      margin: 4px 0 12px;
+      font-weight: 950;
+    }
+
+    .task-row {
+      padding: 14px 14px 14px 16px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 14px;
+      box-shadow: 0 10px 24px rgba(25, 62, 88, .09);
+      margin-bottom: 12px;
     }
 
-    .dash-top .avatar { width: 58px; height: 58px; font-size: 34px; }
+    .task-title { font-size: 18px; font-weight: 850; }
+    .task-sub { color: #6b7b87; font-size: 14px; margin-top: 3px; }
 
-    .dash-title {
-      font-size: 28px;
-      font-weight: 800;
-      margin: 0;
+    .switch {
+      position: relative;
+      width: 66px;
+      height: 38px;
+      flex: 0 0 auto;
     }
 
-    .mini {
-      color: #526878;
-      margin: 3px 0 0;
+    .switch input { display: none; }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background: #cdd8df;
+      border-radius: 999px;
+      transition: .2s;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,.12);
     }
 
-    .placeholder {
-      margin-top: 22px;
-      padding: 18px;
-      border-radius: 18px;
-      background: #f5f7fb;
-      color: #405566;
+    .slider:before {
+      content: "";
+      position: absolute;
+      width: 31px;
+      height: 31px;
+      left: 4px;
+      top: 3.5px;
+      background: white;
+      border-radius: 50%;
+      transition: .2s;
+      box-shadow: 0 4px 10px rgba(0,0,0,.18);
+    }
+
+    .switch input:checked + .slider {
+      background: #2aa56d;
+    }
+
+    .switch input:checked + .slider:before {
+      transform: translateX(27px);
+    }
+
+    .lock-box {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255,255,255,.7);
+      border: 1px dashed rgba(17,57,87,.22);
+      border-radius: 22px;
+      color: #526879;
+      font-weight: 750;
       line-height: 1.4;
     }
 
-    .back {
+    .unlock {
+      text-align: center;
+      background: linear-gradient(135deg, #fff5d6, #ffffff);
+      border: 1px solid rgba(180,122,22,.16);
+      border-radius: 22px;
+      padding: 15px;
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .job-card {
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 10px 24px rgba(25, 62, 88, .09);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .job-card.disabled {
+      opacity: .48;
+      filter: grayscale(.25);
+    }
+
+    .job-title { font-size: 19px; font-weight: 900; margin: 0 0 3px; }
+    .job-value { color: #168357; font-weight: 950; }
+    .job-note { color: #6b7b87; font-size: 14px; }
+
+    .claim {
       border: none;
-      background: rgba(255,255,255,.82);
-      box-shadow: 0 8px 18px rgba(24, 52, 72, 0.1);
-      border-radius: 14px;
-      padding: 10px 14px;
-      font-weight: 700;
-      color: var(--navy);
+      background: linear-gradient(135deg, #5b45b6, #8a62ed);
+      color: white;
+      border-radius: 15px;
+      padding: 12px 14px;
+      font-weight: 900;
       cursor: pointer;
     }
 
+    .claim:disabled { background: #bdc6ce; cursor: not-allowed; }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,.72);
+      border-radius: 19px;
+      padding: 15px;
+      border: 1px solid rgba(17,57,87,.08);
+    }
+
+    .stat small { color: #526879; font-weight: 800; }
+    .stat strong { display:block; font-size: 29px; margin-top: 3px; }
+
+    input {
+      width: 100%;
+      border: 1px solid #d7e2ea;
+      background: rgba(255,255,255,.86);
+      border-radius: 16px;
+      padding: 14px;
+      font-size: 17px;
+      outline: 0;
+      margin-bottom: 10px;
+    }
+
+    .primary {
+      border: none;
+      width: 100%;
+      border-radius: 16px;
+      padding: 15px;
+      background: linear-gradient(135deg, #2b8b79, #34b07f);
+      color: white;
+      font-size: 17px;
+      font-weight: 950;
+      cursor: pointer;
+    }
+
+    .danger, .pay {
+      border: none;
+      border-radius: 13px;
+      padding: 10px 12px;
+      color: white;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .danger { background: #d75d5d; }
+    .pay { background: #168357; }
+
+    .admin-list-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(17,57,87,.1);
+    }
+
+    .admin-list-row:last-child { border-bottom: none; }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      overflow-x: auto;
+      padding-bottom: 3px;
+    }
+
+    .tab {
+      border: none;
+      background: rgba(255,255,255,.65);
+      border-radius: 999px;
+      padding: 10px 13px;
+      color: var(--navy);
+      font-weight: 900;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .tab.active { background: var(--navy); color: white; }
+
     .modal-wrap {
-      display: none;
       position: fixed;
       inset: 0;
-      background: rgba(18,58,90,.28);
-      z-index: 10;
+      display: none;
       align-items: flex-end;
       justify-content: center;
       padding: 18px;
+      background: rgba(17,57,87,.32);
+      z-index: 10;
     }
 
     .modal-wrap.active { display: flex; }
 
     .modal {
-      width: min(100%, 430px);
       background: white;
       border-radius: 28px;
-      padding: 24px;
-      box-shadow: 0 24px 60px rgba(0,0,0,.22);
-      animation: slide .18s ease;
-    }
-
-    @keyframes slide {
-      from { transform: translateY(20px); opacity: .7; }
-      to { transform: translateY(0); opacity: 1; }
+      width: min(100%, 430px);
+      padding: 23px;
+      box-shadow: 0 26px 70px rgba(0,0,0,.22);
     }
 
     .modal h2 { margin: 0 0 8px; }
-    .modal p { color: #526878; margin-top: 0; }
-
-    input {
-      width: 100%;
-      border: 1px solid #d7e0e7;
-      border-radius: 16px;
-      padding: 16px;
-      font-size: 18px;
-      outline: none;
-      margin: 8px 0 14px;
-    }
-
-    .primary {
-      width: 100%;
-      border: none;
-      border-radius: 16px;
-      padding: 16px;
-      color: white;
-      font-size: 17px;
-      font-weight: 800;
-      background: linear-gradient(135deg, #6c4fc7, #8f60ee);
-      cursor: pointer;
-    }
-
+    .modal p { margin: 0 0 12px; color: #526879; }
+    .error { display:none; color: #b42318; font-weight: 850; margin-bottom: 10px; }
+    .error.active { display:block; }
     .secondary {
       width: 100%;
-      border: none;
+      border: 0;
       background: transparent;
-      padding: 15px;
-      font-size: 16px;
-      color: #526878;
+      padding: 14px;
+      color: #526879;
+      font-weight: 800;
       cursor: pointer;
     }
-
-    .error {
-      display: none;
-      color: #b42318;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .error.active { display: block; }
 
     @media (max-width: 380px) {
       h1 { font-size: 66px; }
-      .summer { font-size: 32px; }
-      button.card { grid-template-columns: 66px 1fr 20px; padding: 16px; }
-      .avatar { width: 62px; height: 62px; font-size: 36px; }
-      .card h2 { font-size: 26px; }
+      .summer { font-size: 31px; }
+      .person-card { grid-template-columns: 62px 1fr 20px; padding: 14px; }
+      .avatar { width: 58px; height: 58px; font-size: 32px; }
+      .person-card h2 { font-size: 25px; }
+      .money { font-size: 42px; }
     }
   </style>
 </head>
 <body>
-  <main class="phone">
-    <div class="leaves">
-      <div class="leaf one"></div>
-      <div class="leaf two"></div>
-      <div class="leaf three"></div>
-      <div class="leaf four"></div>
-    </div>
-    <div class="ocean"></div>
-
-    <section id="loginScreen">
+  <main class="app">
+    <section id="login" class="screen active">
       <div class="hero">
-        <div class="sun">
-          <div class="ray"></div>
-          <div class="ray r2"></div>
-          <div class="ray r3"></div>
-          <div class="ray r4"></div>
-          <div class="ray r5"></div>
+        <div class="sun-logo">
+          <span></span><span class="r2"></span><span class="r3"></span><span class="r4"></span><span class="r5"></span>
         </div>
-
         <h1>Bell</h1>
         <div class="summer">SUMMER</div>
-        <div class="waves">~~~</div>
-
-        <div class="tagline">
-          Chores. Jobs. Earnings.<br />
-          Building Responsibility Together.
-        </div>
+        <div class="tagline">Daily tasks unlock paid jobs.</div>
       </div>
 
       <div class="cards">
-        <button class="card spencer" onclick="openChild('Spencer', '👦')">
+        <button class="person-card spencer" onclick="openChild('spencer')">
           <div class="avatar">👦</div>
-          <div>
-            <h2>Spencer</h2>
-            <p>Go to my dashboard</p>
-          </div>
+          <div><h2>Spencer</h2><p>Open my chores</p></div>
           <div class="chev">›</div>
         </button>
 
-        <button class="card harper" onclick="openChild('Harper', '👧')">
+        <button class="person-card harper" onclick="openChild('harper')">
           <div class="avatar">👧</div>
-          <div>
-            <h2>Harper</h2>
-            <p>Go to my dashboard</p>
-          </div>
+          <div><h2>Harper</h2><p>Open my chores</p></div>
           <div class="chev">›</div>
         </button>
 
-        <button class="card parent" onclick="showParentLogin()">
+        <button class="person-card parent" onclick="showParentLogin()">
           <div class="avatar">🔒</div>
-          <div>
-            <h2>Parent</h2>
-            <p>Access parent dashboard</p>
-          </div>
+          <div><h2>Parent</h2><p>Manage jobs and payouts</p></div>
           <div class="chev">›</div>
         </button>
-      </div>
-
-      <div class="footer">
-        <div class="shield">✓</div>
-        <div>This is a private family app</div>
       </div>
     </section>
 
-    <section id="dashboardScreen" class="screen">
-      <button class="back" onclick="goHome()">← Back</button>
+    <section id="child" class="screen">
+      <div class="topbar">
+        <button class="back-btn" onclick="goHome()">← Home</button>
+        <div class="brand-small"><span class="sun-dot"></span> Bell Summer</div>
+      </div>
 
-      <div class="dash-card">
-        <div class="dash-top">
-          <div id="dashAvatar" class="avatar">👦</div>
+      <div class="panel">
+        <div class="hello">
+          <div id="childAvatar" class="avatar">👦</div>
           <div>
-            <h2 id="dashTitle" class="dash-title">Spencer</h2>
-            <p id="dashSubtitle" class="mini">Child dashboard</p>
+            <h2 id="childName">Spencer</h2>
+            <p id="todayText">Today is Monday</p>
           </div>
         </div>
 
-        <div id="dashBody" class="placeholder">
-          This is where the chore list, completed chores, locked jobs, unlocked jobs, and earnings will go next.
+        <div class="money-card">
+          <div class="money-label">My current money</div>
+          <div id="childMoney" class="money">$0</div>
         </div>
+
+        <div class="section-title">First Tasks</div>
+        <div id="tasks"></div>
+        <div class="progress"><div id="taskBar" class="bar"></div></div>
+        <div id="taskProgress" class="task-sub">0 of 3 complete</div>
+      </div>
+
+      <div class="panel">
+        <div id="jobStatus"></div>
+        <div id="childJobs"></div>
+      </div>
+    </section>
+
+    <section id="parent" class="screen">
+      <div class="topbar">
+        <button class="back-btn" onclick="goHome()">← Home</button>
+        <div class="brand-small"><span class="sun-dot"></span> Parent</div>
+      </div>
+
+      <div class="tabs">
+        <button id="tabOverview" class="tab active" onclick="showAdminTab('overview')">Overview</button>
+        <button id="tabJobs" class="tab" onclick="showAdminTab('jobs')">Jobs</button>
+        <button id="tabTasks" class="tab" onclick="showAdminTab('tasks')">Tasks</button>
+      </div>
+
+      <div id="adminOverview" class="panel">
+        <div class="section-title">Family Overview</div>
+        <div class="admin-grid">
+          <div class="stat"><small>Spencer Money</small><strong id="spencerStat">$0</strong></div>
+          <div class="stat"><small>Harper Money</small><strong id="harperStat">$0</strong></div>
+        </div>
+        <div id="childStatusList"></div>
+      </div>
+
+      <div id="adminJobs" class="panel" style="display:none;">
+        <div class="section-title">Add a Job</div>
+        <input id="newJobTitle" placeholder="Job title, example: Wash the car" />
+        <input id="newJobValue" type="number" min="0" step="0.50" placeholder="Value, example: 5" />
+        <button class="primary" onclick="addJob()">Add Job</button>
+
+        <div class="section-title" style="margin-top:22px;">Current Jobs</div>
+        <div id="adminJobList"></div>
+      </div>
+
+      <div id="adminTasks" class="panel" style="display:none;">
+        <div class="section-title">Daily Tasks</div>
+        <input id="newTaskTitle" placeholder="Task title, example: Pack backpack" />
+        <button class="primary" onclick="addTask()">Add Task</button>
+        <div id="adminTaskList" style="margin-top:14px;"></div>
       </div>
     </section>
   </main>
 
-  <div id="parentModal" class="modal-wrap">
+  <div id="pinModal" class="modal-wrap">
     <div class="modal">
-      <h2>Parent Access</h2>
-      <p>Enter the parent password to open the admin dashboard.</p>
-      <input id="parentPassword" type="password" placeholder="Parent password" />
-      <div id="passwordError" class="error">Wrong password. Try again.</div>
-      <button class="primary" onclick="checkParentPassword()">Unlock Parent Dashboard</button>
+      <h2>Parent PIN</h2>
+      <p>Enter the parent PIN to manage Bell Summer.</p>
+      <input id="pinInput" type="password" inputmode="numeric" placeholder="PIN" />
+      <div id="pinError" class="error">Wrong PIN. Try again.</div>
+      <button class="primary" onclick="checkPin()">Unlock</button>
       <button class="secondary" onclick="hideParentLogin()">Cancel</button>
     </div>
   </div>
 
   <script>
-    const parentPassword = "bell"; // Change this later.
+    const DEFAULT_DATA = {
+      pin: "1234",
+      currentDate: todayKey(),
+      children: {
+        spencer: { name: "Spencer", avatar: "👦", money: 0 },
+        harper: { name: "Harper", avatar: "👧", money: 0 }
+      },
+      tasks: [
+        { id: "make-bed", title: "Make your bed" },
+        { id: "brush-teeth", title: "Brush your teeth" },
+        { id: "get-dressed", title: "Get dressed" }
+      ],
+      jobs: [
+        { id: "wash-car", title: "Wash the car", value: 5 },
+        { id: "pull-weeds", title: "Pull weeds", value: 4 },
+        { id: "fold-laundry", title: "Fold laundry", value: 3 }
+      ],
+      daily: {}
+    };
 
-    function openChild(name, emoji) {
-      document.getElementById("loginScreen").style.display = "none";
-      document.getElementById("dashboardScreen").classList.add("active");
-      document.getElementById("dashAvatar").textContent = emoji;
-      document.getElementById("dashTitle").textContent = name;
-      document.getElementById("dashSubtitle").textContent = "Child dashboard";
-      document.getElementById("dashBody").innerHTML =
-        "Welcome, " + name + "!<br><br>Next we will add:<br>• Chores to complete<br>• Progress toward unlocking jobs<br>• Available paid jobs<br>• Earnings tracker";
+    let data = loadData();
+    let activeChild = null;
+
+    function todayKey() {
+      const d = new Date();
+      return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
     }
 
-    function showParentLogin() {
-      document.getElementById("parentModal").classList.add("active");
-      document.getElementById("parentPassword").value = "";
-      document.getElementById("passwordError").classList.remove("active");
-      setTimeout(() => document.getElementById("parentPassword").focus(), 150);
+    function dayName() {
+      return new Date().toLocaleDateString(undefined, { weekday: "long" });
     }
 
-    function hideParentLogin() {
-      document.getElementById("parentModal").classList.remove("active");
-    }
+    function loadData() {
+      const saved = localStorage.getItem("bellSummerData");
+      let parsed = saved ? JSON.parse(saved) : structuredClone(DEFAULT_DATA);
 
-    function checkParentPassword() {
-      const entered = document.getElementById("parentPassword").value.trim();
-      if (entered === parentPassword) {
-        hideParentLogin();
-        document.getElementById("loginScreen").style.display = "none";
-        document.getElementById("dashboardScreen").classList.add("active");
-        document.getElementById("dashAvatar").textContent = "🔐";
-        document.getElementById("dashTitle").textContent = "Parent";
-        document.getElementById("dashSubtitle").textContent = "Admin dashboard";
-        document.getElementById("dashBody").innerHTML =
-          "Parent dashboard unlocked.<br><br>Next we will add:<br>• Verify completed chores<br>• Manage chores<br>• Manage paid jobs<br>• Reset the week<br>• View Spencer and Harper's earnings";
-      } else {
-        document.getElementById("passwordError").classList.add("active");
+      if (parsed.currentDate !== todayKey()) {
+        parsed.currentDate = todayKey();
+        parsed.daily = {};
       }
+
+      localStorage.setItem("bellSummerData", JSON.stringify(parsed));
+      return parsed;
+    }
+
+    function saveData() {
+      localStorage.setItem("bellSummerData", JSON.stringify(data));
+    }
+
+    function dailyFor(childId) {
+      if (!data.daily[childId]) {
+        data.daily[childId] = { tasks: {}, jobs: {} };
+      }
+      return data.daily[childId];
+    }
+
+    function showScreen(id) {
+      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
     }
 
     function goHome() {
-      document.getElementById("dashboardScreen").classList.remove("active");
-      document.getElementById("loginScreen").style.display = "block";
+      activeChild = null;
+      showScreen("login");
     }
 
-    document.getElementById("parentPassword").addEventListener("keydown", function(e) {
-      if (e.key === "Enter") checkParentPassword();
+    function openChild(childId) {
+      activeChild = childId;
+      renderChild();
+      showScreen("child");
+    }
+
+    function renderChild() {
+      const child = data.children[activeChild];
+      const daily = dailyFor(activeChild);
+      document.getElementById("childAvatar").textContent = child.avatar;
+      document.getElementById("childName").textContent = child.name;
+      document.getElementById("todayText").textContent = "Today is " + dayName();
+      document.getElementById("childMoney").textContent = "$" + Number(child.money).toFixed(2).replace(".00", "");
+
+      const taskWrap = document.getElementById("tasks");
+      taskWrap.innerHTML = "";
+
+      data.tasks.forEach(task => {
+        const checked = !!daily.tasks[task.id];
+        const row = document.createElement("div");
+        row.className = "task-row";
+        row.innerHTML = `
+          <div>
+            <div class="task-title">${escapeHtml(task.title)}</div>
+            <div class="task-sub">${checked ? "Done for today" : "Slide when complete"}</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" ${checked ? "checked" : ""} onchange="toggleTask('${task.id}', this.checked)">
+            <span class="slider"></span>
+          </label>
+        `;
+        taskWrap.appendChild(row);
+      });
+
+      const completeCount = data.tasks.filter(t => daily.tasks[t.id]).length;
+      const total = data.tasks.length;
+      const unlocked = completeCount >= total;
+      document.getElementById("taskBar").style.width = total ? ((completeCount / total) * 100) + "%" : "100%";
+      document.getElementById("taskProgress").textContent = completeCount + " of " + total + " complete";
+
+      const status = document.getElementById("jobStatus");
+      const jobs = document.getElementById("childJobs");
+      jobs.innerHTML = "";
+
+      if (!unlocked) {
+        status.innerHTML = `<div class="lock-box">🔒 Jobs are locked.<br>Complete your first tasks to unlock paid jobs.</div>`;
+        return;
+      }
+
+      status.innerHTML = `<div class="unlock">🔓 Jobs Unlocked!</div><div class="section-title">Available Jobs</div>`;
+
+      if (data.jobs.length === 0) {
+        jobs.innerHTML = `<div class="lock-box">No jobs are available right now.</div>`;
+        return;
+      }
+
+      data.jobs.forEach(job => {
+        const done = !!daily.jobs[job.id];
+        const card = document.createElement("div");
+        card.className = "job-card" + (done ? " disabled" : "");
+        card.innerHTML = `
+          <div>
+            <div class="job-title">${escapeHtml(job.title)}</div>
+            <div class="job-value">$${Number(job.value).toFixed(2).replace(".00", "")}</div>
+            <div class="job-note">${done ? "Completed today" : "Tap when finished"}</div>
+          </div>
+          <button class="claim" ${done ? "disabled" : ""} onclick="completeJob('${job.id}')">${done ? "Done" : "Complete"}</button>
+        `;
+        jobs.appendChild(card);
+      });
+
+      saveData();
+    }
+
+    function toggleTask(taskId, checked) {
+      const daily = dailyFor(activeChild);
+      if (checked) daily.tasks[taskId] = true;
+      else delete daily.tasks[taskId];
+      saveData();
+      renderChild();
+    }
+
+    function completeJob(jobId) {
+      const daily = dailyFor(activeChild);
+      if (daily.jobs[jobId]) return;
+
+      const job = data.jobs.find(j => j.id === jobId);
+      daily.jobs[jobId] = true;
+      data.children[activeChild].money = Number(data.children[activeChild].money || 0) + Number(job.value || 0);
+      saveData();
+      renderChild();
+    }
+
+    function showParentLogin() {
+      document.getElementById("pinModal").classList.add("active");
+      document.getElementById("pinInput").value = "";
+      document.getElementById("pinError").classList.remove("active");
+      setTimeout(() => document.getElementById("pinInput").focus(), 100);
+    }
+
+    function hideParentLogin() {
+      document.getElementById("pinModal").classList.remove("active");
+    }
+
+    function checkPin() {
+      const pin = document.getElementById("pinInput").value.trim();
+      if (pin === data.pin) {
+        hideParentLogin();
+        renderAdmin();
+        showScreen("parent");
+      } else {
+        document.getElementById("pinError").classList.add("active");
+      }
+    }
+
+    function showAdminTab(tab) {
+      ["overview", "jobs", "tasks"].forEach(t => {
+        document.getElementById("admin" + cap(t)).style.display = t === tab ? "block" : "none";
+        document.getElementById("tab" + cap(t)).classList.toggle("active", t === tab);
+      });
+      renderAdmin();
+    }
+
+    function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+    function renderAdmin() {
+      document.getElementById("spencerStat").textContent = "$" + Number(data.children.spencer.money).toFixed(2).replace(".00", "");
+      document.getElementById("harperStat").textContent = "$" + Number(data.children.harper.money).toFixed(2).replace(".00", "");
+
+      const statusList = document.getElementById("childStatusList");
+      statusList.innerHTML = "";
+      Object.keys(data.children).forEach(childId => {
+        const child = data.children[childId];
+        const daily = dailyFor(childId);
+        const doneTasks = data.tasks.filter(t => daily.tasks[t.id]).map(t => t.title);
+        const doneJobs = data.jobs.filter(j => daily.jobs[j.id]).map(j => j.title);
+
+        const row = document.createElement("div");
+        row.className = "admin-list-row";
+        row.innerHTML = `
+          <div>
+            <strong>${child.avatar} ${child.name}</strong>
+            <div class="task-sub">Tasks: ${doneTasks.length ? escapeHtml(doneTasks.join(", ")) : "None yet"}</div>
+            <div class="task-sub">Jobs: ${doneJobs.length ? escapeHtml(doneJobs.join(", ")) : "None yet"}</div>
+          </div>
+          <button class="pay" onclick="paidOut('${childId}')">PAID OUT</button>
+        `;
+        statusList.appendChild(row);
+      });
+
+      const jobList = document.getElementById("adminJobList");
+      jobList.innerHTML = "";
+      data.jobs.forEach(job => {
+        const row = document.createElement("div");
+        row.className = "admin-list-row";
+        row.innerHTML = `
+          <div>
+            <strong>${escapeHtml(job.title)}</strong>
+            <div class="task-sub">$${Number(job.value).toFixed(2).replace(".00", "")}</div>
+          </div>
+          <button class="danger" onclick="deleteJob('${job.id}')">Delete</button>
+        `;
+        jobList.appendChild(row);
+      });
+
+      const taskList = document.getElementById("adminTaskList");
+      taskList.innerHTML = "";
+      data.tasks.forEach(task => {
+        const row = document.createElement("div");
+        row.className = "admin-list-row";
+        row.innerHTML = `
+          <div><strong>${escapeHtml(task.title)}</strong></div>
+          <button class="danger" onclick="deleteTask('${task.id}')">Delete</button>
+        `;
+        taskList.appendChild(row);
+      });
+
+      saveData();
+    }
+
+    function addJob() {
+      const title = document.getElementById("newJobTitle").value.trim();
+      const value = Number(document.getElementById("newJobValue").value);
+      if (!title || isNaN(value)) return;
+
+      data.jobs.push({
+        id: title.toLowerCase().replace(/[^a-z0-9]+/g, "-") + "-" + Date.now(),
+        title,
+        value
+      });
+
+      document.getElementById("newJobTitle").value = "";
+      document.getElementById("newJobValue").value = "";
+      saveData();
+      renderAdmin();
+    }
+
+    function deleteJob(jobId) {
+      data.jobs = data.jobs.filter(j => j.id !== jobId);
+      Object.values(data.daily).forEach(d => { if (d.jobs) delete d.jobs[jobId]; });
+      saveData();
+      renderAdmin();
+    }
+
+    function addTask() {
+      const title = document.getElementById("newTaskTitle").value.trim();
+      if (!title) return;
+
+      data.tasks.push({
+        id: title.toLowerCase().replace(/[^a-z0-9]+/g, "-") + "-" + Date.now(),
+        title
+      });
+
+      document.getElementById("newTaskTitle").value = "";
+      saveData();
+      renderAdmin();
+    }
+
+    function deleteTask(taskId) {
+      data.tasks = data.tasks.filter(t => t.id !== taskId);
+      Object.values(data.daily).forEach(d => { if (d.tasks) delete d.tasks[taskId]; });
+      saveData();
+      renderAdmin();
+    }
+
+    function paidOut(childId) {
+      data.children[childId].money = 0;
+      saveData();
+      renderAdmin();
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, m => ({
+        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
+      }[m]));
+    }
+
+    document.getElementById("pinInput").addEventListener("keydown", e => {
+      if (e.key === "Enter") checkPin();
     });
   </script>
 </body>
